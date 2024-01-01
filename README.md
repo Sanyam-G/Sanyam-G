@@ -17,6 +17,6 @@ Welcome to my GitHub profile! I'm a passionate Computer Science student at the U
 
 - Connect with me on [LinkedIn](https://www.linkedin.com/in/Sanyam-G)
 - Follow me on [GitHub](https://github.com/Sanyam-G) to stay updated with my latest projects
-- Reach out to me at [sanyamg@icloud.com](mailto:sanyamg@icloud.com)
+- Reach out to me at [my email](mailto:sanyamg2006@gmail.com)
 
 Thank you for visiting my profile! Feel free to browse my repositories and don't hesitate to reach out if you have any questions or collaboration ideas.
