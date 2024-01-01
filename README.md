@@ -7,7 +7,7 @@ Welcome to my GitHub profile! I'm a passionate Computer Science student at the U
 - 🎓 Pursuing a Bachelor's degree in Computer Science.
 - 💻 I have a keen interest in **Web Development**, **Mobile App Development**, and **Machine Learning**.
 - 🌱 Currently learning more about **Web Development** and **AI**.
-- 🚀 Working on various projects using technologies like **Flutter & Dart**, **JavaScript**, and **Python**.
+- 🚀 Working on various projects using technologies like **Flutter & Dart**, **HTML/CSS/JS**, and **Python**.
 
 ## My Work
 
