@@ -11,7 +11,7 @@ Welcome to my GitHub profile! I'm a passionate Computer Science student at the U
 
 ## My Work
 
-- [**SPlanner**](https://github.com/Sanyam-G/SPlanner): A Student Planner Mobile Application designed to streamline task management and academic scheduling. Built with Flutter and Dart.
+- [**SPlanner**](https://github.com/Sanyam-G/SPlanner): A Student Planner Mobile Application designed to streamline task management and academic scheduling. Built with Flutter, Dart, and Firebase.
 
 ## Get in Touch
 
