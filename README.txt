@@ -1,32 +1,24 @@
-Forty by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+# Hello, I'm Sanyam Garg 👋
 
+Welcome to my GitHub profile! I'm a passionate Computer Science student at the University of Wisconsin, Madison, exploring the fascinating world of software development and Artificial Intelligence.
 
-This is Forty, my latest and greatest addition to HTML5 UP and, per its incredibly
-creative name, my 40th (woohoo)! It's built around a grid of "image tiles" that are
-set up to smoothly transition to secondary landing pages (for which a separate page
-template is provided), and includes a number of neat effects (check out the menu!),
-extra features, and all the usual stuff you'd expect. Hope you dig it!
+## About Me
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+- 🎓 Pursuing a Bachelor's degree in Computer Science.
+- 💻 I have a keen interest in **Web Development**, **Mobile App Development**, and **Machine Learning**.
+- 🌱 Currently learning more about **Web Development** and **AI**.
+- 🚀 Working on various projects using technologies like **Flutter & Dart**, **JavaScript**, and **Python**.
 
-(* = not included)
+## My Work
 
-AJ
-aj@lkn.io | @ajlkn
+- [**SPlanner**](https://github.com/Sanyam-G/SPlanner): A Student Planner Mobile Application designed to streamline task management and academic scheduling. Built with Flutter and Dart.
+- [**Project 2**](#): Description of another project...
+- ...more projects...
 
+## Get in Touch
 
-Credits:
+- Connect with me on [LinkedIn](https://www.linkedin.com/in/Sanyam-G)
+- Follow me on [GitHub](https://github.com/Sanyam-G) to stay updated with my latest projects
+- Reach out to me at [sanyamg@icloud.com](mailto:sanyamg@icloud.com)
 
-	Demo Images:
-		Unsplash (unsplash.com)
-
-	Icons:
-		Font Awesome (fontawesome.io)
-
-	Other:
-		jQuery (jquery.com)
-		Scrollex (github.com/ajlkn/jquery.scrollex)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+Thank you for visiting my profile! Feel free to browse my repositories and don't hesitate to reach out if you have any questions or collaboration ideas.
