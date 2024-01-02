@@ -3949,14 +3949,15 @@ input, select, textarea {
 		}
 
 		#projects .inner {
-			max-width: 800px;
+			max-width: 1000px;
 			margin: 0 auto;
 			padding: 40px;
 		}
 		
 		.projects-list {
 			display: flex;
-			flex-direction: column;
+			flex-wrap: wrap;
+			justify-content: space-between; /* Adjusts spacing between project items */
 		}
 		
 		.project-item {
@@ -3968,6 +3969,7 @@ input, select, textarea {
 			margin-bottom: 30px;
 			border-radius: 15px; /* More rounded edges */
 			overflow: hidden;
+			width: calc(50% - 15px); /* Sets width to half minus margin */
 		}
 		
 		.project-item:hover {
@@ -3975,8 +3977,8 @@ input, select, textarea {
 		}
 		
 		.project-image {
-			width: 100%;
-			height: auto;
+			width: 450px;
+			height: 250px;
 			object-fit: cover;
 		}
 		
@@ -3995,6 +3997,7 @@ input, select, textarea {
 			color: #4f4f4f; /* Slightly lighter shade for the description */
 			font-weight: bold; /* Making the text bold */
 		}
+		
 
 		.features-grid {
 			display: flex;
