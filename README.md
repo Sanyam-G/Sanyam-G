@@ -12,7 +12,7 @@ Welcome to my GitHub profile! I'm a passionate Computer Science student at the U
 ## My Work
 
 - [**SPlanner**](https://github.com/Sanyam-G/SPlanner): A Student Planner Mobile Application designed to streamline task management and academic scheduling. Built with Flutter, Dart, and Firebase.
-- [**StickyNote**](https://github.com/Sanyam-G/Sticky-Note): A sticky note page designed to allow users to create and edit "notes" locally on their browser. Built with HTML, CSS, and Javascript.
+- [**StickyBoard**](https://github.com/Sanyam-G/Sticky-Note): A sticky note page designed to allow users to create and edit "notes" locally on their browser. Built with HTML, CSS, and Javascript.
 
 ## Get in Touch
 
