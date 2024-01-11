@@ -2,7 +2,7 @@
 
 Welcome to my GitHub profile! I'm a passionate Computer Science student at the University of Wisconsin, Madison, exploring the fascinating world of software development and Artificial Intelligence.
 
-## About Me
+## About Mee
 
 - 🎓 Pursuing a Bachelor's degree in Computer Science.
 - 💻 I have a keen interest in **Web Development**, **Mobile App Development**, and **Machine Learning**.
