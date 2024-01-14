@@ -4161,9 +4161,78 @@ input, select, textarea {
 				margin-left: 4%;
 			}
 		}
+		@media screen and (max-width: 600px) {
+			#skills {
+				margin-right: 6%;
+				border-top-right-radius: 0;
+				border-bottom-right-radius: 0;
+			#projects {
+				margin-left: 6%;
+				border-bottom-left-radius: 0;
+				border-top-left-radius: 0;
+			}
+			#projects > div > div > a:nth-child(1) > div > p {
+				visibility: hidden;
+			}
+		}
 	}
 	body {
 		border: black;
 		border-style: groove;
 		border-width: 10px;
 	}
+}
+
+/* Base styles */
+/* ... */
+
+/* Adjusts for screens less than 950px */
+@media screen and (max-width: 950px) {
+	.main-content {
+	  flex-direction: column;
+	}
+  
+	#projects,
+	#skills {
+	  width: auto; /* Take the full width */
+	  margin-right: 0;
+	  margin-left: 0;
+	}
+  
+	/* Adjust project items for better spacing */
+	.project-item {
+	  width: auto; /* Take the full width */
+	  margin-bottom: 20px; /* Adjust as needed */
+	}
+  
+	/* Adjust skill items for better visibility */
+	.skill-item {
+	  width: auto; /* Take the full width */
+	  margin-bottom: 20px; /* Adjust as needed */
+	}
+  }
+  
+  /* Further adjustments for iPhone 14 Pro resolution */
+  @media screen and (max-width: 1170px) {
+	/* Adjust the skill bars to be more responsive */
+	.skill-bar {
+	  /* Adjust width or remove if you want to use the data-width attribute */
+	}
+  
+	/* Any additional styles for smaller screens go here */
+  }
+  
+  /* Additional media queries if needed for smaller breakpoints */
+  @media screen and (max-width: 600px) {
+	/* Adjustments for screens smaller than 600px */
+	.github-button-container {
+	  position: static; /* As per previous requirement */
+	}
+  
+	/* Additional adjustments for better layout on very small screens */
+	#projects,
+	#skills {
+	  margin: 0 3%; /* Add some margin on the sides */
+	}
+  }
+  
