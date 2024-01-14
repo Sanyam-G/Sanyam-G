@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>SPlanner Project - Sanyam Garg's Portfolio</title>
+    <title>SPlanner Project</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -17,14 +17,37 @@
             text-align: center;
             margin-top: 40px; /* Space above the GitHub button */
         }
+        #header {
+            background-color: antiquewhite;
+        }
+        body {
+            border-width: 0;
+            color: #242943;
+        }
+        h2 {
+            color: #242943;
+        }
+        .github-button-container {
+            position: fixed;
+            left: 70%;
+            top: 60%;
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width: 950px) {
+            .github-button-container {
+                position: static;
+            }
+        }
+
     </style>
 </head>
 <body class="is-preload">
     <!-- Wrapper -->
-    <div id="wrapper">
+    <div id="wrapper" style="margin-top: -100px;">
         <!-- Header -->
         <header id="header">
-            <a href="index.html" class="logo"><strong>Sanyam</strong> <span>Garg</span></a>
+            <a href="index.html" class="logo"><strong>Sanyam</strong> <span style="color: rgb(34, 34, 34);">Garg</span></a>
         </header>
 
         <!-- Main -->
@@ -68,7 +91,7 @@
 
                     <!-- GitHub Repository Button -->
                     <div class="github-button-container">
-                        <a href="https://github.com/Sanyam-G/SPlanner" class="button large">View on GitHub</a>
+                        <a href="https://github.com/Sanyam-G/SPlanner" class="button large" style="color: #242943; border-radius: 10px;">View on GitHub</a>
                     </div>
                 </div>
             </section>

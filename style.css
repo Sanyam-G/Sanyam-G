@@ -1,0 +1,52 @@
+
+/* CSS for the rounded and smaller image */
+.profile-image {
+    border-radius: 50%;
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* CSS for Skills Sidebar */
+#skills-sidebar {
+    width: 300px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    top: 60px; /* Adjust according to your header's height */
+}
+.skills-slider {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+.skill {
+    background-color: #6A6A79;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+
+/* CSS for Projects Section */
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+.grid-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.grid-item img {
+    width: 100%;
+    height: auto;
+}
+.grid-info {
+    padding: 15px;
+}
