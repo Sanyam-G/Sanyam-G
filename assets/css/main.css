@@ -1,4 +1,3 @@
-@import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
 
 
@@ -94,7 +93,8 @@ input, select, textarea {
 	}
 
 	body {
-		background: antiquewhite;
+		background-color: black;
+		background-image: linear-gradient(90deg, #090947 -20%, black 15%, #090947 250%);
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -154,7 +154,7 @@ input, select, textarea {
 	}
 
 		a:hover {
-			color: antiquewhite !important;
+			color: slategray;
 		}
 
 
@@ -1767,6 +1767,7 @@ input, select, textarea {
 		width: -ms-max-content;
 		width: max-content;
 		margin-bottom: 2em;
+		z-index: 1;
 	}
 
 		header.major > :first-child {
@@ -1950,8 +1951,8 @@ input, select, textarea {
 
 		select option {
 			color: #ffffff;
-			background: antiquewhite;
-			
+			background: slategray;
+
 		}
 
 		select:focus::-ms-value {
@@ -2037,7 +2038,7 @@ input, select, textarea {
 			background: #ffffff;
 			border-color: #9bf1ff;
 			content: '\f00c';
-			color: antiquewhite;
+			color: slategray;
 		}
 
 		input[type="checkbox"]:focus + label:before,
@@ -2680,7 +2681,7 @@ input, select, textarea {
 			button.primary:active,
 			.button.primary:hover,
 			.button.primary:active {
-				background-color: antiquewhite;
+				background-color: slategray;
 				color: black !important;
 			}
 
@@ -3132,6 +3133,7 @@ input, select, textarea {
 			height: inherit;
 			line-height: inherit;
 			padding: 0 1.5em;
+			z-index: 1000;
 		}
 
 			#header .logo strong {
@@ -3381,7 +3383,7 @@ input, select, textarea {
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		padding: 6em 0 2em 0 ;
+		padding: 1% 0 1% 0 ;
 		background-attachment: fixed;
 		background-position: center;
 		background-repeat: no-repeat;
@@ -3406,7 +3408,8 @@ input, select, textarea {
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
 			pointer-events: none;
-			background-color: antiquewhite;
+			background-color: black;
+			background-image: linear-gradient(90deg, #090947 -20%, black 15%, #090947 250%);
 			content: '';
 			display: block;
 			height: 100%;
@@ -3415,6 +3418,7 @@ input, select, textarea {
 			top: 0;
 			width: 100%;
 			z-index: 1;
+			color: antiquewhite;
 		}
 
 		#banner h1 {
@@ -3476,7 +3480,7 @@ input, select, textarea {
 				}
 
 		#banner.major {
-			height: 75vh;
+			height: 40%;
 			min-height: 30em;
 			max-height: 50em;
 			background-color: #6A6A79;
@@ -3537,7 +3541,7 @@ input, select, textarea {
 		@media screen and (max-width: 736px) {
 
 			#banner {
-				padding: 5em 0 1em 0 ;
+				padding: 0 0 0 0 ;
 				height: auto;
 				margin-bottom: -2.75em;
 				max-height: none;
@@ -3569,7 +3573,7 @@ input, select, textarea {
 		@media screen and (max-width: 480px) {
 
 			#banner {
-				padding: 6em 0 2em 0 ;
+				padding: 2em 0 2em 0 ;
 			}
 
 				#banner > .inner .content p br {
@@ -3979,18 +3983,19 @@ input, select, textarea {
 			max-width: 1000px;
 			margin: 0 auto;
 			padding: 40px;
+			padding-top: 20px;
 		}
-		
+
 		.projects-list {
 			flex-wrap: wrap;
 			justify-content: space-between;
 			width: 100%; /* Adjusts spacing between project items */
 		}
-		
+
 		.project-item {
 			display: flex;
 			flex-direction: column;
-			border: 1px solid antiquewhite; /* Lighter border color */
+			border: 1px solid slategray; /* Lighter border color */
 			background-color: antiquewhite; /* Very light gray background */
 			text-decoration: none;
 			margin-bottom: 30px;
@@ -3999,66 +4004,69 @@ input, select, textarea {
 			width: 100%; /* Sets width to half minus margin */
 			height: 220px;
 		}
-		
+
 		@media screen and (max-width: 850px) {
 			.project-item {
 				height: auto;
 			}
 		}
-		
-		
+
+
 		.project-item:hover {
 			border-color: black; /* Slightly darker border on hover */
 		}
-		
-		
+
+
 		.project-info {
 			padding: 20px;
 			text-align: left; /* Ensuring text is aligned left */
 		}
-		
+
 		.project-info h3 {
 			margin-top: 0;
-			color: #333333; /* Dark gray for the project name */
+			color: black; /* Dark gray for the project name */
 			font-weight: bold; /* Making the text bold */
 		}
-		
+
 		.project-info p {
 			color: #4f4f4f; /* Slightly lighter shade for the description */
 			font-weight: bold; /* Making the text bold */
 		}
-		
+
 		#skills {
-			background-color: antiquewhite;
-			padding: 20px;
+			background-color: black;
+			padding: -20px;
 			text-align: center;
 		}
-		
+
 		.skills-grid {
 			display: grid;
 			grid-template-columns: 1fr; /* Sets only one column */
 			gap: 20px;
 			margin-top: 20px;
 		}
-		
+
 		.skill-item {
 			background-color: antiquewhite;
 			padding: 10px;
 			border-radius: 10px;
 			box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 			width: 100%;
+			height: 100%;
 		}
-		
+
 		.skill-item h3 {
 			margin-bottom: 10px;
 			color:rgb(34, 34, 34);
 		}
-		
+
 		.skill-bar {
-			height: 20px;
-			background-color: slategray;
+			height: 15px;
+			background-color: #1C1C04;
+			color: antiquewhite;
 			border-radius: 5px;
 			transition: width 0.5s ease;
+			vertical-align: center;
 		}
 
 		#skills > div {
@@ -4069,11 +4077,11 @@ input, select, textarea {
 			display: flex;
 			justify-content: space-between;
 		}
-		
+
 		#projects, #skills {
 			width: calc(50% - 20px); /* Adjust width as needed */
 		}
-		
+
 		/* Animation trigger */
 		.skill-bar-animate {
 			width: 80%; /* Or respective skill level */
@@ -4084,53 +4092,47 @@ input, select, textarea {
 			from { width: 0; }
 			to { width: 100%; }
 		}
-		
+
 		.skill-bar {
 			width: 0;
-			background-color: slategray;
 			border-radius: 5px;
 			animation: slideIn 2s ease forwards;
 		}
-		
+
 		@keyframes slideIn {
 			to { width: var(--skill-level); }
 		}
 
-		.skill-bar {
-			width: 0;
-			background-color: slategray;
-			border-radius: 5px;
-			/* Remove the animation property from here */
-		}
-		
+
+
 		.skill-bar-visible {
 			animation: slideIn 2s ease forwards;
 		}
-		
+
 		@keyframes slideIn {
 			to { width: var(--skill-level); }
 		}
-		
+
 		h1 {
 			color: rgb(34, 34, 34);
 		}
 
 		#skills {
-			background-color: #242943;
+			background-image: linear-gradient(90deg, black 15%, #090947 180%);
 			border-top-right-radius: 3%;
 			border-bottom-right-radius: 3%;
 			margin-bottom: 1%;
 			margin-right: 1.5%;
 		}
-		
+
 		#projects {
 			border-top-left-radius: 3%;
 			border-bottom-left-radius: 3%;
 			margin-left: 1.5%;
 			margin-bottom: 1%;
-			background-color: #242943;
+			background-image: linear-gradient(90deg, #090947 -100%, black 100%);
 		}
-		
+
 		/* Screen width less than 1340px */
 		@media screen and (max-width: 1340px) {
 			#skills {
@@ -4140,7 +4142,7 @@ input, select, textarea {
 				margin-left: 2%;
 			}
 		}
-		
+
 		/* Screen width less than 1025px */
 		@media screen and (max-width: 1025px) {
 			#skills {
@@ -4150,7 +4152,7 @@ input, select, textarea {
 				margin-left: 3%;
 			}
 		}
-		
+
 		/* Screen width less than 675px */
 		@media screen and (max-width: 675px) {
 			#skills {
@@ -4189,44 +4191,44 @@ input, select, textarea {
 	.main-content {
 	  flex-direction: column;
 	}
-  
+
 	#projects,
 	#skills {
 	  width: auto; /* Take the full width */
 	  margin-right: 0;
 	  margin-left: 0;
 	}
-  
+
 	/* Adjust project items for better spacing */
 	.project-item {
 	  width: auto; /* Take the full width */
 	  margin-bottom: 20px; /* Adjust as needed */
 	}
-  
+
 	/* Adjust skill items for better visibility */
 	.skill-item {
 	  width: auto; /* Take the full width */
 	  margin-bottom: 20px; /* Adjust as needed */
 	}
   }
-  
+
   /* Further adjustments for iPhone 14 Pro resolution */
   @media screen and (max-width: 1170px) {
 	/* Adjust the skill bars to be more responsive */
 	.skill-bar {
 	  /* Adjust width or remove if you want to use the data-width attribute */
 	}
-  
+
 	/* Any additional styles for smaller screens go here */
   }
-  
+
   /* Additional media queries if needed for smaller breakpoints */
   @media screen and (max-width: 600px) {
 	/* Adjustments for screens smaller than 600px */
 	.github-button-container {
 	  position: static; /* As per previous requirement */
 	}
-  
+
 	/* Additional adjustments for better layout on very small screens */
 	#projects,
 	#skills {
@@ -4234,8 +4236,121 @@ input, select, textarea {
 	}
   }
 
+.css-blurry-gradient-1 {
+	position: fixed;
+	top: -40%;
+	left: 100%;
+	transform: translate(-50%, 0%);
+	width: 400px;
+	height: 800px;
+	border-radius: 50% 22% 40% 80%;
+	filter: blur(100px);
+	background: radial-gradient(circle at 50% 50%, rgb(255, 115, 0), rgba(255, 115, 1, 0));
+	opacity: 0.2;
+}
+.css-blurry-gradient-2 {
+	position: fixed;
+	top: 30%;
+	left: 0%;
+	transform: translate(-50%, 0%);
+	width: 200px;
+	height: 800px;
+	border-radius: 50% 22% 40% 80%;
+	filter: blur(100px);
+	background: radial-gradient(circle at 50% 50%, rgb(255, 115, 0), rgba(255, 115, 1, 0));
+	opacity: 0.3;
+}
+.css-blurry-gradient-3 {
+	position: fixed;
+	top: -30%;
+	left: 90%;
+	transform: translate(-50%, 0%);
+	width: 800px;
+	height: 800px;
+	border-radius: 50% 22% 40% 10%;
+	filter: blur(300px);
+	background: radial-gradient(circle at 50% 50%,rgba(76, 0, 255, 1), rgba(76, 0, 255, 0));
+	opacity: 0.2;
+}
+#banner > div > header > h1{
+	color: white
+
+}
+
+nav {
+	background-color: transparent;
+	overflow: hidden;
+	position: absolute; /* This will make the navbar stick to the top of the page */
+	width: 100%; /* This will make the navbar span the full width of the page */
+	top: 0; /* This will position the navbar at the top of the page */
+	z-index: 1000; /* This will ensure the navbar stays on top of other elements */
+}
+
+nav ul {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	float: left;
+}
+
+nav a {
+	display: block;
+	color: antiquewhite;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	z-index: 100000;
+	font-weight: bold;
+}
+
+nav a:hover {
+	color: rgb(249 115 22);
+}
 
 
+/* Card container styling for horizontal arrangement */
+.content-grid {
+	display: flex;
+	flex-wrap: nowrap; /* Prevents wrapping to the next line */
+	overflow-x: auto; /* Adds horizontal scrolling */
+	gap: 20px; /* Adds space between cards */
+	padding: 10px 0; /* Adds vertical padding */
+}
 
+/* Card class styling */
+.card {
+	background-color: #1f1f1f; /* Dark background color for the card */
+	border: 1px solid #333333; /* Slightly lighter border for the card */
+	border-radius: 10px; /* Rounded corners */
+	overflow: hidden; /* Ensures content doesn't overflow the card */
+	width: 140px; /* Fixed width for uniformity */
+	text-align: center; /* Center-align text inside the card */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow for depth */
+	transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for hover effects */
+	margin-bottom: 20px; /* Adds space between rows */
+	flex: 0 0 auto; /* Ensures the flex items don't shrink or grow */
+	z-index: 10000;
+}
 
+.card:hover {
+	transform: translateY(-10px); /* Slightly lifts the card on hover */
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Intensifies the shadow on hover */
+}
 
+.card img {
+	width: 100%; /* Ensures the image spans the full width of the card */
+	height: 100%; /* Maintains aspect ratio */
+	border-bottom: 1px solid #333333; /* Adds a border below the image */
+}
+
+.card p {
+	margin: 10px 0; /* Adds vertical margin for spacing */
+	font-size: 14px; /* Sets a readable font size */
+	color: #ffffff; /* White color for the text */
+}
