@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Reading List Web App</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <style>
+        .feature-item {
+            margin-bottom: 30px; /* Adding space between listings */
+        }
+        .feature-info {
+            padding: 15px;
+        }
+        .github-button-container {
+            text-align: center;
+            margin-top: 40px; /* Space above the GitHub button */
+        }
+        #header {
+            background-color: transparent;
+        }
+        body {
+            border-width: 0;
+            color: #242944;
+        }
+        h2 {
+            color: #242943;
+        }
+        .github-button-container {
+            position: fixed;
+            left: 70%;
+            top: 60%;
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width: 950px) {
+            .github-button-container {
+                position: static;
+            }
+        }
+
+    </style>
+</head>
+<body class="is-preload">
+<nav>
+    <ul>
+        <li style="color: white" ><a href=index.html>Home</a></li>
+        <li style="color: white"><a href="resume.html">Resume</a></li>
+        <li style="color: white"><a href="likes.html">Likes</a></li>
+        <!-- Add more navigation links as needed -->
+    </ul>
+</nav>
+<!-- Wrapper -->
+<div id="wrapper" style="margin-top: -100px;">
+    <!-- Header -->
+    <header id="header" class="alt" style="width: 20%">
+        <a href="index.html" class="logo"><span style="color: rgb(249 115 22)"><strong>Sanyam</strong></span> <span
+                style="color: rgb(249 115 22); ">Garg</span></a>
+        <div class="css-blurry-gradient-1">
+            <img src="assets/files/white.jpeg" style="height: 100px; width: 100px; color: white">
+        </div>
+        <div class="css-blurry-gradient-2">
+            <img src="assets/files/white.jpeg" style="height: 100px; width: 100px; color: white">
+        </div>
+    </header>
+
+    <!-- Main -->
+    <div id="main" class="alt">
+        <!-- Reading List Web App Section -->
+        <section id="one" style="padding-top: 1%">
+            <div class="inner">
+                <header class="major">
+                    <h1 style="color: antiquewhite">Reading List Web App</h1>
+                </header>
+                <p style="color: white">The Reading List Web App is a user-friendly application designed to help users manage their reading lists efficiently. The app allows users to categorize their books into Reading, Completed, and On Hold lists, track their progress, and export/import their data. The application is built using HTML, CSS, and JavaScript with Local Storage for data persistence.</p>
+
+                <!-- Key Features -->
+                <h2 style="color: antiquewhite">Key Features</h2>
+                <ul style="color: white">
+                    <li>Intuitive Interface: Easy-to-use interface for seamless navigation and book management.</li>
+                    <li>Task Management: Add, edit, and track various books with details like title, author, publication date, cover image, and page numbers.</li>
+                    <li>Reading Progress Tracking: Track the current page number and automatically move books to the Completed list when finished.</li>
+                    <li>Export/Import Functionality: Export your reading list to a JSON file and import it to access your data across different devices.</li>
+                    <li>Responsive Design: A mobile-friendly layout that ensures a smooth experience on any device.</li>
+                    <li>Animations: Smooth animations enhance user experience and make the app visually appealing.</li>
+                </ul>
+
+                <!-- Technologies Used -->
+                <h2 style="color: antiquewhite">Technologies Used</h2>
+                <ul style="color: white">
+                    <li>HTML & CSS: For the structure and styling of the web app.</li>
+                    <li>JavaScript: To handle the functionality and interactivity of the application.</li>
+                    <li>Font Awesome: For beautiful and scalable icons used in the application.</li>
+                    <li>Local Storage: For persistent storage of the user's reading list data.</li>
+                </ul>
+
+                <!-- Installation -->
+                <h2 style="color: antiquewhite">Installation and Usage</h2>
+                <p style="color: rgb(249 115 22)">To use the Reading List Web App:</p>
+                <ol style="color: white">
+                    <li>Go to <a href="https://sanyam-g.github.io/Reading-List/">Reading List Web App</a></li>
+                    <li>Click on <strong>Add New</strong> to open the form for adding a new book.</li>
+                    <li>Search for a book name to get suggestions and auto-fill book details.</li>
+                    <li>Add or edit the book details as necessary and save the book.</li>
+                    <li>Use the <strong>Export</strong> button to download your reading list as a JSON file.</li>
+                    <li>Use the <strong>Import</strong> button to upload a JSON file and restore your reading list data.</li>
+                </ol>
+
+                <!-- GitHub Repository Button -->
+                <div class="github-button-container">
+                    <a href="https://github.com/Sanyam-G/Reading-List" class="button large" style="color: black; border-radius: 10px; background-color: antiquewhite">View on GitHub</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</div>
+</body>
+</html>
