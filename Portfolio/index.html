@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sanyam Garg | UW–Madison Student Portfolio</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Navigation Bar -->
+<header class="navbar">
+    <div class="navbar-container">
+        <div class="nav-left">
+            <h1 class="logo">Sanyam Garg</h1>
+        </div>
+        <!-- Note: No "Home" link here because this page is the homepage -->
+        <nav class="nav-right">
+            <a href="#profile">Profile</a>
+            <a href="#about">About Me</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experiences</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="https://www.linkedin.com/in/sanyamg" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Sanyam-G" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:sanyamg@icloud.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</header>
+
+<!-- Main Content Container -->
+<div class="main-container">
+    <!-- Left Column: Profile Info -->
+    <div class="left-column" id="profile">
+        <div class="card profile-card">
+            <img src="assets/photo1.png" alt="Profile Photo" class="profile-photo">
+            <h2 class="name">Sanyam Garg</h2>
+            <p class="info">Age: <span id="age"></span></p>
+            <p class="info">Madison, WI</p>
+            <p class="info">Year: <span id="standing"></span></p>
+            <p class="info"><i class="fas fa-phone"></i> +1 (646) 599-7862</p>
+            <div id="clock" class="clock"></div>
+        </div>
+        <section id="about" class="card section-card">
+            <h2>About Me</h2>
+            <p>
+                I am a passionate UW–Madison student pursuing a B.Sc. in Computer Science &amp; Data Science.
+                I thrive on solving complex problems and exploring innovative technologies.
+            </p>
+            <h3>Education</h3>
+            <p><strong>University of Wisconsin–Madison</strong> — B.Sc. in Computer Science &amp; Data Science</p>
+            <h3>Relevant Coursework</h3>
+            <ul class="course-list">
+                <li><strong>CS 240:</strong> Introduction to Discrete Mathematics</li>
+                <li><strong>CS 300 &amp; CS 400:</strong> Programming II &amp; III (Data Structures &amp; Algorithms)</li>
+                <li><strong>MATH 221:</strong> Calculus I</li>
+                <li><strong>MATH 222:</strong> Calculus II</li>
+                <li><strong>MATH 340:</strong> Introduction to Linear Algebra</li>
+                <li><strong>STAT 240:</strong> Data Science Modelling I</li>
+                <li><strong>ECE 252:</strong> Introduction to Computer Engineering</li>
+            </ul>
+            <a href="resume.pdf" download class="btn">Download Resume</a>
+        </section>
+    </div>
+
+    <!-- Right Column: Projects and Experiences -->
+    <div class="right-column">
+        <section id="projects" class="card section-card">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Interactive Graph Visualizer</h3>
+                    <p><strong>Sept 2024 – Dec 2024</strong></p>
+                    <p>
+                        Developed a tool using HTML5 Canvas to visualize graph algorithms (DFS, BFS, Shortest Path) with 95% test coverage.
+                    </p>
+                    <button class="btn" onclick="openModal('project1')">Learn More</button>
+                </div>
+                <div class="project-card">
+                    <h3>SPlanner Mobile App</h3>
+                    <p><strong>Mar 2022 – Dec 2023</strong></p>
+                    <p>
+                        Built a Flutter‑based task management application featuring dynamic scheduling and Firebase authentication.
+                    </p>
+                    <button class="btn" onclick="openModal('project2')">Learn More</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="card section-card">
+            <h2>Experiences</h2>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <h3>Cognizant — Agile Simulation</h3>
+                    <p><strong>April 2024 – May 2024</strong></p>
+                    <p>
+                        Demonstrated project management strategies and compared Agile versus Waterfall methodologies.
+                    </p>
+                </div>
+                <div class="experience-item">
+                    <h3>Skyscanner — SDE Simulation</h3>
+                    <p><strong>Nov 2023 – Jan 2024</strong></p>
+                    <p>
+                        Engineered a travel date picker feature using React integrated with Skyscanner’s Backpack library.
+                    </p>
+                </div>
+                <div class="experience-item">
+                    <h3>PuStack — SDE Intern</h3>
+                    <p><strong>Nov 2021 – Sep 2022</strong></p>
+                    <p>
+                        Developed mobile applications with Flutter and Dart while honing agile practices and debugging skills.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- Modal for Project Details -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<!-- Custom JS -->
+<script src="script.js"></script>
+</body>
+</html>
