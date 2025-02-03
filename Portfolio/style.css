@@ -1,0 +1,236 @@
+:root {
+    --bg-page: #543A14;    /* Brown main for page background */
+    --card-bg: #FFF0DC;    /* Light card background */
+    --accent: #F0BB78;     /* Accent color */
+    --text-color: #131010; /* Dark text */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg-page);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    background: var(--card-bg);
+    opacity: 0.95;
+    padding: 1% 0;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+.navbar-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    font-size: 1.8em;
+    color: var(--bg-page);
+    font-weight: 600;
+}
+.nav-right a {
+    margin: 0 1em;
+    text-decoration: none;
+    color: var(--bg-page);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.nav-right a:hover {
+    color: var(--accent);
+}
+.nav-icons a {
+    margin-left: 1em;
+    color: var(--bg-page);
+    font-size: 1.4em;
+    transition: color 0.3s;
+}
+.nav-icons a:hover {
+    color: var(--accent);
+}
+
+/* Main Container: Two-column layout */
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 80px; /* account for navbar height */
+    padding: 2%;
+}
+.left-column {
+    flex: 1 1 30%;
+    padding: 1em;
+}
+.right-column {
+    flex: 1 1 70%;
+    padding: 1em;
+}
+
+/* Card Style */
+.card {
+    background: var(--card-bg);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+/* Profile Card */
+.profile-card {
+    text-align: center;
+}
+.profile-photo {
+    width: 50%;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    margin-bottom: 1em;
+}
+.name {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+}
+.info {
+    font-size: 1em;
+    margin-bottom: 0.5em;
+}
+.clock {
+    font-family: monospace;
+    margin-top: 1em;
+    font-size: 1.2em;
+}
+
+/* Section Card (for About, Projects, Experiences) */
+.section-card h2 {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+}
+
+/* Course List */
+.course-list {
+    list-style: disc;
+    margin-left: 1.5em;
+    margin-bottom: 1em;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg-page);
+    padding: 0.5em 1em;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+.btn:hover {
+    background: #e0a26b;
+}
+
+/* Project Grid */
+.project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+.project-card {
+    background: var(--card-bg);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 1em;
+    flex: 1 1 45%;
+    margin-bottom: 1em;
+}
+
+/* Experiences: List layout (each item full width) */
+.experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.experience-item {
+    background: var(--card-bg);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 1em;
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+.modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-content {
+    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 2em;
+    width: 90%;
+    max-width: 500px;
+    border: 2px solid var(--accent);
+    position: relative;
+}
+.modal-close {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: var(--bg-page);
+    transition: color 0.3s;
+}
+.modal-close:hover {
+    color: var(--accent);
+}
+
+/* Sparkling Cursor Effect */
+.sparkle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #fff, var(--accent));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 4000;
+    animation: sparkle 1s ease-out forwards;
+}
+@keyframes sparkle {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(3); opacity: 0; }
+}
+
+/* Responsive: Stack columns on narrow screens */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    .left-column, .right-column {
+        flex: 1 1 100%;
+    }
+}

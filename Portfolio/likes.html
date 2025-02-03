@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sanyam Garg | Likes</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional styling for the Likes page */
+        .likes-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 80px;
+            padding: 2%;
+        }
+        .likes-section {
+            margin-bottom: 2em;
+        }
+        .likes-section h2 {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.5em;
+            margin-bottom: 1em;
+        }
+        .likes-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+        }
+        .like-item {
+            width: 120px;
+            text-align: center;
+        }
+        .like-item img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 0.5em;
+        }
+        .likes-list {
+            list-style: disc;
+            margin-left: 1.5em;
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<header class="navbar">
+    <div class="navbar-container">
+        <div class="nav-left">
+            <h1 class="logo">Sanyam Garg</h1>
+        </div>
+        <nav class="nav-right">
+            <a href="index.html">Home</a>
+            <a href="likes.html">Likes</a>
+        </nav>
+        <div class="nav-icons">
+            <a href="https://www.linkedin.com/in/sanyamg" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/Sanyam-G" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:sanyamg@icloud.com" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+</header>
+
+<!-- Main Likes Content -->
+<div class="main-container likes-container">
+    <!-- Favorite Music Section -->
+    <section id="favorite-music" class="card section-card likes-section">
+        <h2>Favorite Music</h2>
+        <p>Here are some of my favorite tracks and albums.</p>
+        <div class="likes-grid">
+            <div class="like-item">
+                <img src="assets/album-placeholder.png" alt="Album Cover">
+                <p>Song Title 1 - Artist 1</p>
+            </div>
+            <div class="like-item">
+                <img src="assets/album-placeholder.png" alt="Album Cover">
+                <p>Song Title 2 - Artist 2</p>
+            </div>
+            <!-- More items can be added here -->
+        </div>
+        <p class="note">
+            To automatically display my top Apple Music tracks, you could use Apple's MusicKit JS. Because GitHub Pages is static, one approach is to have an external process (using GitHub Actions or a serverless function) fetch your favorite music data via the Apple Music API (which requires a developer token) and store it in a static JSON file. Your Likes page could then load that JSON file via client‑side JavaScript.
+        </p>
+    </section>
+
+    <!-- Favorite Books Section -->
+    <section id="favorite-books" class="card section-card likes-section">
+        <h2>Favorite Books</h2>
+        <p>Books that have inspired me:</p>
+        <ul class="likes-list">
+            <li><strong>Book Title 1</strong> by Author 1</li>
+            <li><strong>Book Title 2</strong> by Author 2</li>
+            <li><strong>Book Title 3</strong> by Author 3</li>
+        </ul>
+    </section>
+
+    <!-- Favorite Movies Section -->
+    <section id="favorite-movies" class="card section-card likes-section">
+        <h2>Favorite Movies</h2>
+        <p>Some movies I really enjoy:</p>
+        <ul class="likes-list">
+            <li><strong>Movie Title 1</strong></li>
+            <li><strong>Movie Title 2</strong></li>
+            <li><strong>Movie Title 3</strong></li>
+        </ul>
+    </section>
+</div>
+
+<!-- Sparkling Cursor Effect will be active (from script.js) -->
+
+<!-- Custom JS -->
+<script src="script.js"></script>
+</body>
+</html>
