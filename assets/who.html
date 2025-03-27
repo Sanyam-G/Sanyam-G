@@ -203,6 +203,7 @@
     <div>
       <button class="btn" id="save-notepad">Save Thought</button>
       <button class="btn" id="end-thought">End Thought</button>
+      <button class="btn" id="add-layer-above">Add Layer Above</button>
     </div>
     <div id="status-snapshot"></div>
   </div>
@@ -293,6 +294,16 @@
     return chain.reverse();
   }
 
+  // Helper: Recursively update a node's level and its descendants.
+  function updateSubtreeLevels(node, newLevel) {
+    node.level = newLevel;
+    if(node.children && node.children.length > 0) {
+      node.children.forEach(child => {
+        updateSubtreeLevels(child, newLevel + 1);
+      });
+    }
+  }
+
   // Render the entire tree view (left panel)
   function renderTree() {
     const container = document.getElementById('tree-container');
@@ -349,7 +360,6 @@
           collapseBtn.style.marginRight = '5px';
           collapseBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            // Simply toggle collapsed state (no check for unfinished tasks)
             node.collapsed = !node.collapsed;
             renderTree();
           });
@@ -528,9 +538,6 @@
         let cloned = Object.assign({}, node);
         cloned.children = getTodaysNodes(node.children || []);
         acc.push(cloned);
-      } else {
-        // Optionally, if you want to include children of nodes not created today, uncomment:
-        // acc = acc.concat(getTodaysNodes(node.children || []));
       }
       return acc;
     }, []);
@@ -586,6 +593,59 @@
     alert("End Day completed. Today's snapshot has been downloaded.");
   });
   // --- End Day Functionality End ---
+
+  // --- Add Layer Above Functionality ---
+  // Inserts a new node above the current node, making it the new parent.
+  function addLayerAbove() {
+    if (!currentNode) {
+      alert("No current thought selected.");
+      return;
+    }
+
+    // Save the old parent
+    let oldParent = null;
+    if (currentNode.parentId !== null) {
+      oldParent = findNodeById(currentNode.parentId, treeData);
+    }
+
+    // Determine new node's level: if current node is root, new node becomes level 0; otherwise, parent's level + 1.
+    let newLevel = oldParent ? oldParent.level + 1 : 0;
+    let newNode = createNodeData("New Layer", oldParent ? oldParent.id : null, newLevel);
+
+    // Insert newNode in place of currentNode in the parent's children array
+    if (oldParent) {
+      let idx = oldParent.children.findIndex(child => child.id === currentNode.id);
+      if (idx >= 0) {
+        oldParent.children.splice(idx, 1, newNode);
+      }
+    } else {
+      // Current node was a root node; replace it in the treeData array.
+      let idx = treeData.findIndex(node => node.id === currentNode.id);
+      if (idx >= 0) {
+        treeData.splice(idx, 1, newNode);
+      }
+    }
+
+    // Make current node a child of the new node.
+    newNode.children.push(currentNode);
+    currentNode.parentId = newNode.id;
+
+    // Update levels: current node becomes newLevel + 1, and update its entire subtree.
+    updateSubtreeLevels(currentNode, newLevel + 1);
+
+    // Optionally, set the new node as the current selection.
+    currentNode = newNode;
+    renderTree();
+    renderPins();
+    updateNotepad();
+    updateLastAction();
+  }
+
+  document.getElementById('add-layer-above').addEventListener('click', function(e) {
+    e.stopPropagation();
+    addLayerAbove();
+  });
+  // --- Add Layer Above Functionality End ---
 
   // Check if a new day has begun; if so, create a new present thought at the same level as yesterday's last action.
   function checkNewDay() {
