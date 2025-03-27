@@ -4,21 +4,49 @@
   <meta charset="UTF-8">
   <title>ThoughtTree - My Anchored Self</title>
   <style>
-    /* Overall three-column layout */
+    /* Global Styles */
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f0f0f0;
     }
+    /* Status Bar at the top */
+    #status-bar {
+      background: #fff;
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    #status-bar h2 {
+      margin: 0 10px 0 0;
+      font-size: 1.2em;
+    }
+    #status-bar label {
+      font-size: 0.9em;
+    }
+    #status-bar input {
+      margin-right: 10px;
+      padding: 4px;
+      font-size: 0.9em;
+    }
+    /* Current time display */
+    #current-time-display {
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    /* Overall layout: three columns */
     .container {
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
       gap: 10px;
-      height: 100vh;
+      height: calc(100vh - 70px);
       padding: 10px;
       box-sizing: border-box;
     }
-    /* Tree view (left panel) */
+    /* Left Panel: Tree View */
     #tree-view {
       background: #fff;
       padding: 10px;
@@ -29,7 +57,7 @@
     #tree-view h2 {
       margin-top: 0;
     }
-    /* Notepad view (center panel) */
+    /* Center Panel: Present Notepad View */
     #notepad-view {
       background: #fff;
       padding: 10px;
@@ -58,7 +86,15 @@
       border-radius: 4px;
       font-family: Arial, sans-serif;
     }
-    /* Pins sidebar (right panel) */
+    /* Status snapshot display within notepad view */
+    #status-snapshot {
+      font-size: 0.85em;
+      margin-top: 5px;
+      color: #333;
+      border-top: 1px dashed #ccc;
+      padding-top: 5px;
+    }
+    /* Right Panel: Pins Sidebar */
     #pins-sidebar {
       background: #fff;
       padding: 10px;
@@ -73,9 +109,18 @@
       border-bottom: 1px solid #ddd;
       padding: 5px;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
     .pin-item:hover {
       background: #f9f9f9;
+    }
+    .delete-pin {
+      margin-left: 10px;
+      font-size: 0.8em;
+      color: red;
+      cursor: pointer;
     }
     /* Buttons styling */
     .btn {
@@ -112,7 +157,7 @@
       border-color: #ff9800;
       background: #fff8e1;
     }
-    /* Connecting line (a simple vertical guide) */
+    /* Connecting line (vertical guide) */
     .tree-node::before {
       content: "";
       position: absolute;
@@ -128,6 +173,18 @@
   </style>
 </head>
 <body>
+<!-- Global Status Bar -->
+<div id="status-bar">
+  <h2>Status</h2>
+  <label>Feeling: <input type="text" id="status-feeling" placeholder="How are you feeling?" /></label>
+  <label>Song: <input type="text" id="status-song" placeholder="Your song" /></label>
+  <label>Desire: <input type="text" id="status-desire" placeholder="Your desire" /></label>
+  <label>Location: <input type="text" id="status-location" placeholder="Your location" /></label>
+  <span>Current Time: <span id="current-time-display"></span></span>
+  <button class="btn" id="update-status">Update Status</button>
+  <button class="btn" id="end-day">End Day</button>
+</div>
+
 <div class="container">
   <!-- Left: Tree View Panel -->
   <div id="tree-view">
@@ -143,7 +200,11 @@
     <div id="present-notepad">
       <textarea id="notepad-text" placeholder="Your current thought here..."></textarea>
     </div>
-    <button class="btn" id="save-notepad">Save Thought</button>
+    <div>
+      <button class="btn" id="save-notepad">Save Thought</button>
+      <button class="btn" id="end-thought">End Thought</button>
+    </div>
+    <div id="status-snapshot"></div>
   </div>
 
   <!-- Right: Pins Sidebar Panel -->
@@ -169,7 +230,33 @@
     return new Date().toISOString().slice(0, 10);
   }
 
-  // Create a new node data object with parent & level info
+  // Update the clock in the status bar every second
+  function updateClock() {
+    document.getElementById('current-time-display').innerText = new Date().toLocaleTimeString();
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Get the current status snapshot from the status bar
+  function getCurrentStatus() {
+    return {
+      feeling: document.getElementById('status-feeling').value,
+      song: document.getElementById('status-song').value,
+      desire: document.getElementById('status-desire').value,
+      location: document.getElementById('status-location').value,
+      time: new Date().toLocaleTimeString()
+    };
+  }
+
+  // Update status (for now, simply notify the user)
+  document.getElementById('update-status').addEventListener('click', function() {
+    alert("Status updated:\nFeeling: " + document.getElementById('status-feeling').value +
+            "\nSong: " + document.getElementById('status-song').value +
+            "\nDesire: " + document.getElementById('status-desire').value +
+            "\nLocation: " + document.getElementById('status-location').value);
+  });
+
+  // Create a new node data object (captures status snapshot at creation)
   function createNodeData(content = "New Thought", parentId = null, level = 0) {
     return {
       id: nodeIdCounter++,
@@ -177,7 +264,11 @@
       pinned: false,
       parentId: parentId,
       level: level,
-      children: []
+      children: [],
+      collapsed: false,                   // For minimising/expanding subtree
+      createdDate: getToday(),             // Store creation date
+      startStatus: getCurrentStatus(),      // Snapshot at creation
+      endStatus: null                       // Will be set when thought is ended
     };
   }
 
@@ -210,19 +301,19 @@
       nodes.forEach(node => {
         const div = document.createElement('div');
         div.className = 'tree-node';
-        // Use stored level for indentation
+        // Indent based on node level
         div.style.marginLeft = (node.level * 20) + 'px';
         div.textContent = node.content;
         if (node.pinned) {
           div.classList.add('pinned');
         }
-        // Click sets the current node in the notepad view
+        // Clicking a node sets it as the current node
         div.addEventListener('click', function(e) {
           e.stopPropagation();
           setCurrentNode(node.id);
         });
 
-        // Create control buttons container
+        // Controls container
         const controls = document.createElement('span');
         controls.className = 'controls';
 
@@ -238,9 +329,10 @@
         });
         controls.appendChild(pinBtn);
 
-        // Add child button: creates a new child node using parent's id & level+1
+        // Add child button (child inherits parent's level + 1)
         const addChildBtn = document.createElement('button');
         addChildBtn.textContent = '+';
+        addChildBtn.style.marginRight = '5px';
         addChildBtn.addEventListener('click', function(e) {
           e.stopPropagation();
           const childNode = createNodeData("New Thought", node.id, node.level + 1);
@@ -250,11 +342,25 @@
         });
         controls.appendChild(addChildBtn);
 
+        // Minimise/Expand subtree button (only if node has children)
+        if (node.children && node.children.length > 0) {
+          const collapseBtn = document.createElement('button');
+          collapseBtn.textContent = node.collapsed ? 'Expand' : 'Minimise';
+          collapseBtn.style.marginRight = '5px';
+          collapseBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Simply toggle collapsed state (no check for unfinished tasks)
+            node.collapsed = !node.collapsed;
+            renderTree();
+          });
+          controls.appendChild(collapseBtn);
+        }
+
         div.appendChild(controls);
         container.appendChild(div);
 
-        // Recursively render children nodes
-        if (node.children && node.children.length > 0) {
+        // Recursively render children only if not collapsed
+        if (!node.collapsed && node.children && node.children.length > 0) {
           renderNodes(node.children);
         }
       });
@@ -278,10 +384,23 @@
         if (node.pinned) {
           const div = document.createElement('div');
           div.className = 'pin-item';
-          div.textContent = node.content;
-          div.addEventListener('click', function() {
+          const span = document.createElement('span');
+          span.textContent = node.content;
+          span.addEventListener('click', function() {
             setCurrentNode(node.id);
           });
+          div.appendChild(span);
+          // Delete button to remove pin
+          const deleteBtn = document.createElement('button');
+          deleteBtn.className = 'delete-pin';
+          deleteBtn.textContent = 'Remove';
+          deleteBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            node.pinned = false;
+            renderPins();
+            renderTree();
+          });
+          div.appendChild(deleteBtn);
           pinsList.appendChild(div);
         }
         if (node.children && node.children.length > 0) {
@@ -292,7 +411,7 @@
     addPins(treeData);
   }
 
-  // Set current node for the notepad view and update last action
+  // Set current node for the notepad view and update last action info
   function setCurrentNode(id) {
     const node = findNodeById(id, treeData);
     if (node) {
@@ -302,21 +421,23 @@
     }
   }
 
-  // Update the notepad view with current node and context (up to 2 parent and 2 child levels)
+  // Update the notepad view with the current node and its context (with status snapshots)
   function updateNotepad() {
     const notepadText = document.getElementById('notepad-text');
     const contextDiv = document.getElementById('notepad-context');
+    const statusSnapshotDiv = document.getElementById('status-snapshot');
 
     if (!currentNode) {
       notepadText.value = "";
       contextDiv.innerHTML = "No current thought selected.";
+      statusSnapshotDiv.innerHTML = "";
       return;
     }
 
     notepadText.value = currentNode.content;
     let contextHtml = "";
 
-    // Show up to 2 parent nodes
+    // Display up to 2 parent nodes
     const parents = getParentChain(currentNode);
     if (parents.length > 0) {
       contextHtml += "<strong>Parents:</strong><br>";
@@ -325,7 +446,7 @@
       });
     }
 
-    // Show children up to 2 levels deep
+    // Display children up to 2 levels deep
     function renderChildren(node, level) {
       if (level > 2) return "";
       let html = "";
@@ -340,6 +461,24 @@
     }
     contextHtml += renderChildren(currentNode, 1);
     contextDiv.innerHTML = contextHtml;
+
+    // Show status snapshots if available (including time and location)
+    let statusHtml = "";
+    if (currentNode.startStatus) {
+      statusHtml += "<strong>Started with:</strong> Feeling: " + currentNode.startStatus.feeling +
+              ", Song: " + currentNode.startStatus.song +
+              ", Desire: " + currentNode.startStatus.desire +
+              ", Location: " + currentNode.startStatus.location +
+              ", Time: " + currentNode.startStatus.time + "<br>";
+    }
+    if (currentNode.endStatus) {
+      statusHtml += "<strong>Ended with:</strong> Feeling: " + currentNode.endStatus.feeling +
+              ", Song: " + currentNode.endStatus.song +
+              ", Desire: " + currentNode.endStatus.desire +
+              ", Location: " + currentNode.endStatus.location +
+              ", Time: " + currentNode.endStatus.time;
+    }
+    statusSnapshotDiv.innerHTML = statusHtml;
   }
 
   // Update last action info in localStorage (current node id and date)
@@ -350,13 +489,25 @@
     }
   }
 
-  // When saving from the notepad, update the current node's content
+  // Save changes from the notepad view back to the current node
   document.getElementById('save-notepad').addEventListener('click', function() {
     if (currentNode) {
       currentNode.content = document.getElementById('notepad-text').value;
       renderTree();
       renderPins();
       updateLastAction();
+    }
+  });
+
+  // End the current thought by capturing an end status snapshot
+  document.getElementById('end-thought').addEventListener('click', function() {
+    if (currentNode) {
+      currentNode.endStatus = getCurrentStatus();
+      renderTree();
+      renderPins();
+      updateNotepad();
+      updateLastAction();
+      alert("Thought ended. Status snapshot captured.");
     }
   });
 
@@ -368,18 +519,83 @@
     updateLastAction();
   });
 
-  // Check if a new day has begun; if so, start a new current thought at the same level as yesterday's last action.
+  // --- End Day Functionality ---
+  // Filter today's nodes recursively.
+  function getTodaysNodes(nodes) {
+    return nodes.reduce((acc, node) => {
+      if(node.createdDate === getToday()) {
+        // Clone node and filter its children recursively.
+        let cloned = Object.assign({}, node);
+        cloned.children = getTodaysNodes(node.children || []);
+        acc.push(cloned);
+      } else {
+        // Optionally, if you want to include children of nodes not created today, uncomment:
+        // acc = acc.concat(getTodaysNodes(node.children || []));
+      }
+      return acc;
+    }, []);
+  }
+
+  // End day: for every node created today that is unfinished, snapshot its end status and auto-pin.
+  function endDay() {
+    // Traverse the entire tree to update today's unfinished nodes.
+    function updateNodes(nodes) {
+      nodes.forEach(node => {
+        if (node.createdDate === getToday() && node.endStatus === null) {
+          node.endStatus = getCurrentStatus();
+          node.pinned = true;
+        }
+        if(node.children && node.children.length > 0) {
+          updateNodes(node.children);
+        }
+      });
+    }
+    updateNodes(treeData);
+
+    // Also update pinned thoughts with a fresh snapshot.
+    function updatePinned(nodes) {
+      nodes.forEach(node => {
+        if(node.pinned) {
+          node.endStatus = getCurrentStatus();
+        }
+        if(node.children && node.children.length > 0) {
+          updatePinned(node.children);
+        }
+      });
+    }
+    updatePinned(treeData);
+
+    renderTree();
+    renderPins();
+    updateNotepad();
+    updateLastAction();
+
+    // Get today's nodes and trigger a download.
+    let todaysData = getTodaysNodes(treeData);
+    let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(todaysData, null, 2));
+    let downloadAnchor = document.createElement("a");
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", "thoughttree_" + getToday() + ".json");
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  }
+
+  document.getElementById('end-day').addEventListener('click', function() {
+    endDay();
+    alert("End Day completed. Today's snapshot has been downloaded.");
+  });
+  // --- End Day Functionality End ---
+
+  // Check if a new day has begun; if so, create a new present thought at the same level as yesterday's last action.
   function checkNewDay() {
     const lastDate = localStorage.getItem(STORAGE_LAST_DATE);
     if (lastDate !== getToday()) {
-      // If a last action exists, find that node.
       const lastActionId = localStorage.getItem(STORAGE_LAST_ID);
       let newNode;
       if (lastActionId) {
         const lastNode = findNodeById(parseInt(lastActionId), treeData);
         if (lastNode) {
-          // If the last node has a parent, add new node as a child at same level;
-          // otherwise, add a new root node.
           if (lastNode.parentId !== null) {
             const parent = findNodeById(lastNode.parentId, treeData);
             newNode = createNodeData("New Day Thought", parent.id, parent.level + 1);
@@ -389,7 +605,6 @@
             treeData.push(newNode);
           }
         } else {
-          // Fallback: create a new root node.
           newNode = createNodeData("New Day Thought", null, 0);
           treeData.push(newNode);
         }
@@ -404,7 +619,6 @@
 
   // Initialization: load persisted data and check for a new day.
   function init() {
-    // Load tree data if available
     const storedTree = localStorage.getItem(STORAGE_TREE);
     if (storedTree) {
       try {
@@ -413,14 +627,11 @@
         treeData = [];
       }
     }
-    // Load nodeIdCounter
     const storedCounter = localStorage.getItem(STORAGE_COUNTER);
     if (storedCounter) {
       nodeIdCounter = parseInt(storedCounter);
     }
-    // Check if a new day has started and set the present node accordingly.
     checkNewDay();
-    // If no current node is set, default to the last root node (if any)
     if (!currentNode && treeData.length > 0) {
       currentNode = treeData[treeData.length - 1];
     }
