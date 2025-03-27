@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ThoughtTree - My Anchored Self</title>
+  <style>
+    /* Overall three-column layout */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 10px;
+      height: 100vh;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    /* Tree view (left panel) */
+    #tree-view {
+      background: #fff;
+      padding: 10px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #tree-view h2 {
+      margin-top: 0;
+    }
+    /* Notepad view (center panel) */
+    #notepad-view {
+      background: #fff;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #notepad-view h2 {
+      margin-top: 0;
+    }
+    #notepad-context {
+      font-size: 0.9em;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    #present-notepad {
+      flex: 1;
+    }
+    #present-notepad textarea {
+      width: 100%;
+      height: 100%;
+      resize: none;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-family: Arial, sans-serif;
+    }
+    /* Pins sidebar (right panel) */
+    #pins-sidebar {
+      background: #fff;
+      padding: 10px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #pins-sidebar h2 {
+      margin-top: 0;
+    }
+    .pin-item {
+      border-bottom: 1px solid #ddd;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .pin-item:hover {
+      background: #f9f9f9;
+    }
+    /* Buttons styling */
+    .btn {
+      margin: 5px 0;
+      padding: 5px 10px;
+      cursor: pointer;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+    /* Tree node styling */
+    .tree-node {
+      margin-left: 20px;
+      position: relative;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tree-node:hover {
+      background: #f9f9f9;
+    }
+    .tree-node .controls {
+      float: right;
+    }
+    .tree-node.pinned {
+      border-color: #ff9800;
+      background: #fff8e1;
+    }
+    /* Connecting line (a simple vertical guide) */
+    .tree-node::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -10px;
+      width: 1px;
+      height: 100%;
+      background: #ccc;
+    }
+    .tree-node:first-child::before {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <!-- Left: Tree View Panel -->
+  <div id="tree-view">
+    <h2>Thought Tree</h2>
+    <div id="tree-container"></div>
+    <button class="btn" id="add-root">Add Root Thought</button>
+  </div>
+
+  <!-- Center: Notepad (Present) View Panel -->
+  <div id="notepad-view">
+    <h2>Present Notepad</h2>
+    <div id="notepad-context">No current thought selected.</div>
+    <div id="present-notepad">
+      <textarea id="notepad-text" placeholder="Your current thought here..."></textarea>
+    </div>
+    <button class="btn" id="save-notepad">Save Thought</button>
+  </div>
+
+  <!-- Right: Pins Sidebar Panel -->
+  <div id="pins-sidebar">
+    <h2>Pinned Thoughts</h2>
+    <div id="pins-list"></div>
+  </div>
+</div>
+
+<script>
+  // Global variables and persistence keys
+  let treeData = [];         // Entire thought tree
+  let currentNode = null;    // Current node (present view)
+  let nodeIdCounter = 0;     // Unique ID counter for nodes
+
+  const STORAGE_TREE = 'treeData';
+  const STORAGE_COUNTER = 'nodeIdCounter';
+  const STORAGE_LAST_ID = 'lastActionId';
+  const STORAGE_LAST_DATE = 'lastActionDate';
+
+  // Utility: Get today's date string (YYYY-MM-DD)
+  function getToday() {
+    return new Date().toISOString().slice(0, 10);
+  }
+
+  // Create a new node data object with parent & level info
+  function createNodeData(content = "New Thought", parentId = null, level = 0) {
+    return {
+      id: nodeIdCounter++,
+      content: content,
+      pinned: false,
+      parentId: parentId,
+      level: level,
+      children: []
+    };
+  }
+
+  // Recursively search for a node by id
+  function findNodeById(id, nodes) {
+    for (let node of nodes) {
+      if (node.id === id) return node;
+      const found = findNodeById(id, node.children);
+      if (found) return found;
+    }
+    return null;
+  }
+
+  // Return parent chain for a node (ordered from root to immediate parent)
+  function getParentChain(node) {
+    let chain = [];
+    while (node.parentId !== null) {
+      node = findNodeById(node.parentId, treeData);
+      if (node) chain.push(node);
+      else break;
+    }
+    return chain.reverse();
+  }
+
+  // Render the entire tree view (left panel)
+  function renderTree() {
+    const container = document.getElementById('tree-container');
+    container.innerHTML = '';
+    function renderNodes(nodes) {
+      nodes.forEach(node => {
+        const div = document.createElement('div');
+        div.className = 'tree-node';
+        // Use stored level for indentation
+        div.style.marginLeft = (node.level * 20) + 'px';
+        div.textContent = node.content;
+        if (node.pinned) {
+          div.classList.add('pinned');
+        }
+        // Click sets the current node in the notepad view
+        div.addEventListener('click', function(e) {
+          e.stopPropagation();
+          setCurrentNode(node.id);
+        });
+
+        // Create control buttons container
+        const controls = document.createElement('span');
+        controls.className = 'controls';
+
+        // Pin/unpin button
+        const pinBtn = document.createElement('button');
+        pinBtn.textContent = '📌';
+        pinBtn.style.marginRight = '5px';
+        pinBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          node.pinned = !node.pinned;
+          renderTree();
+          renderPins();
+        });
+        controls.appendChild(pinBtn);
+
+        // Add child button: creates a new child node using parent's id & level+1
+        const addChildBtn = document.createElement('button');
+        addChildBtn.textContent = '+';
+        addChildBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const childNode = createNodeData("New Thought", node.id, node.level + 1);
+          node.children.push(childNode);
+          renderTree();
+          updateJSONData();
+        });
+        controls.appendChild(addChildBtn);
+
+        div.appendChild(controls);
+        container.appendChild(div);
+
+        // Recursively render children nodes
+        if (node.children && node.children.length > 0) {
+          renderNodes(node.children);
+        }
+      });
+    }
+    renderNodes(treeData);
+    updateJSONData();
+  }
+
+  // Update JSON data in localStorage
+  function updateJSONData() {
+    localStorage.setItem(STORAGE_TREE, JSON.stringify(treeData));
+    localStorage.setItem(STORAGE_COUNTER, nodeIdCounter.toString());
+  }
+
+  // Render the pinned nodes list (right panel)
+  function renderPins() {
+    const pinsList = document.getElementById('pins-list');
+    pinsList.innerHTML = '';
+    function addPins(nodes) {
+      nodes.forEach(node => {
+        if (node.pinned) {
+          const div = document.createElement('div');
+          div.className = 'pin-item';
+          div.textContent = node.content;
+          div.addEventListener('click', function() {
+            setCurrentNode(node.id);
+          });
+          pinsList.appendChild(div);
+        }
+        if (node.children && node.children.length > 0) {
+          addPins(node.children);
+        }
+      });
+    }
+    addPins(treeData);
+  }
+
+  // Set current node for the notepad view and update last action
+  function setCurrentNode(id) {
+    const node = findNodeById(id, treeData);
+    if (node) {
+      currentNode = node;
+      updateNotepad();
+      updateLastAction();
+    }
+  }
+
+  // Update the notepad view with current node and context (up to 2 parent and 2 child levels)
+  function updateNotepad() {
+    const notepadText = document.getElementById('notepad-text');
+    const contextDiv = document.getElementById('notepad-context');
+
+    if (!currentNode) {
+      notepadText.value = "";
+      contextDiv.innerHTML = "No current thought selected.";
+      return;
+    }
+
+    notepadText.value = currentNode.content;
+    let contextHtml = "";
+
+    // Show up to 2 parent nodes
+    const parents = getParentChain(currentNode);
+    if (parents.length > 0) {
+      contextHtml += "<strong>Parents:</strong><br>";
+      parents.slice(-2).forEach(p => {
+        contextHtml += "- " + p.content + "<br>";
+      });
+    }
+
+    // Show children up to 2 levels deep
+    function renderChildren(node, level) {
+      if (level > 2) return "";
+      let html = "";
+      if (node.children && node.children.length > 0) {
+        html += "<strong>Children (level " + level + "):</strong><br>";
+        node.children.forEach(child => {
+          html += "&nbsp;&nbsp;- " + child.content + "<br>";
+          html += renderChildren(child, level + 1);
+        });
+      }
+      return html;
+    }
+    contextHtml += renderChildren(currentNode, 1);
+    contextDiv.innerHTML = contextHtml;
+  }
+
+  // Update last action info in localStorage (current node id and date)
+  function updateLastAction() {
+    if (currentNode) {
+      localStorage.setItem(STORAGE_LAST_ID, currentNode.id.toString());
+      localStorage.setItem(STORAGE_LAST_DATE, getToday());
+    }
+  }
+
+  // When saving from the notepad, update the current node's content
+  document.getElementById('save-notepad').addEventListener('click', function() {
+    if (currentNode) {
+      currentNode.content = document.getElementById('notepad-text').value;
+      renderTree();
+      renderPins();
+      updateLastAction();
+    }
+  });
+
+  // Add a new root thought (level 0, no parent)
+  document.getElementById('add-root').addEventListener('click', function() {
+    const newNode = createNodeData("New Root Thought", null, 0);
+    treeData.push(newNode);
+    renderTree();
+    updateLastAction();
+  });
+
+  // Check if a new day has begun; if so, start a new current thought at the same level as yesterday's last action.
+  function checkNewDay() {
+    const lastDate = localStorage.getItem(STORAGE_LAST_DATE);
+    if (lastDate !== getToday()) {
+      // If a last action exists, find that node.
+      const lastActionId = localStorage.getItem(STORAGE_LAST_ID);
+      let newNode;
+      if (lastActionId) {
+        const lastNode = findNodeById(parseInt(lastActionId), treeData);
+        if (lastNode) {
+          // If the last node has a parent, add new node as a child at same level;
+          // otherwise, add a new root node.
+          if (lastNode.parentId !== null) {
+            const parent = findNodeById(lastNode.parentId, treeData);
+            newNode = createNodeData("New Day Thought", parent.id, parent.level + 1);
+            parent.children.push(newNode);
+          } else {
+            newNode = createNodeData("New Day Thought", null, 0);
+            treeData.push(newNode);
+          }
+        } else {
+          // Fallback: create a new root node.
+          newNode = createNodeData("New Day Thought", null, 0);
+          treeData.push(newNode);
+        }
+      } else {
+        newNode = createNodeData("New Day Thought", null, 0);
+        treeData.push(newNode);
+      }
+      currentNode = newNode;
+      updateLastAction();
+    }
+  }
+
+  // Initialization: load persisted data and check for a new day.
+  function init() {
+    // Load tree data if available
+    const storedTree = localStorage.getItem(STORAGE_TREE);
+    if (storedTree) {
+      try {
+        treeData = JSON.parse(storedTree);
+      } catch (e) {
+        treeData = [];
+      }
+    }
+    // Load nodeIdCounter
+    const storedCounter = localStorage.getItem(STORAGE_COUNTER);
+    if (storedCounter) {
+      nodeIdCounter = parseInt(storedCounter);
+    }
+    // Check if a new day has started and set the present node accordingly.
+    checkNewDay();
+    // If no current node is set, default to the last root node (if any)
+    if (!currentNode && treeData.length > 0) {
+      currentNode = treeData[treeData.length - 1];
+    }
+    renderTree();
+    renderPins();
+    updateNotepad();
+  }
+
+  init();
+</script>
+</body>
+</html>
