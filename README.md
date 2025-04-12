@@ -77,7 +77,6 @@ A dynamic digital sticky note board built with HTML/CSS/JavaScript.
 - **Data Visualization**
 - **Version Control**
 - **Debugging & Testing**
-- **Multithreading & Socket Programming**
 
 ---
 
