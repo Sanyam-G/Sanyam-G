@@ -7,7 +7,7 @@ Welcome to my GitHub! I'm a curious and driven **junior** Computer Science stude
 ## 🚀 About Me
 
 - 🎓 **Majoring in Computer Science and Data Science** at UW–Madison (Class of 2027)
-- 🧑‍🎓 Currently a **junior**, constantly exploring new tools and technologies
+- 🧑‍🎓 Rising **junior**, constantly exploring new tools and technologies
 - 💡 Interested in **Web Development**, **Mobile App Development**, and **Machine Learning**
 - 🌱 Currently learning more about **AI**, **Flutter**, and **full-stack development**
 - 🛠️ Love solving real-world problems through code and intuitive design
