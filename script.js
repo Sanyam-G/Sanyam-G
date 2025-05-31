@@ -13,7 +13,7 @@ updateAge();
 
 // Update "Year" Based on College Start (Fall 2023)
 function updateYear() {
-    const startYear = 2023, startMonth = 9;
+    const startYear = 2023, startMonth = 5;
     const now = new Date();
     let diffYears = now.getFullYear() - startYear;
     if (now.getMonth() + 1 < startMonth) diffYears--;
