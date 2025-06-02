@@ -1,17 +1,17 @@
 :root {
-    --bg-page: #5D4037;  /* Richer, slightly desaturated brown for page background */
-    --card-bg: #FDFBF5;   /* Warm, very light off-white for cards (like parchment) */
-    --accent-primary: #B08D57; /* Muted gold/tan for primary accents */
-    --accent-secondary: #8A6E4B; /* Darker accent for borders, subtle elements */
-    --text-color-dark: #3E2723; /* Dark, warm brown for main text */
-    --text-color-light: #FDFBF5; /* Light text for dark backgrounds */
+    --bg-page: #5D4037;
+    --card-bg: #FDFBF5;
+    --accent-primary: #B08D57;
+    --accent-secondary: #8A6E4B;
+    --text-color-dark: #3E2723;
+    --text-color-light: #FDFBF5;
     --navbar-bg: var(--card-bg);
     --navbar-text: var(--text-color-dark);
     --navbar-hover: var(--accent-primary);
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --shadow-color-hover: rgba(0, 0, 0, 0.15);
-    --border-radius-main: 12px; /* Slightly larger border radius for a softer look */
-    --border-radius-small: 8px;
+    --shadow-color: rgba(0, 0, 0, 0.08); /* Slightly lighter shadow */
+    --shadow-color-hover: rgba(0, 0, 0, 0.12); /* Slightly lighter hover shadow */
+    --border-radius-main: 10px; /* Slightly smaller radius */
+    --border-radius-small: 6px;
 }
 
 * {
@@ -28,19 +28,19 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: var(--bg-page);
     color: var(--text-color-dark);
-    line-height: 1.7; /* Increased line height for readability */
-    transition: background 0.3s ease; /* Smooth background transitions */
+    line-height: 1.65; /* Slightly reduced line height */
+    transition: background 0.3s ease;
 }
 
 /* Navbar */
 .navbar {
     width: 100%;
     background: var(--navbar-bg);
-    padding: 1em 0; /* Consistent padding */
+    padding: 0.8em 0; /* Reduced padding */
     position: fixed;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px var(--shadow-color); /* Subtle shadow for navbar */
+    box-shadow: 0 2px 8px var(--shadow-color);
     border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 .navbar-container {
@@ -52,21 +52,21 @@ body {
     justify-content: space-between;
 }
 .logo {
-    font-size: 1.9em; /* Slightly increased logo size */
+    font-size: 1.8em;
     color: var(--navbar-text);
     font-weight: 600;
-    letter-spacing: -0.5px; /* Subtle letter spacing adjustment */
+    letter-spacing: -0.5px;
 }
 .nav-right a {
-    margin: 0 1.2em; /* Increased margin for nav links */
+    margin: 0 1em; /* Reduced margin */
     text-decoration: none;
     color: var(--navbar-text);
     font-weight: 500;
     transition: color 0.3s ease, transform 0.2s ease;
-    position: relative; /* For underline effect */
-    padding-bottom: 4px; /* Space for underline */
+    position: relative;
+    padding-bottom: 4px;
 }
-.nav-right a::after { /* Underline hover effect */
+.nav-right a::after {
     content: '';
     position: absolute;
     width: 0;
@@ -84,45 +84,45 @@ body {
     color: var(--navbar-hover);
 }
 .nav-icons a {
-    margin-left: 1.2em; /* Increased margin for icons */
+    margin-left: 1em; /* Reduced margin */
     color: var(--navbar-text);
-    font-size: 1.5em; /* Slightly increased icon size */
+    font-size: 1.4em;
     transition: color 0.3s ease, transform 0.2s ease;
 }
 .nav-icons a:hover {
     color: var(--navbar-hover);
-    transform: translateY(-2px); /* Slight lift on hover */
+    transform: translateY(-2px);
 }
 
 /* Main Container */
 .main-container {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 100px; /* Adjusted for slightly taller navbar + padding */
-    padding: 2%;
-    gap: 2em; /* Added gap between columns */
+    margin-top: 80px; /* Adjusted for navbar height */
+    padding: 1.5%; /* Reduced padding */
+    gap: 1.5em; /* Reduced gap */
 }
 .left-column {
-    flex: 1 1 320px; /* Min width for left column */
-    min-width: 300px; /* Prevent excessive squishing */
+    flex: 1 1 320px;
+    min-width: 300px;
 }
 .right-column {
-    flex: 2 1 600px; /* Allow right column to take more space */
+    flex: 2 1 600px;
 }
 
 /* Card Style */
 .card {
     background: var(--card-bg);
-    border: 1px solid var(--accent-secondary); /* Softer border */
+    border: 1px solid var(--accent-secondary);
     border-radius: var(--border-radius-main);
-    padding: 2em; /* Increased padding */
-    margin-bottom: 2em; /* Increased margin */
-    box-shadow: 0 4px 12px var(--shadow-color);
+    padding: 1.5em; /* Reduced padding */
+    margin-bottom: 1.5em; /* Reduced margin */
+    box-shadow: 0 3px 10px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--shadow-color-hover);
+    transform: translateY(-4px); /* Slightly less lift */
+    box-shadow: 0 6px 16px var(--shadow-color-hover);
 }
 
 /* Profile Card */
@@ -130,75 +130,75 @@ body {
     text-align: center;
 }
 .profile-photo {
-    width: 150px; /* Fixed size for profile photo */
-    height: 150px;
-    object-fit: cover; /* Ensure photo covers the area */
+    width: 140px; /* Slightly smaller photo */
+    height: 140px;
+    object-fit: cover;
     border-radius: 50%;
-    border: 4px solid var(--accent-primary); /* Thicker accent border */
-    margin-bottom: 1.2em;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border: 3px solid var(--accent-primary); /* Thinner border */
+    margin-bottom: 1em;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 .name {
-    font-size: 2.2em;
-    margin-bottom: 0.4em;
+    font-size: 2em; /* Slightly smaller name */
+    margin-bottom: 0.3em;
     color: var(--text-color-dark);
     font-weight: 600;
 }
 .info {
-    font-size: 1.05em; /* Slightly larger info text */
-    margin-bottom: 0.6em;
-    color: #555; /* Softer color for secondary info */
+    font-size: 1em;
+    margin-bottom: 0.5em;
+    color: #555;
 }
 .clock {
-    font-family: 'Courier New', Courier, monospace; /* Classic monospace for clock */
-    margin-top: 1.5em;
-    font-size: 1.3em;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 1em; /* Reduced margin */
+    font-size: 1.2em;
     color: var(--accent-primary);
-    background-color: #f0eade; /* Subtle background for clock */
-    padding: 0.3em 0.6em;
+    background-color: #f0eade;
+    padding: 0.25em 0.5em; /* Reduced padding */
     border-radius: var(--border-radius-small);
     display: inline-block;
 }
 
 /* Section Card (for About, Projects, Experiences, Tools) */
 .section-card h2 {
-    font-size: 1.8em; /* Larger section titles */
+    font-size: 1.7em; /* Slightly smaller section titles */
     color: var(--accent-primary);
-    border-bottom: 3px solid var(--accent-primary); /* Thicker border */
-    padding-bottom: 0.6em;
-    margin-bottom: 1.2em;
+    border-bottom: 2px solid var(--accent-primary); /* Thinner border */
+    padding-bottom: 0.4em; /* Reduced padding */
+    margin-bottom: 1em; /* Reduced margin */
     font-weight: 600;
 }
-.section-card h3 { /* Styling for subheadings within sections like Tools */
-    font-size: 1.3em;
+.section-card h3 {
+    font-size: 1.25em;
     color: var(--text-color-dark);
-    margin-top: 1em;
-    margin-bottom: 0.5em;
+    margin-top: 0.8em; /* Reduced margin */
+    margin-bottom: 0.4em;
     font-weight: 600;
 }
 .section-card p, .section-card ul li {
-    font-size: 1em;
-    color: var(--text-color-dark); /* Ensuring consistent text color */
+    font-size: 0.95em; /* Slightly smaller paragraph text */
+    color: var(--text-color-dark);
 }
 .section-card ul {
-    margin-bottom: 1em;
-    padding-left: 1.5em; /* Standard padding for lists */
+    margin-bottom: 0.8em; /* Reduced margin */
+    padding-left: 1.5em;
 }
 .section-card ul li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.4em;
 }
 
 /* Course List */
 .course-list {
-    list-style: none; /* Remove default bullets */
+    list-style: none;
     padding-left: 0;
 }
 .course-list li {
     padding-left: 1.5em;
     position: relative;
 }
-.course-list li::before { /* Custom bullet */
-    content: '▹'; /* Or use FontAwesome icon, e.g., '\f105' */
+.course-list li::before {
+    content: '▹';
     position: absolute;
     left: 0;
     color: var(--accent-primary);
@@ -210,59 +210,61 @@ body {
     display: inline-block;
     background: var(--accent-primary);
     color: var(--text-color-light);
-    padding: 0.8em 1.8em; /* Larger padding */
-    border-radius: 30px; /* More rounded */
+    padding: 0.7em 1.5em; /* Adjusted padding */
+    border-radius: 25px;
     text-decoration: none;
-    font-weight: 600; /* Bolder text */
+    font-weight: 500; /* Slightly less bold */
     transition: background 0.3s ease, transform 0.2s ease;
     border: none;
     cursor: pointer;
+    font-size: 0.9em; /* Slightly smaller button text */
 }
 .btn:hover {
-    background: var(--accent-secondary); /* Darker accent on hover */
+    background: var(--accent-secondary);
     transform: translateY(-2px);
 }
 
-/* Project Grid & Cards */
+/* Project Grid & Cards - Modified for stacked layout */
 .project-grid {
-    display: grid; /* Using grid for more robust layout */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
-    gap: 1.5em;
+    display: flex;
+    flex-direction: column; /* Stack projects vertically */
+    gap: 1.5em; /* Keep gap between stacked cards */
 }
-.project-card { /* This is an <a> tag, apply card styles */
+.project-card {
     background: var(--card-bg);
     border: 1px solid var(--accent-secondary);
     border-radius: var(--border-radius-main);
-    padding: 1.5em;
-    display: flex; /* Use flex for internal alignment */
+    padding: 1.2em; /* Reduced padding */
+    display: flex;
     flex-direction: column;
-    text-decoration: none; /* Remove underline from link */
-    color: inherit; /* Inherit text color */
-    box-shadow: 0 3px 10px var(--shadow-color);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 3px 8px var(--shadow-color); /* Consistent shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Ensure it takes full width of its container */
 }
 .project-card:hover {
-    transform: translateY(-5px) scale(1.02); /* Slight scale effect */
-    box-shadow: 0 6px 15px var(--shadow-color-hover);
+    transform: translateY(-4px) scale(1.01); /* Adjusted hover effect */
+    box-shadow: 0 5px 12px var(--shadow-color-hover);
 }
 .project-card h3 {
-    font-size: 1.4em;
+    font-size: 1.3em; /* Adjusted size */
     color: var(--accent-primary);
-    margin-bottom: 0.5em;
+    margin-bottom: 0.4em;
 }
-.project-card p { /* Dates and location */
-    font-size: 0.9em;
+.project-card p {
+    font-size: 0.85em; /* Adjusted size */
     color: #666;
-    margin-bottom: 0.8em;
+    margin-bottom: 0.6em;
 }
 .project-card ul {
     list-style: disc;
     padding-left: 1.2em;
-    font-size: 0.95em;
-    flex-grow: 1; /* Allow list to take available space */
+    font-size: 0.9em; /* Adjusted size */
+    flex-grow: 1;
 }
 .project-card ul li {
-    margin-bottom: 0.4em;
+    margin-bottom: 0.3em;
     color: var(--text-color-dark);
 }
 
@@ -273,89 +275,86 @@ body {
     gap: 1.5em;
 }
 .experience-item {
-    background: var(--card-bg); /* Match main card styling */
+    background: var(--card-bg);
     border: 1px solid var(--accent-secondary);
     border-radius: var(--border-radius-main);
-    padding: 1.5em;
-    box-shadow: 0 3px 10px var(--shadow-color);
+    padding: 1.2em; /* Reduced padding */
+    box-shadow: 0 3px 8px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .experience-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px var(--shadow-color-hover);
+    box-shadow: 0 5px 12px var(--shadow-color-hover);
 }
 .experience-item h3 {
-    font-size: 1.5em;
+    font-size: 1.4em; /* Adjusted size */
     color: var(--accent-primary);
-    margin-bottom: 0.3em;
+    margin-bottom: 0.2em;
 }
-.experience-item p { /* Dates and location */
-    font-size: 0.95em;
+.experience-item p {
+    font-size: 0.9em; /* Adjusted size */
     color: #666;
-    margin-bottom: 1em;
+    margin-bottom: 0.8em;
     font-style: italic;
 }
 .experience-item ul {
     list-style: disc;
     padding-left: 1.2em;
-    font-size: 1em;
+    font-size: 0.95em; /* Adjusted size */
 }
 .experience-item ul li {
-    margin-bottom: 0.5em;
+    margin-bottom: 0.4em;
 }
 
 /* Tools Section */
 .tools-content h3 {
-    font-size: 1.3em;
+    font-size: 1.25em; /* Adjusted size */
     color: var(--accent-primary);
-    margin-top: 1.2em;
-    margin-bottom: 0.6em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
     font-weight: 600;
 }
 .tools-content p {
-    font-size: 1em;
-    line-height: 1.8; /* More spacing for lists of tools */
+    font-size: 0.95em; /* Adjusted size */
+    line-height: 1.7; /* Slightly more spacing for lists of tools */
 }
 
 
 /* Sparkling Cursor Effect */
 .sparkle {
     position: absolute;
-    width: 6px; /* Slightly smaller */
+    width: 6px;
     height: 6px;
     background: radial-gradient(circle, #fff, var(--accent-primary));
     border-radius: 50%;
     pointer-events: none;
     z-index: 4000;
-    animation: sparkle 0.8s ease-out forwards; /* Faster animation */
+    animation: sparkle 0.8s ease-out forwards;
 }
 @keyframes sparkle {
-    0% { transform: scale(1.2) rotate(0deg); opacity: 1; } /* Added rotation */
+    0% { transform: scale(1.2) rotate(0deg); opacity: 1; }
     100% { transform: scale(3) rotate(90deg); opacity: 0; }
 }
 
 /* Responsive */
-@media (max-width: 992px) { /* Tablet breakpoint */
+@media (max-width: 992px) {
     .left-column {
-        flex-basis: 100%; /* Stack left column on tablets and below */
-        margin-bottom: 0; /* Adjust margin when stacked */
+        flex-basis: 100%;
+        margin-bottom: 0;
     }
     .right-column {
         flex-basis: 100%;
     }
     .main-container {
-        margin-top: 90px; /* Adjust for navbar */
-        gap: 1.5em;
-    }
-    .project-grid {
-        grid-template-columns: 1fr; /* Single column for projects on smaller screens */
+        margin-top: 75px; /* Adjusted for navbar */
+        gap: 1em; /* Further reduced gap */
     }
 }
 
-@media (max-width: 768px) { /* Mobile breakpoint */
+@media (max-width: 768px) {
     .navbar-container {
         width: 95%;
-        flex-direction: column; /* Stack navbar items */
+        flex-direction: column;
         align-items: center;
     }
     .logo {
@@ -363,33 +362,40 @@ body {
     }
     .nav-right {
         margin-bottom: 0.5em;
-        display: flex; /* Keep nav links in a row */
-        flex-wrap: wrap; /* Allow wrapping if needed */
+        display: flex;
+        flex-wrap: wrap;
         justify-content: center;
     }
     .nav-right a {
-        margin: 0 0.8em; /* Adjust margin for smaller screens */
-        font-size: 0.9em;
+        margin: 0.2em 0.6em; /* Adjust margin for smaller screens */
+        font-size: 0.85em; /* Smaller nav links */
     }
     .nav-icons a {
-        font-size: 1.3em;
-        margin-left: 0.8em;
+        font-size: 1.2em;
+        margin-left: 0.6em;
     }
     .main-container {
-        margin-top: 160px; /* Further adjust for stacked navbar */
-        padding: 3%;
+        margin-top: 140px; /* Adjust for stacked navbar, might need tweaking */
+        padding: 2%;
     }
     .card {
-        padding: 1.5em;
+        padding: 1.2em; /* Further reduce padding */
+        margin-bottom: 1.2em; /* Further reduce margin */
     }
     .section-card h2 {
-        font-size: 1.6em;
+        font-size: 1.5em; /* Smaller section titles */
     }
     .profile-photo {
-        width: 120px;
-        height: 120px;
+        width: 100px; /* Smaller photo */
+        height: 100px;
     }
     .name {
-        font-size: 1.8em;
+        font-size: 1.7em;
+    }
+    .section-card p, .section-card ul li,
+    .project-card p, .project-card ul li,
+    .experience-item p, .experience-item ul li,
+    .tools-content p {
+        font-size: 0.9em; /* Standardize smaller text on mobile */
     }
 }
