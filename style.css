@@ -8,9 +8,9 @@
     --navbar-bg: var(--card-bg);
     --navbar-text: var(--text-color-dark);
     --navbar-hover: var(--accent-primary);
-    --shadow-color: rgba(0, 0, 0, 0.08); /* Slightly lighter shadow */
-    --shadow-color-hover: rgba(0, 0, 0, 0.12); /* Slightly lighter hover shadow */
-    --border-radius-main: 10px; /* Slightly smaller radius */
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --shadow-color-hover: rgba(0, 0, 0, 0.12);
+    --border-radius-main: 10px;
     --border-radius-small: 6px;
 }
 
@@ -28,7 +28,8 @@ body {
     font-family: 'Montserrat', sans-serif;
     background: var(--bg-page);
     color: var(--text-color-dark);
-    line-height: 1.65; /* Slightly reduced line height */
+    line-height: 1.55; /* Balanced line height */
+    font-size: 14px; /* Readable base font size */
     transition: background 0.3s ease;
 }
 
@@ -36,7 +37,7 @@ body {
 .navbar {
     width: 100%;
     background: var(--navbar-bg);
-    padding: 0.8em 0; /* Reduced padding */
+    padding: 0.7em 1em; /* Balanced padding */
     position: fixed;
     top: 0;
     z-index: 1000;
@@ -52,19 +53,19 @@ body {
     justify-content: space-between;
 }
 .logo {
-    font-size: 1.8em;
+    font-size: 1.7em; /* Adjusted */
     color: var(--navbar-text);
     font-weight: 600;
     letter-spacing: -0.5px;
 }
 .nav-right a {
-    margin: 0 1em; /* Reduced margin */
+    margin: 0 0.9em; /* Adjusted */
     text-decoration: none;
     color: var(--navbar-text);
     font-weight: 500;
     transition: color 0.3s ease, transform 0.2s ease;
     position: relative;
-    padding-bottom: 4px;
+    padding-bottom: 3px; /* Slightly less padding for underline */
 }
 .nav-right a::after {
     content: '';
@@ -84,9 +85,9 @@ body {
     color: var(--navbar-hover);
 }
 .nav-icons a {
-    margin-left: 1em; /* Reduced margin */
+    margin-left: 0.9em; /* Adjusted */
     color: var(--navbar-text);
-    font-size: 1.4em;
+    font-size: 1.3em; /* Adjusted */
     transition: color 0.3s ease, transform 0.2s ease;
 }
 .nav-icons a:hover {
@@ -98,9 +99,9 @@ body {
 .main-container {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 80px; /* Adjusted for navbar height */
-    padding: 1.5%; /* Reduced padding */
-    gap: 1.5em; /* Reduced gap */
+    margin-top: 65px; /* Calculated based on new navbar height */
+    padding: 1em; /* Reduced padding */
+    gap: 1em; /* Reduced gap between columns */
 }
 .left-column {
     flex: 1 1 320px;
@@ -110,82 +111,91 @@ body {
     flex: 2 1 600px;
 }
 
-/* Card Style */
+/* Card Style - Reduced inter-card margin and internal padding */
 .card {
     background: var(--card-bg);
     border: 1px solid var(--accent-secondary);
     border-radius: var(--border-radius-main);
-    padding: 1.5em; /* Reduced padding */
-    margin-bottom: 1.5em; /* Reduced margin */
+    padding: 1em; /* Reduced internal padding */
+    margin-bottom: 1em; /* Reduced space between cards */
     box-shadow: 0 3px 10px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .card:hover {
-    transform: translateY(-4px); /* Slightly less lift */
+    transform: translateY(-4px);
     box-shadow: 0 6px 16px var(--shadow-color-hover);
 }
 
-/* Profile Card */
+/* Profile Card - More Compact */
 .profile-card {
     text-align: center;
+    /* It inherits padding: 1em; from .card */
 }
 .profile-photo {
-    width: 140px; /* Slightly smaller photo */
-    height: 140px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid var(--accent-primary); /* Thinner border */
-    margin-bottom: 1em;
+    border: 3px solid var(--accent-primary);
+    margin-left: auto; /* Ensure centering if card text-align is overridden */
+    margin-right: auto;
+    margin-bottom: 0.5em; /* Reduced space below photo */
     box-shadow: 0 3px 8px rgba(0,0,0,0.08);
 }
 .name {
-    font-size: 2em; /* Slightly smaller name */
-    margin-bottom: 0.3em;
+    font-size: 1.7em; /* Slightly reduced font size */
+    margin-bottom: 0.1em; /* Significantly reduced space below name */
     color: var(--text-color-dark);
     font-weight: 600;
 }
-.info {
-    font-size: 1em;
-    margin-bottom: 0.5em;
+.info { /* Class for Age, Madison, WI, Year, Phone */
+    font-size: 0.9em; /* Slightly reduced font size */
+    margin-bottom: 0.15em; /* Significantly reduced space below each info line */
     color: #555;
+    line-height: 1.4; /* Adjusted line-height for these specific items if needed */
+}
+.info i.fas.fa-phone { /* Specific styling for phone icon if needed */
+    margin-right: 0.3em;
 }
 .clock {
     font-family: 'Courier New', Courier, monospace;
-    margin-top: 1em; /* Reduced margin */
-    font-size: 1.2em;
+    margin-top: 0.5em; /* Reduced space above clock */
+    font-size: 1em; /* Slightly reduced font size */
     color: var(--accent-primary);
     background-color: #f0eade;
-    padding: 0.25em 0.5em; /* Reduced padding */
+    padding: 0.2em 0.4em; /* Kept padding reasonable for readability */
     border-radius: var(--border-radius-small);
     display: inline-block;
 }
 
-/* Section Card (for About, Projects, Experiences, Tools) */
-.section-card h2 {
-    font-size: 1.7em; /* Slightly smaller section titles */
+/* Section Card - Reduced heading margins and paddings */
+.section-card h2 { /* Applies to About Me, Projects, Experiences, Tools titles */
+    font-size: 1.6em; /* Adjusted */
     color: var(--accent-primary);
-    border-bottom: 2px solid var(--accent-primary); /* Thinner border */
-    padding-bottom: 0.4em; /* Reduced padding */
-    margin-bottom: 1em; /* Reduced margin */
+    border-bottom: 2px solid var(--accent-primary);
+    padding-bottom: 0.3em; /* Reduced padding */
+    margin-bottom: 0.7em; /* Reduced margin */
     font-weight: 600;
 }
-.section-card h3 {
-    font-size: 1.25em;
+.section-card h3 { /* For subheadings like Education, Relevant Coursework, Tools categories */
+    font-size: 1.2em; /* Adjusted */
     color: var(--text-color-dark);
-    margin-top: 0.8em; /* Reduced margin */
-    margin-bottom: 0.4em;
+    margin-top: 0.8em; /* Adjusted margin */
+    margin-bottom: 0.3em; /* Reduced margin */
     font-weight: 600;
 }
-.section-card p, .section-card ul li {
-    font-size: 0.95em; /* Slightly smaller paragraph text */
+.section-card p {
+    font-size: 0.95em;
     color: var(--text-color-dark);
+    margin-bottom: 0.5em; /* Space below paragraphs */
 }
 .section-card ul {
-    margin-bottom: 0.8em; /* Reduced margin */
-    padding-left: 1.5em;
+    margin-bottom: 0.5em; /* Space below lists */
+    padding-left: 1.2em; /* Adjusted list padding */
 }
 .section-card ul li {
-    margin-bottom: 0.4em;
+    font-size: 0.95em; /* Ensure consistency */
+    margin-bottom: 0.3em; /* Reduced space between list items */
 }
 
 /* Course List */
@@ -194,7 +204,7 @@ body {
     padding-left: 0;
 }
 .course-list li {
-    padding-left: 1.5em;
+    padding-left: 1.2em; /* Adjusted */
     position: relative;
 }
 .course-list li::before {
@@ -210,115 +220,118 @@ body {
     display: inline-block;
     background: var(--accent-primary);
     color: var(--text-color-light);
-    padding: 0.7em 1.5em; /* Adjusted padding */
-    border-radius: 25px;
+    padding: 0.6em 1.3em; /* Adjusted padding */
+    border-radius: 20px; /* Adjusted */
     text-decoration: none;
-    font-weight: 500; /* Slightly less bold */
+    font-weight: 500;
     transition: background 0.3s ease, transform 0.2s ease;
     border: none;
     cursor: pointer;
-    font-size: 0.9em; /* Slightly smaller button text */
+    font-size: 0.9em;
+    margin-top: 0.5em; /* Space above button */
 }
 .btn:hover {
     background: var(--accent-secondary);
     transform: translateY(-2px);
 }
 
-/* Project Grid & Cards - Modified for stacked layout */
+/* Project Grid & Cards - Stacked layout with reduced spacing */
 .project-grid {
     display: flex;
-    flex-direction: column; /* Stack projects vertically */
-    gap: 1.5em; /* Keep gap between stacked cards */
+    flex-direction: column;
+    gap: 1em; /* Reduced gap between stacked project cards */
 }
 .project-card {
     background: var(--card-bg);
     border: 1px solid var(--accent-secondary);
     border-radius: var(--border-radius-main);
-    padding: 1.2em; /* Reduced padding */
+    padding: 0.9em; /* Reduced internal padding for project cards */
     display: flex;
     flex-direction: column;
     text-decoration: none;
     color: inherit;
-    box-shadow: 0 3px 8px var(--shadow-color); /* Consistent shadow */
+    box-shadow: 0 2px 6px var(--shadow-color); /* Softer shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%; /* Ensure it takes full width of its container */
+    width: 100%;
 }
 .project-card:hover {
-    transform: translateY(-4px) scale(1.01); /* Adjusted hover effect */
-    box-shadow: 0 5px 12px var(--shadow-color-hover);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 4px 10px var(--shadow-color-hover);
 }
 .project-card h3 {
-    font-size: 1.3em; /* Adjusted size */
+    font-size: 1.25em; /* Adjusted */
     color: var(--accent-primary);
-    margin-bottom: 0.4em;
+    margin-bottom: 0.3em; /* Reduced margin */
 }
-.project-card p {
-    font-size: 0.85em; /* Adjusted size */
+.project-card p { /* Dates and location */
+    font-size: 0.85em;
     color: #666;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.5em; /* Reduced margin */
 }
 .project-card ul {
     list-style: disc;
-    padding-left: 1.2em;
-    font-size: 0.9em; /* Adjusted size */
+    padding-left: 1.1em; /* Adjusted */
+    font-size: 0.9em;
     flex-grow: 1;
+    margin-bottom: 0.2em; /* Reduced margin for ul */
 }
 .project-card ul li {
-    margin-bottom: 0.3em;
+    margin-bottom: 0.25em; /* Reduced space between project list items */
     color: var(--text-color-dark);
 }
 
-/* Experiences: List layout */
+/* Experiences: List layout - Reduced spacing */
 .experience-list {
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    gap: 1em; /* Reduced gap between experience items */
 }
 .experience-item {
     background: var(--card-bg);
     border: 1px solid var(--accent-secondary);
     border-radius: var(--border-radius-main);
-    padding: 1.2em; /* Reduced padding */
-    box-shadow: 0 3px 8px var(--shadow-color);
+    padding: 0.9em; /* Reduced internal padding */
+    box-shadow: 0 2px 6px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .experience-item:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 12px var(--shadow-color-hover);
+    box-shadow: 0 4px 10px var(--shadow-color-hover);
 }
 .experience-item h3 {
-    font-size: 1.4em; /* Adjusted size */
+    font-size: 1.3em; /* Adjusted */
     color: var(--accent-primary);
-    margin-bottom: 0.2em;
+    margin-bottom: 0.2em; /* Reduced margin */
 }
-.experience-item p {
-    font-size: 0.9em; /* Adjusted size */
+.experience-item p { /* Dates and location */
+    font-size: 0.9em;
     color: #666;
-    margin-bottom: 0.8em;
+    margin-bottom: 0.6em; /* Reduced margin */
     font-style: italic;
 }
 .experience-item ul {
     list-style: disc;
-    padding-left: 1.2em;
-    font-size: 0.95em; /* Adjusted size */
+    padding-left: 1.1em; /* Adjusted */
+    font-size: 0.95em;
+    margin-bottom: 0.2em; /* Reduced margin for ul */
 }
 .experience-item ul li {
-    margin-bottom: 0.4em;
+    margin-bottom: 0.3em; /* Reduced space between experience list items */
 }
 
-/* Tools Section */
+/* Tools Section - Reduced spacing */
 .tools-content h3 {
-    font-size: 1.25em; /* Adjusted size */
+    font-size: 1.2em; /* Adjusted */
     color: var(--accent-primary);
-    margin-top: 1em;
-    margin-bottom: 0.5em;
+    margin-top: 0.8em; /* Adjusted */
+    margin-bottom: 0.4em; /* Reduced */
     font-weight: 600;
 }
 .tools-content p {
-    font-size: 0.95em; /* Adjusted size */
-    line-height: 1.7; /* Slightly more spacing for lists of tools */
+    font-size: 0.95em;
+    line-height: 1.6; /* Adjusted */
+    margin-bottom: 0.4em; /* Space between tool paragraphs */
 }
-
 
 /* Sparkling Cursor Effect */
 .sparkle {
@@ -338,64 +351,68 @@ body {
 
 /* Responsive */
 @media (max-width: 992px) {
-    .left-column {
-        flex-basis: 100%;
-        margin-bottom: 0;
-    }
-    .right-column {
-        flex-basis: 100%;
+    .left-column, .right-column {
+        flex-basis: 100%; /* Stack columns on tablets */
     }
     .main-container {
-        margin-top: 75px; /* Adjusted for navbar */
-        gap: 1em; /* Further reduced gap */
+        margin-top: 60px; /* Adjust for navbar */
+        gap: 0.8em; /* Reduced gap when stacked */
     }
+     body { font-size: 13px; } /* Slightly smaller base for tablet */
 }
 
 @media (max-width: 768px) {
+    body { font-size: 12px; } /* Smaller base for mobile */
+    .navbar { padding: 0.5em 0.8em; }
     .navbar-container {
         width: 95%;
         flex-direction: column;
         align-items: center;
     }
     .logo {
-        margin-bottom: 0.5em;
+        margin-bottom: 0.4em; /* Adjusted */
+        font-size: 1.6em;
     }
     .nav-right {
-        margin-bottom: 0.5em;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        margin-bottom: 0.4em; /* Adjusted */
+        flex-wrap: wrap; /* Ensure nav links wrap */
+        justify-content: center; /* Center wrapped nav links */
     }
     .nav-right a {
-        margin: 0.2em 0.6em; /* Adjust margin for smaller screens */
-        font-size: 0.85em; /* Smaller nav links */
+        margin: 0.2em 0.5em;
+        font-size: 0.9em; /* Adjusted */
     }
     .nav-icons a {
         font-size: 1.2em;
-        margin-left: 0.6em;
+        margin-left: 0.5em;
     }
     .main-container {
-        margin-top: 140px; /* Adjust for stacked navbar, might need tweaking */
-        padding: 2%;
+        margin-top: 120px; /* Approximate for stacked mobile navbar */
+        padding: 0.8em; /* Adjusted */
     }
     .card {
-        padding: 1.2em; /* Further reduce padding */
-        margin-bottom: 1.2em; /* Further reduce margin */
+        padding: 0.8em; /* Adjusted */
+        margin-bottom: 0.8em; /* Adjusted */
     }
     .section-card h2 {
-        font-size: 1.5em; /* Smaller section titles */
+        font-size: 1.4em; /* Adjusted */
     }
     .profile-photo {
-        width: 100px; /* Smaller photo */
+        width: 100px;
         height: 100px;
     }
     .name {
-        font-size: 1.7em;
+        font-size: 1.6em; /* Adjusted */
     }
-    .section-card p, .section-card ul li,
+    /* Adjust text sizes for mobile */
+    .section-card p, .section-card ul li, .btn,
     .project-card p, .project-card ul li,
     .experience-item p, .experience-item ul li,
-    .tools-content p {
-        font-size: 0.9em; /* Standardize smaller text on mobile */
+    .tools-content p, .info { /* Added .info here */
+        font-size: 0.9em;
     }
+    .clock { font-size: 0.9em; } /* Ensure clock is also adjusted */
+    .project-card h3 { font-size: 1.15em; }
+    .experience-item h3 { font-size: 1.2em; }
+    .tools-content h3 { font-size: 1.1em; }
 }
