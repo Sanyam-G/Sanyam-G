@@ -1,8 +1,17 @@
 :root {
-    --bg-page: #543A14;    /* Brown main for page background */
-    --card-bg: #FFF0DC;    /* Light card background */
-    --accent: #F0BB78;     /* Accent color */
-    --text-color: #131010; /* Dark text */
+    --bg-page: #5D4037;  /* Richer, slightly desaturated brown for page background */
+    --card-bg: #FDFBF5;   /* Warm, very light off-white for cards (like parchment) */
+    --accent-primary: #B08D57; /* Muted gold/tan for primary accents */
+    --accent-secondary: #8A6E4B; /* Darker accent for borders, subtle elements */
+    --text-color-dark: #3E2723; /* Dark, warm brown for main text */
+    --text-color-light: #FDFBF5; /* Light text for dark backgrounds */
+    --navbar-bg: var(--card-bg);
+    --navbar-text: var(--text-color-dark);
+    --navbar-hover: var(--accent-primary);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-color-hover: rgba(0, 0, 0, 0.15);
+    --border-radius-main: 12px; /* Slightly larger border radius for a softer look */
+    --border-radius-small: 8px;
 }
 
 * {
@@ -11,22 +20,28 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Montserrat', sans-serif;
     background: var(--bg-page);
-    color: var(--text-color);
-    line-height: 1.6;
+    color: var(--text-color-dark);
+    line-height: 1.7; /* Increased line height for readability */
+    transition: background 0.3s ease; /* Smooth background transitions */
 }
 
 /* Navbar */
 .navbar {
     width: 100%;
-    background: var(--card-bg);
-    opacity: 0.95;
-    padding: 1% 0;
+    background: var(--navbar-bg);
+    padding: 1em 0; /* Consistent padding */
     position: fixed;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 10px var(--shadow-color); /* Subtle shadow for navbar */
+    border-bottom: 1px solid rgba(0,0,0,0.05);
 }
 .navbar-container {
     width: 90%;
@@ -37,53 +52,77 @@ body {
     justify-content: space-between;
 }
 .logo {
-    font-size: 1.8em;
-    color: var(--bg-page);
+    font-size: 1.9em; /* Slightly increased logo size */
+    color: var(--navbar-text);
     font-weight: 600;
+    letter-spacing: -0.5px; /* Subtle letter spacing adjustment */
 }
 .nav-right a {
-    margin: 0 1em;
+    margin: 0 1.2em; /* Increased margin for nav links */
     text-decoration: none;
-    color: var(--bg-page);
+    color: var(--navbar-text);
     font-weight: 500;
-    transition: color 0.3s;
+    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative; /* For underline effect */
+    padding-bottom: 4px; /* Space for underline */
+}
+.nav-right a::after { /* Underline hover effect */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--navbar-hover);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+.nav-right a:hover::after {
+    width: 100%;
+    left: 0;
 }
 .nav-right a:hover {
-    color: var(--accent);
+    color: var(--navbar-hover);
 }
 .nav-icons a {
-    margin-left: 1em;
-    color: var(--bg-page);
-    font-size: 1.4em;
-    transition: color 0.3s;
+    margin-left: 1.2em; /* Increased margin for icons */
+    color: var(--navbar-text);
+    font-size: 1.5em; /* Slightly increased icon size */
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 .nav-icons a:hover {
-    color: var(--accent);
+    color: var(--navbar-hover);
+    transform: translateY(-2px); /* Slight lift on hover */
 }
 
-/* Main Container: Two-column layout */
+/* Main Container */
 .main-container {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 80px; /* account for navbar height */
+    margin-top: 100px; /* Adjusted for slightly taller navbar + padding */
     padding: 2%;
+    gap: 2em; /* Added gap between columns */
 }
 .left-column {
-    flex: 1 1 30%;
-    padding: 1em;
+    flex: 1 1 320px; /* Min width for left column */
+    min-width: 300px; /* Prevent excessive squishing */
 }
 .right-column {
-    flex: 1 1 70%;
-    padding: 1em;
+    flex: 2 1 600px; /* Allow right column to take more space */
 }
 
 /* Card Style */
 .card {
     background: var(--card-bg);
-    border: 2px solid var(--accent);
-    border-radius: 10px;
-    padding: 1.5em;
-    margin-bottom: 1.5em;
+    border: 1px solid var(--accent-secondary); /* Softer border */
+    border-radius: var(--border-radius-main);
+    padding: 2em; /* Increased padding */
+    margin-bottom: 2em; /* Increased margin */
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-color-hover);
 }
 
 /* Profile Card */
@@ -91,146 +130,266 @@ body {
     text-align: center;
 }
 .profile-photo {
-    width: 50%;
+    width: 150px; /* Fixed size for profile photo */
+    height: 150px;
+    object-fit: cover; /* Ensure photo covers the area */
     border-radius: 50%;
-    border: 3px solid var(--accent);
-    margin-bottom: 1em;
+    border: 4px solid var(--accent-primary); /* Thicker accent border */
+    margin-bottom: 1.2em;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .name {
-    font-size: 2em;
-    margin-bottom: 0.5em;
+    font-size: 2.2em;
+    margin-bottom: 0.4em;
+    color: var(--text-color-dark);
+    font-weight: 600;
 }
 .info {
-    font-size: 1em;
-    margin-bottom: 0.5em;
+    font-size: 1.05em; /* Slightly larger info text */
+    margin-bottom: 0.6em;
+    color: #555; /* Softer color for secondary info */
 }
 .clock {
-    font-family: monospace;
-    margin-top: 1em;
-    font-size: 1.2em;
+    font-family: 'Courier New', Courier, monospace; /* Classic monospace for clock */
+    margin-top: 1.5em;
+    font-size: 1.3em;
+    color: var(--accent-primary);
+    background-color: #f0eade; /* Subtle background for clock */
+    padding: 0.3em 0.6em;
+    border-radius: var(--border-radius-small);
+    display: inline-block;
 }
 
-/* Section Card (for About, Projects, Experiences) */
+/* Section Card (for About, Projects, Experiences, Tools) */
 .section-card h2 {
-    color: var(--accent);
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 0.5em;
+    font-size: 1.8em; /* Larger section titles */
+    color: var(--accent-primary);
+    border-bottom: 3px solid var(--accent-primary); /* Thicker border */
+    padding-bottom: 0.6em;
+    margin-bottom: 1.2em;
+    font-weight: 600;
+}
+.section-card h3 { /* Styling for subheadings within sections like Tools */
+    font-size: 1.3em;
+    color: var(--text-color-dark);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+.section-card p, .section-card ul li {
+    font-size: 1em;
+    color: var(--text-color-dark); /* Ensuring consistent text color */
+}
+.section-card ul {
     margin-bottom: 1em;
+    padding-left: 1.5em; /* Standard padding for lists */
+}
+.section-card ul li {
+    margin-bottom: 0.5em;
 }
 
 /* Course List */
 .course-list {
-    list-style: disc;
-    margin-left: 1.5em;
-    margin-bottom: 1em;
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+}
+.course-list li {
+    padding-left: 1.5em;
+    position: relative;
+}
+.course-list li::before { /* Custom bullet */
+    content: '▹'; /* Or use FontAwesome icon, e.g., '\f105' */
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-weight: bold;
 }
 
 /* Button Styles */
 .btn {
     display: inline-block;
-    background: var(--accent);
-    color: var(--bg-page);
-    padding: 0.5em 1em;
-    border-radius: 25px;
+    background: var(--accent-primary);
+    color: var(--text-color-light);
+    padding: 0.8em 1.8em; /* Larger padding */
+    border-radius: 30px; /* More rounded */
     text-decoration: none;
-    transition: background 0.3s;
+    font-weight: 600; /* Bolder text */
+    transition: background 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
 }
 .btn:hover {
-    background: #e0a26b;
+    background: var(--accent-secondary); /* Darker accent on hover */
+    transform: translateY(-2px);
 }
 
-/* Project Grid */
+/* Project Grid & Cards */
 .project-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
+    display: grid; /* Using grid for more robust layout */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+    gap: 1.5em;
 }
-.project-card {
+.project-card { /* This is an <a> tag, apply card styles */
     background: var(--card-bg);
-    border: 1px solid var(--accent);
-    border-radius: 8px;
-    padding: 1em;
-    flex: 1 1 45%;
-    margin-bottom: 1em;
+    border: 1px solid var(--accent-secondary);
+    border-radius: var(--border-radius-main);
+    padding: 1.5em;
+    display: flex; /* Use flex for internal alignment */
+    flex-direction: column;
+    text-decoration: none; /* Remove underline from link */
+    color: inherit; /* Inherit text color */
+    box-shadow: 0 3px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+    transform: translateY(-5px) scale(1.02); /* Slight scale effect */
+    box-shadow: 0 6px 15px var(--shadow-color-hover);
+}
+.project-card h3 {
+    font-size: 1.4em;
+    color: var(--accent-primary);
+    margin-bottom: 0.5em;
+}
+.project-card p { /* Dates and location */
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 0.8em;
+}
+.project-card ul {
+    list-style: disc;
+    padding-left: 1.2em;
+    font-size: 0.95em;
+    flex-grow: 1; /* Allow list to take available space */
+}
+.project-card ul li {
+    margin-bottom: 0.4em;
+    color: var(--text-color-dark);
 }
 
-/* Experiences: List layout (each item full width) */
+/* Experiences: List layout */
 .experience-list {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 1.5em;
 }
 .experience-item {
-    background: var(--card-bg);
-    border: 1px solid var(--accent);
-    border-radius: 8px;
-    padding: 1em;
+    background: var(--card-bg); /* Match main card styling */
+    border: 1px solid var(--accent-secondary);
+    border-radius: var(--border-radius-main);
+    padding: 1.5em;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.experience-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-color-hover);
+}
+.experience-item h3 {
+    font-size: 1.5em;
+    color: var(--accent-primary);
+    margin-bottom: 0.3em;
+}
+.experience-item p { /* Dates and location */
+    font-size: 0.95em;
+    color: #666;
+    margin-bottom: 1em;
+    font-style: italic;
+}
+.experience-item ul {
+    list-style: disc;
+    padding-left: 1.2em;
+    font-size: 1em;
+}
+.experience-item ul li {
+    margin-bottom: 0.5em;
 }
 
-/* Modal Styles */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
+/* Tools Section */
+.tools-content h3 {
+    font-size: 1.3em;
+    color: var(--accent-primary);
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    font-weight: 600;
 }
-.modal.active {
-    opacity: 1;
-    pointer-events: auto;
+.tools-content p {
+    font-size: 1em;
+    line-height: 1.8; /* More spacing for lists of tools */
 }
-.modal-content {
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 2em;
-    width: 90%;
-    max-width: 500px;
-    border: 2px solid var(--accent);
-    position: relative;
-}
-.modal-close {
-    position: absolute;
-    top: 1em;
-    right: 1em;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: var(--bg-page);
-    transition: color 0.3s;
-}
-.modal-close:hover {
-    color: var(--accent);
-}
+
 
 /* Sparkling Cursor Effect */
 .sparkle {
     position: absolute;
-    width: 8px;
-    height: 8px;
-    background: radial-gradient(circle, #fff, var(--accent));
+    width: 6px; /* Slightly smaller */
+    height: 6px;
+    background: radial-gradient(circle, #fff, var(--accent-primary));
     border-radius: 50%;
     pointer-events: none;
     z-index: 4000;
-    animation: sparkle 1s ease-out forwards;
+    animation: sparkle 0.8s ease-out forwards; /* Faster animation */
 }
 @keyframes sparkle {
-    0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(3); opacity: 0; }
+    0% { transform: scale(1.2) rotate(0deg); opacity: 1; } /* Added rotation */
+    100% { transform: scale(3) rotate(90deg); opacity: 0; }
 }
 
-/* Responsive: Stack columns on narrow screens */
-@media (max-width: 768px) {
-    .main-container {
-        flex-direction: column;
+/* Responsive */
+@media (max-width: 992px) { /* Tablet breakpoint */
+    .left-column {
+        flex-basis: 100%; /* Stack left column on tablets and below */
+        margin-bottom: 0; /* Adjust margin when stacked */
     }
-    .left-column, .right-column {
-        flex: 1 1 100%;
+    .right-column {
+        flex-basis: 100%;
+    }
+    .main-container {
+        margin-top: 90px; /* Adjust for navbar */
+        gap: 1.5em;
+    }
+    .project-grid {
+        grid-template-columns: 1fr; /* Single column for projects on smaller screens */
+    }
+}
+
+@media (max-width: 768px) { /* Mobile breakpoint */
+    .navbar-container {
+        width: 95%;
+        flex-direction: column; /* Stack navbar items */
+        align-items: center;
+    }
+    .logo {
+        margin-bottom: 0.5em;
+    }
+    .nav-right {
+        margin-bottom: 0.5em;
+        display: flex; /* Keep nav links in a row */
+        flex-wrap: wrap; /* Allow wrapping if needed */
+        justify-content: center;
+    }
+    .nav-right a {
+        margin: 0 0.8em; /* Adjust margin for smaller screens */
+        font-size: 0.9em;
+    }
+    .nav-icons a {
+        font-size: 1.3em;
+        margin-left: 0.8em;
+    }
+    .main-container {
+        margin-top: 160px; /* Further adjust for stacked navbar */
+        padding: 3%;
+    }
+    .card {
+        padding: 1.5em;
+    }
+    .section-card h2 {
+        font-size: 1.6em;
+    }
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+    .name {
+        font-size: 1.8em;
     }
 }
