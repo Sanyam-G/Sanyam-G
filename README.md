@@ -1,15 +1,16 @@
 # Hi, I'm Sanyam Garg 👋
 
 Junior at **University of Wisconsin–Madison** (Computer Science & Data Science, 2027).
-Focused on **AI/Machine Learning**, **Software Development**, and building practical tech.
+Focused on **AI/Machine Learning**, **Backend Systems**, and building practical tech.
 
 ---
 
 ## 🚀 Highlights
 
 * 🔬 **Deep Learning Research Assistant (UW–Madison):** Developing PyTorch models on HPC clusters to predict clinical outcomes from medical images (WGS & MRI).
-* 💡 Key Interests: **Machine Learning (Deep Learning)**, **Full-Stack Development**, creating data-driven applications.
-* 🛠️ Goal: Building useful software, from ML web apps and P2P systems to mobile tools for students.
+* 💡 **AI & Backend Systems Intern (Tech Dept, Dubai):** Contributing to the development of robust backend systems, focusing on **Model Context Protocol (MCP)** server implementation, **API endpoint creation**, and **AI model integration** using Python/Go.
+* 💡 Key Interests: **Machine Learning (Deep Learning)**, **Backend Development**, creating data-driven applications.
+* 🛠️ Goal: Building useful tech, from ML web apps and P2P systems to mobile tools for students.
 * 🌱 Currently Exploring: Neural Networks, Statistical Modeling, and R.
 
 ---
@@ -31,10 +32,10 @@ Focused on **AI/Machine Learning**, **Software Development**, and building pract
 
 ## 🧰 Tech Stack
 
-* **Languages:** Python | Java | JavaScript | Dart | SQL | R
+* **Languages:** Python | Java | JavaScript | Dart | SQL | R | Go (currently exploring/learning)
 * **Frameworks/Libraries:** PyTorch | Scikit-learn | Pandas | NumPy | Flutter | React | Node.js | Flask | JUnit | HTML/CSS
-* **Tools/Platforms:** Git | Firebase | Linux | Docker | PythonAnywhere
-* **Concepts:** OOP | Data Structures & Algorithms | Machine Learning & Deep Learning | REST APIs | Version Control | Testing & Debugging | Data Visualization | Agile
+* **Tools/Platforms:** Git | Firebase | Linux | Docker | PythonAnywhere | OpenAI API | Azure
+* **Concepts:** OOP | Data Structures & Algorithms | Machine Learning & Deep Learning | REST APIs | Version Control | Testing & Debugging | Data Visualization | Agile | Model Context Protocol (MCP) | WebRTC
 
 ---
 
