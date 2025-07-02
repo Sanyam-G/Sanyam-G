@@ -23,7 +23,7 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and building practical 
 
 ## 🧠 Selected Projects
 
-- **[Handwritten Digit Recognition Web App](https://github.com/Sanyam-G/MNIST-Detection):** Built a PyTorch CNN for real-time digit recognition (~98% accuracy), deployed as a Flask web app. ([Hosted Demo](http://sammy56656.pythonanywhere.com/))
+- **[Handwritten Digit Recognition Web App](https://github.com/Sanyam-G/MNIST-Detection):** Built a PyTorch CNN for real-time digit recognition (~98% accuracy), deployed as a Flask web app. ([Hosted Demo](http://digit-recognizer.sanyamgarg.com))
 - **[Distributed P2P File Sharing System](https://github.com/Sanyam-G/p2p-filesharing):** Created a secure Python P2P file-sharing system using multithreading and SHA-256 for 100% accurate file transfers (CLI & Tkinter GUI).
 - **[SPlanner – Student Planner App](https://github.com/Sanyam-G/SPlanner):** Developed a Flutter/Dart mobile planner for 100+ students with Firebase sync; optimized data structures for 25% faster performance.
 - **[StickyBoard](https://github.com/Sanyam-G/StickyBoard):** Built a dynamic sticky note web app (HTML/CSS/JS) with drag-and-drop notes and local storage.
