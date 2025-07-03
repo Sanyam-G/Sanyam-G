@@ -41,7 +41,7 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and building practical 
 
 ## 📄 Resume
 
-📎 Latest Resume: **[PDF Link](https://github.com/Sanyam-G/Sanyam-G/blob/main/Resume.pdf)**
+📎 Latest Resume: **[resume.sanyamgarg.com](https://resume.sanyamgarg.com)**
 
 ---
 
