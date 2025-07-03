@@ -50,7 +50,7 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and building practical 
 - Website: [sanyamgarg.com](https://sanyamgarg.com)
 - LinkedIn: [linkedin.com/in/Sanyam-G](https://www.linkedin.com/in/Sanyam-G)
 - GitHub: [github.com/Sanyam-G](https://github.com/Sanyam-G)
-- Email: [sanyamg@icloud.com](mailto:sanyamg@icloud.com)
+- Email: [sanyam@sanyamgarg.com](mailto:sanyam@sanyamgarg.com)
 
 ---
 
