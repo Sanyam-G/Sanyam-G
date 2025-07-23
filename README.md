@@ -7,26 +7,27 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and building practical 
 
 ## 🚀 Highlights
 
-- 🔬 **Deep Learning Research Assistant (UW–Madison):** Developing **PyTorch** models for genomic analysis, utilizing **HPC clusters** and **Snakemake** for large-scale data workflows.
-- 💡 **AI & Backend Development Intern (Century Financial, Dubai):** Engineered **Python**-based AI trading assistant backends (**MCP, OpenAI API**) and a **Node.js** co-Browse solution for enhanced customer support.
-- ✨ Key Interests: **Machine Learning (Deep Learning)**, **Backend Development**, creating data-driven applications.
-- 🎯 Goal: Building useful tech, from ML web apps and P2P systems to mobile tools for students.
+* 🔬 **Deep Learning Research Assistant (UW–Madison):** Developing **PyTorch** models for genomic analysis, utilizing **HPC clusters** and **Snakemake** for large-scale data workflows.
+* 💡 **AI & Backend Development Intern (Century Financial, Dubai):** Engineered **Python**-based AI trading assistant backends (**MCP, OpenAI API**) and a **Node.js** co-Browse solution for enhanced customer support.
+* ✨ Key Interests: **Machine Learning (Deep Learning)**, **Backend Development**, creating data-driven applications.
+* 🎯 Goal: Building useful tech, from ML web apps and P2P systems to mobile tools for students.
 
 ---
 
-## 🌐 Personal Website
+## 🌐 Personal Website & Resume
 
 📌 **[sanyamgarg.com](https://sanyamgarg.com)**
+📄 **[View My Full Resume Here](https://resume.sanyamgarg.com)**
 
 ---
 
 ## 🧠 Selected Projects
 
--   🐚 **[Python Shell](https://github.com/Sanyam-G/shell):** Implemented a custom command-line shell in **Python** with interactive prompts, command execution, **I/O redirection**, command history, and usage analytics.
--   ☁️ **[Self-Hosted Application Server](https://server.sanyamgarg.com):** Engineered and maintained a **24/7 Linux server**, managing **20+ Dockerized services** with **Cloudflare Tunnel** and **Caddy reverse proxy**.
--   ✍️ **[Handwritten Digit Recognition Web App](https://github.com/Sanyam-G/MNIST-Detection):** Built a **PyTorch CNN** for real-time digit recognition (**~98% accuracy**), deployed as a **Flask web app**. ([Hosted Demo](http://digit-recognizer.sanyamgarg.com))
--   🔗 **[Distributed P2P File Sharing System](https://github.com/Sanyam-G/p2p-filesharing):** Created a secure **Python P2P file-sharing system** using **multithreading** and **SHA-256**.
--   📝 **[StickyBoard](https://github.com/Sanyam-G/StickyBoard):** Built a dynamic sticky note web app (**HTML/CSS/JS**) with drag-and-drop notes and local storage.
+* 🐚 **[Python Shell](https://github.com/Sanyam-G/shell):** Implemented a custom command-line shell in **Python** with interactive prompts, command execution, **I/O redirection**, command history, and usage analytics.
+* ☁️ **[Self-Hosted Application Server](https://server.sanyamgarg.com):** Engineered and maintained a **24/7 Linux server**, managing **20+ Dockerized services** with **Cloudflare Tunnel** and **Caddy reverse proxy**.
+* ✍️ **[Handwritten Digit Recognition Web App](https://github.com/Sanyam-G/MNIST-Detection):** Built a **PyTorch CNN** for real-time digit recognition (**~98% accuracy**), deployed as a **Flask web app**. ([Hosted Demo](http://digit-recognizer.sanyamgarg.com))
+* 🔗 **[Distributed P2P File Sharing System](https://github.com/Sanyam-G/p2p-filesharing):** Created a secure **Python P2P file-sharing system** using **multithreading** and **SHA-256**.
+* 📝 **[StickyBoard](https://github.com/Sanyam-G/StickyBoard):** Built a dynamic sticky note web app (**HTML/CSS/JS**) with drag-and-drop notes and local storage.
 
 ---
 
@@ -66,17 +67,11 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and building practical 
 
 ---
 
-## 📄 Resume
-
-**[resume.sanyamgarg.com](https://resume.sanyamgarg.com)**
-
----
-
 ## 📬 Get in Touch
 
-- 🔗 LinkedIn: [linkedin.com/in/Sanyam-G](https://www.linkedin.com/in/Sanyam-G)
-- 🐙 GitHub: [github.com/Sanyam-G](https://github.com/Sanyam-G)
-- ✉️ Email: **[sanyam@sanyamgarg.com](mailto:sanyam@sanyamgarg.com)**
+* 🔗 LinkedIn: [linkedin.com/in/Sanyam-G](https://www.linkedin.com/in/Sanyam-G)
+* 🐙 GitHub: [github.com/Sanyam-G](https://github.com/Sanyam-G)
+* ✉️ Email: **[sanyam@sanyamgarg.com](mailto:sanyam@sanyamgarg.com)**
 
 ---
 
