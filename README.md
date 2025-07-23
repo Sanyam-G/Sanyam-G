@@ -1,4 +1,4 @@
-# Hi, I'm Sanyam Garg 👋
+# Hi, I'm Sanyam Garg 👋   <p align="right"><a href="https://resume.sanyamgarg.com" target="_blank"><img src="https://img.shields.io/badge/Resume-red?style=for-the-badge&logo=googledocs&logoColor=white" alt="Resume PDF"></a> <a href="https://sanyamgarg.com" target="_blank"><img src="https://img.shields.io/badge/sanyamgarg.com-blue?style=for-the-badge&logoColor=white" alt="Personal Website"></a></p>
 
 Junior at **University of Wisconsin–Madison** (Computer Science & Data Science, **May 2027**).
 Focused on **AI/Machine Learning**, **Backend Systems**, and building practical tech.
