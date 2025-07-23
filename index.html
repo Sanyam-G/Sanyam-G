@@ -21,29 +21,6 @@
   <link rel="stylesheet" href="style.min.css" />
 </head>
 <body>
-<header class="navbar">
-  <div class="navbar-container">
-    <div class="nav-left">
-      <h1 class="logo">Sanyam Garg</h1>
-    </div>
-    <nav class="nav-right">
-      <a href="#profile-area">Profile & About</a>
-      <a href="#experiences-area">Experiences</a>
-      <a href="#projects-area">Projects</a>
-    </nav>
-    <div class="nav-icons">
-      <a href="https://www.linkedin.com/in/sanyam-g/" target="_blank"
-      ><i class="fab fa-linkedin"></i
-      ></a>
-      <a href="https://github.com/Sanyam-G" target="_blank"
-      ><i class="fab fa-github"></i
-      ></a>
-      <a href="mailto:sanyamg@icloud.com" target="_blank"
-      ><i class="fas fa-envelope"></i
-      ></a>
-    </div>
-  </div>
-</header>
 
 <div class="page-content-container">
   <section id="profile-area" class="grid-item profile-about-area card">
@@ -54,14 +31,25 @@
               class="profile-photo"
       />
       <div class="profile-details-block">
-        <h2 class="name">Sanyam Garg</h2>
-        <p class="info">Age: <span id="age"></span></p>
-        <p class="info">Madison, WI</p>
-        <p class="info">Year: Junior</p>
+        <h2 class="name"><strong>Sanyam Garg</strong></h2>
+        <p class="info"><strong>Age: <span id="age"></span></strong></p>
+        <p class="info"><strong>Madison, WI</strong></p>
+        <p class="info"><strong>Year: Junior</strong></p>
         <p class="info phone-info">
-          <i class="fas fa-phone"></i> +1 (646) 599-7862
+          <i class="fas fa-phone"></i> <strong>+1 (646) 599-7862</strong>
         </p>
         <div id="clock" class="clock"></div>
+        <div class="nav-icons">
+          <a href="https://www.linkedin.com/in/sanyam-g/" target="_blank"
+          ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="https://github.com/Sanyam-G" target="_blank"
+          ><i class="fab fa-github"></i
+          ></a>
+          <a href="mailto:sanyam@sanyamgarg.com" target="_blank"
+          ><i class="fas fa-envelope"></i
+          ></a>
+        </div>
       </div>
     </div>
     <div class="profile-intro-fullwidth-block">
@@ -73,22 +61,22 @@
     </div>
     <div class="education-coursework-container">
       <div class="education-block">
-        <h3>Education</h3>
+        <h3><strong>Education</strong></h3>
         <p>
-          <strong>University of Wisconsin–Madison</strong>, Madison, WI<br />
-          Bachelor of Science in Computer Science & Data Science<br />
-          August 2023 - May 2027
+          <strong>University of Wisconsin–Madison</strong>, <strong>Madison, WI</strong><br />
+          <strong>Bachelor of Science in Computer Science & Data Science</strong><br />
+          <strong>August 2023 - May 2027</strong>
         </p>
       </div>
       <div class="coursework-block">
-        <h3>Relevant Coursework</h3>
+        <h3><strong>Relevant Coursework</strong></h3>
         <ul class="course-list">
-          <li>Data Structures & Algorithms</li>
-          <li>Introduction to Artificial Intelligence</li>
-          <li>Linear Algebra</li>
-          <li>Statistics R Programming</li>
-          <li>Discrete Mathematics</li>
-          <li>Calculus I & II</li>
+          <li><strong>Data Structures & Algorithms</strong></li>
+          <li><strong>Intro. to AI</strong></li>
+          <li><strong>Linear Algebra</strong></li>
+          <li><strong>Statistics</strong></li>
+          <li><strong>Discrete Mathematics</strong></li>
+          <li><strong>Calculus II</strong></li>
         </ul>
       </div>
     </div>
@@ -97,28 +85,32 @@
             target="_blank"
             class="btn resume-button"
     >
-      <i class="fas fa-file-alt"></i> View Resume
+      <i class="fas fa-file-alt"></i> <strong>View Resume</strong>
     </a>
 
     <div class="tools-section-in-profile">
-      <h2>Tools</h2>
+      <h2><strong>Tools</strong></h2>
       <div class="tools-content-grid">
         <div class="tool-category">
-          <h3>Programming Languages</h3>
-          <p>Java, Python, JavaScript, Dart, SQL, R</p>
+          <h3><strong>Programming Languages</strong></h3>
+          <p><strong>Python, Java, Dart, SQL, R, Bash</strong></p>
         </div>
         <div class="tool-category">
-          <h3>Software</h3>
+          <h3><strong>DevOps & Infrastructure</strong></h3>
           <p>
-            Flutter, React, Git, Node.js, HTML/CSS, Junit, NumPy, PyTorch,
-            Flask
+            <strong>Docker, Caddy, Linux, Cloudflare Tunnels, Git, Conda, Snakemake</strong>
           </p>
         </div>
         <div class="tool-category">
-          <h3>Concepts</h3>
+          <h3><strong>Machine Learning & Data Science</strong></h3>
           <p>
-            Object-Oriented Programming, Data Structures & Algorithms,
-            Version Control, Debugging, Machine Learning, Data Visualization
+            <strong>PyTorch, NumPy, Pandas, Scikit-learn, Deep Learning, NLP</strong>
+          </p>
+        </div>
+        <div class="tool-category">
+          <h3><strong>Web & Application Development</strong></h3>
+          <p>
+            <strong>Flask, Flutter, Firebase, Node.js, REST APIs</strong>
           </p>
         </div>
       </div>
@@ -132,61 +124,41 @@
     <h2>Experiences</h2>
     <div class="experience-list">
       <div class="experience-item">
-        <h3>AI and Backend Development Intern, Century Financial</h3>
-        <p>Dubai, UAE | May 2025 - Present</p>
+        <h3>AI & Backend Development Intern, Century Financial</h3>
+        <p><strong>Dubai, UAE | June 2025 - Present</strong></p>
         <ul>
           <li>
-            Developing the Python backend for a new AI assistant,
-            implementing the Model Context Protocol (MCP) to enable
-            real-time tool use.
+            Engineered a Python backend for a new AI trading assistant, utilizing <strong>Model Context Protocol (MCP)</strong> and a context management system that leverages <strong>OpenAI's API</strong> to generate real-time <strong>personalized recommendations</strong> and suggestions based on user history and holdings.
           </li>
           <li>
-            Engineering a suite of backend tools to manage secure user data
-            and process information from live financial APIs.
-          </li>
-          <li>
-            Designing the backend logic to power a custom company chatbot,
-            enabling natural language queries and data visualization.
-          </li>
-          <li>
-            Implementing a co-Browse feature with WebRTC to provide
-            interactive, real-time customer support.
+            Built a lightweight co-Browse solution with a <strong>Node.js backend</strong>, implementing <strong>DOM mirroring</strong> with selective data masking, <strong>real-time remote control (clicks/inputs)</strong>, and network/console <strong>logging</strong> for significantly enhanced and secure customer support.
           </li>
         </ul>
       </div>
       <div class="experience-item">
         <h3>Deep Learning Research Assistant, Keles Group (UW-Madison)</h3>
-        <p>Madison, WI | April 2025-Present</p>
+        <p><strong>Madison, WI | May 2025 - Present</strong></p>
         <ul>
           <li>
-            Contributed to developing and evaluating deep learning models
-            (e.g., VERMIN framework) to predict DNA methylation from genomic
-            sequences for the Sequence2Methylation-v2 project.
+            Developed and evaluate deep learning models (<strong>VERMIN framework</strong>) in <strong>PyTorch</strong> to accurately predict DNA methylation from large-scale human/mouse genomic sequences.
           </li>
           <li>
-            Managed computational environments (Conda) and implemented data
-            processing/analysis workflows (Snakemake) for large-scale
-            human/mouse genomic datasets.
+            Performed extensive Exploratory Data Analysis on a massive 22-million-row dataset using <strong>Pandas</strong> in <strong>JupyterLab</strong>, investigating genetic variation and epigenetic markers.
           </li>
           <li>
-            Utilized Python, PyTorch, and a high-performance computing (HPC)
-            cluster with GPUs for deep learning applications and data
-            quality control.
+            Implemented data processing/analysis workflows (<strong>Snakemake</strong>) on an HPC cluster and generated data visualizations to validate pipeline output and uncover biological insights.
           </li>
         </ul>
       </div>
       <div class="experience-item">
         <h3>Skyscanner SDE Job Simulation - Forage</h3>
-        <p>Remote | November 2023 - January 2024</p>
+        <p><strong>Remote | November 2023 - January 2024</strong></p>
         <ul>
           <li>
-            Engineered a responsive web application using React, focusing on
-            user experience and rapid prototyping
+            Engineered a responsive web application using <strong>React</strong>, focusing on user experience and rapid prototyping.
           </li>
           <li>
-            Built a dynamic travel date selection interface with Backpack
-            React, contributing to enhanced product usability and customer
-            engagement.
+            Built a dynamic travel date selection interface with <strong>Backpack React</strong>, contributing to enhanced product usability and customer engagement.
           </li>
         </ul>
       </div>
@@ -206,16 +178,13 @@
         <p><strong>May 2025 – July 2025</strong></p>
         <ul>
           <li>
-            Implemented a custom command-line shell in Python, supporting
-            interactive prompts, command execution, and I/O redirection.
+            Built a custom command-line shell in <strong>Python</strong> that supports user prompts and command execution.
           </li>
           <li>
-            Developed features for command piping, allowing the output of
-            one command to serve as input for another.
+            Added support for <strong>Bash</strong> features like input/output redirection (<strong><, ></strong>) and command piping (<strong>|</strong>).
           </li>
           <li>
-            Integrated command history and basic usage analytics for
-            enhanced user experience and insights.
+            Implemented a persistent command history feature, significantly improving user workflow.
           </li>
         </ul>
         <div class="project-links">
@@ -234,10 +203,10 @@
         <p><strong>March 2025 – July 2025</strong></p>
         <ul>
           <li>
-            Engineered and maintain a <strong>24/7 Linux server</strong> managing system resources, network security (UFW), and persistent storage.
+            Engineered and maintain a <strong>24/7 Linux server</strong> managing system resources and network security.
           </li>
           <li>
-            Managed <strong>20+ Dockerized services</strong>, implementing secure traffic routing via <strong>Cloudflare Tunnel</strong> and <strong>Caddy reverse proxy</strong> across a shared bridge network.
+            Managed <strong>20+ Dockerized services</strong>, implementing secure traffic routing via <strong>Cloudflare Tunnel</strong> and <strong>Caddy reverse proxy</strong>.
           </li>
           <li>
             Automated critical dynamic DNS updates and daily backups with <strong>Bash</strong> and <strong>cron</strong>, ensuring continuous system integrity and operational reliability.
@@ -259,13 +228,13 @@
         <p><strong>December 2024 – March 2025</strong></p>
         <ul>
           <li>
-            Developed and trained a Convolutional Neural Network (CNN) using PyTorch on the MNIST dataset, incorporating advanced image pre-processing and data augmentation for enhanced model robustness.
+            Developed and trained a <strong>Convolutional Neural Network (CNN)</strong> in <strong>PyTorch</strong> on the MNIST dataset, achieving over <strong>98% validation accuracy</strong> for robust digit recognition.
           </li>
           <li>
-            Implemented a comprehensive training and evaluation pipeline, tracking key metrics and generating a confusion matrix for detailed performance analysis.
+            Implemented a comprehensive training and evaluation pipeline, meticulously tracking key metrics and generating a confusion matrix for detailed model performance analysis.
           </li>
           <li>
-            Built a containerized Flask-based web application that enables real-time classification of handwritten digits, allowing users to either upload images or draw digits directly on an interactive canvas.
+            Built and <strong>containerized a Flask-based web application</strong> for real-time classification of handwritten digits, enabling direct user input to draw on an interactive canvas.
           </li>
         </ul>
         <div class="project-links">
