@@ -14,12 +14,6 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and building practical 
 
 ---
 
-## 🌐 Personal Website & Resume
-
-📌 **[sanyamgarg.com](https://sanyamgarg.com)**
-📄 **[View My Full Resume Here](https://resume.sanyamgarg.com)**
-
----
 
 ## 🧠 Selected Projects
 
