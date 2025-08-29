@@ -1,38 +1,262 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single-Tag SDK Demo</title>
-    <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f6f9; padding: 2rem; }
-        .container { background-color: white; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); text-align: center; max-width: 800px; margin: auto; }
-        h1 { color: #2c3e50; }
-        p { color: #596c7f; font-size: 1.1rem; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sanyam Garg | UW–Madison Student Portfolio</title>
+  <meta
+          name="description"
+          content="Sanyam Garg's official portfolio website. UW–Madison student specializing in AI/Machine Learning, Backend Systems, and practical tech development. Explore projects, experiences, and skills."
+  />
+  <meta name="keywords" content="Sanyam Garg, UW-Madison, Computer Science, Data Science, AI, Machine Learning, Backend Systems, Software Development, Portfolio, Projects, Python, PyTorch, Flask, Flutter, React, Node.js, Distributed Systems, Web Development" />
+  <meta name="google-site-verification" content="hjAc_Rh9TUSgsKK4-sjB36mPPkB74GsNaASZQ9zYTP4" />
+  <link
+          href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap"
+          rel="stylesheet"
+  />
+  <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <link rel="stylesheet" href="style.min.css" />
 </head>
 <body>
 
-    <div class="container">
-        <h1>Single-Tag SDK Integration</h1>
-        <p>This entire chatbot experience is being powered by the single script tag below.</p>
+<div class="page-content-container">
+  <section id="profile-area" class="grid-item profile-about-area card">
+    <div class="profile-header-area">
+      <img
+              src="assets/photo1.webp"
+              alt="Profile Photo"
+              class="profile-photo"
+      />
+      <div class="profile-details-block">
+        <h2 class="name"><strong>Sanyam Garg</strong></h2>
+        <p class="info"><strong>Age: <span id="age"></span></strong></p>
+        <p class="info"><strong>Madison, WI</strong></p>
+        <p class="info"><strong>Year: Junior</strong></p>
+        <p class="info phone-info">
+          <i class="fas fa-phone"></i> <strong>+1 (646) 599-7862</strong>
+        </p>
+        <div id="clock" class="clock"></div>
+        <div class="nav-icons">
+          <a href="https://www.linkedin.com/in/sanyam-g/" target="_blank"
+          ><i class="fab fa-linkedin"></i
+          ></a>
+          <a href="https://github.com/Sanyam-G" target="_blank"
+          ><i class="fab fa-github"></i
+          ></a>
+          <a href="mailto:sanyam@sanyamgarg.com" target="_blank"
+          ><i class="fas fa-envelope"></i
+          ></a>
+        </div>
+      </div>
     </div>
+    <div class="profile-intro-fullwidth-block">
+      <p class="intro-paragraph">
+        I am a passionate UW–Madison junior pursuing a B.Sc. in Computer
+        Science & Data Science. I thrive on solving complex problems and
+        exploring innovative technologies.
+      </p>
+    </div>
+    <div class="education-coursework-container">
+      <div class="education-block">
+        <h3><strong>Education</strong></h3>
+        <p>
+          <strong>University of Wisconsin–Madison</strong>, <strong>Madison, WI</strong><br />
+          <strong>Bachelor of Science in Computer Science & Data Science</strong><br />
+          <strong>August 2023 - May 2027</strong>
+        </p>
+      </div>
+      <div class="coursework-block">
+        <h3><strong>Relevant Coursework</strong></h3>
+        <ul class="course-list">
+          <li><strong>Data Structures & Algorithms</strong></li>
+          <li><strong>Intro. to AI</strong></li>
+          <li><strong>Linear Algebra</strong></li>
+          <li><strong>Statistics</strong></li>
+          <li><strong>Discrete Mathematics</strong></li>
+          <li><strong>Calculus II</strong></li>
+        </ul>
+      </div>
+    </div>
+    <a
+            href="https://resume.sanyamgarg.com"
+            target="_blank"
+            class="btn resume-button"
+    >
+      <i class="fas fa-file-alt"></i> <strong>View Resume</strong>
+    </a>
 
-    <!--
-      ==================================================================
-      ==               THE ONLY THING YOU NEED TO ADD                 ==
-      ==================================================================
-      - Set the `id` to "cf-chatbot-sdk".
-      - Provide your user's info via `data-` attributes.
-      - Point the `src` to the hosted SDK file.
-    -->
-    <script
-        id="cf-chatbot-sdk"
-        src="http://localhost:8000/sdk/chatbot.sdk.js"
-        data-user-id="100"
-        data-full-name="Sanyam Garg"
-        data-api-url="http://localhost:8000/chat_api"
-    ></script>
+    <div class="tools-section-in-profile">
+      <h2><strong>Tools</strong></h2>
+      <div class="tools-content-grid">
+        <div class="tool-category">
+          <h3><strong>Programming Languages</strong></h3>
+          <p><strong>Python, Java, Dart, SQL, R, Bash</strong></p>
+        </div>
+        <div class="tool-category">
+          <h3><strong>DevOps & Infrastructure</strong></h3>
+          <p>
+            <strong>Docker, Caddy, Linux, Cloudflare Tunnels, Git, Conda, Snakemake</strong>
+          </p>
+        </div>
+        <div class="tool-category">
+          <h3><strong>Machine Learning & Data Science</strong></h3>
+          <p>
+            <strong>PyTorch, NumPy, Pandas, Scikit-learn, Deep Learning, NLP</strong>
+          </p>
+        </div>
+        <div class="tool-category">
+          <h3><strong>Web & Application Development</strong></h3>
+          <p>
+            <strong>Flask, Flutter, Firebase, Node.js, REST APIs</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section
+          id="experiences-area"
+          class="grid-item experiences-area card section-card-alt"
+  >
+    <h2>Experiences</h2>
+    <div class="experience-list">
+      <div class="experience-item">
+        <h3>AI & Backend Development Intern, Century Financial</h3>
+        <p><strong>Dubai, UAE | June 2025 - Present</strong></p>
+        <ul>
+          <li>
+            Engineered a Python backend for a new AI trading assistant, utilizing <strong>Model Context Protocol (MCP)</strong> and a context management system that leverages <strong>OpenAI's API</strong> to generate real-time <strong>personalized recommendations</strong> and suggestions based on user history and holdings.
+          </li>
+          <li>
+            Built a lightweight co-Browse solution with a <strong>Node.js backend</strong>, implementing <strong>DOM mirroring</strong> with selective data masking, <strong>real-time remote control (clicks/inputs)</strong>, and network/console <strong>logging</strong> for significantly enhanced and secure customer support.
+          </li>
+        </ul>
+      </div>
+      <div class="experience-item">
+        <h3>Deep Learning Research Assistant, Keles Group (UW-Madison)</h3>
+        <p><strong>Madison, WI | May 2025 - Present</strong></p>
+        <ul>
+          <li>
+            Developed and evaluate deep learning models (<strong>VERMIN framework</strong>) in <strong>PyTorch</strong> to accurately predict DNA methylation from large-scale human/mouse genomic sequences.
+          </li>
+          <li>
+            Performed extensive Exploratory Data Analysis on a massive 22-million-row dataset using <strong>Pandas</strong> in <strong>JupyterLab</strong>, investigating genetic variation and epigenetic markers.
+          </li>
+          <li>
+            Implemented data processing/analysis workflows (<strong>Snakemake</strong>) on an HPC cluster and generated data visualizations to validate pipeline output and uncover biological insights.
+          </li>
+        </ul>
+      </div>
+      <div class="experience-item">
+        <h3>Skyscanner SDE Job Simulation - Forage</h3>
+        <p><strong>Remote | November 2023 - January 2024</strong></p>
+        <ul>
+          <li>
+            Engineered a responsive web application using <strong>React</strong>, focusing on user experience and rapid prototyping.
+          </li>
+          <li>
+            Built a dynamic travel date selection interface with <strong>Backpack React</strong>, contributing to enhanced product usability and customer engagement.
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section
+          id="projects-area"
+          class="grid-item projects-area card section-card-alt"
+  >
+    <h2>Projects</h2>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <h3>Python Shell</h3>
+        <p><strong>Dubai, UAE | Personal Project</strong></p>
+        <p><strong>May 2025 – July 2025</strong></p>
+        <ul>
+          <li>
+            Built a custom command-line shell in <strong>Python</strong> that supports user prompts and command execution.
+          </li>
+          <li>
+            Added support for <strong>Bash</strong> features like input/output redirection (<strong><, ></strong>) and command piping (<strong>|</strong>).
+          </li>
+          <li>
+            Implemented a persistent command history feature, significantly improving user workflow.
+          </li>
+        </ul>
+        <div class="project-links">
+          <a
+                  href="https://github.com/Sanyam-G/shell"
+                  target="_blank"
+                  class="project-link-btn"
+          >GitHub</a
+          >
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Self-Hosted Application Server</h3>
+        <p><strong>Dubai, UAE | Personal Project</strong></p>
+        <p><strong>March 2025 – July 2025</strong></p>
+        <ul>
+          <li>
+            Engineered and maintain a <strong>24/7 Linux server</strong> managing system resources and network security.
+          </li>
+          <li>
+            Managed <strong>20+ Dockerized services</strong>, implementing secure traffic routing via <strong>Cloudflare Tunnel</strong> and <strong>Caddy reverse proxy</strong>.
+          </li>
+          <li>
+            Automated critical dynamic DNS updates and daily backups with <strong>Bash</strong> and <strong>cron</strong>, ensuring continuous system integrity and operational reliability.
+          </li>
+        </ul>
+        <div class="project-links">
+          <a
+                  href="https://server.sanyamgarg.com"
+                  target="_blank"
+                  class="project-link-btn"
+          >Landing Page</a
+          >
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Handwritten Digit Recognition Web App</h3>
+        <p><strong>Madison, WI | Personal Project</strong></p>
+        <p><strong>December 2024 – March 2025</strong></p>
+        <ul>
+          <li>
+            Developed and trained a <strong>Convolutional Neural Network (CNN)</strong> in <strong>PyTorch</strong> on the MNIST dataset, achieving over <strong>98% validation accuracy</strong> for robust digit recognition.
+          </li>
+          <li>
+            Implemented a comprehensive training and evaluation pipeline, meticulously tracking key metrics and generating a confusion matrix for detailed model performance analysis.
+          </li>
+          <li>
+            Built and <strong>containerized a Flask-based web application</strong> for real-time classification of handwritten digits, enabling direct user input to draw on an interactive canvas.
+          </li>
+        </ul>
+        <div class="project-links">
+          <a
+                  href="https://github.com/Sanyam-G/MNIST-Detection"
+                  target="_blank"
+                  class="project-link-btn"
+          >GitHub</a
+          >
+          <a
+                  href="http://digit-recognizer.sanyamgarg.com"
+                  target="_blank"
+                  class="project-link-btn"
+          >Live Demo</a
+          >
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>
+
+<script src="script.min.js"></script>
 </body>
 </html>
