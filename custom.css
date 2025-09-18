@@ -1,29 +1,30 @@
 /*
- * UW Madison Theme Override
+ * UW Madison Theme - V4 (Final)
  */
 
-/* 1. Define the UW Madison Color Palette as CSS Variables */
+/* 1. Define the Color Palette */
 :root {
-  /* Primary Palette */
+  /* Softer background palette */
+  --page-bg-soft: #F7F7F7;
+  --card-bg-white: #FFFFFF;
+
+  /* UW Madison Accent */
   --uw-red: #C5050C;
   --uw-dark-red: #9B0000;
-  --uw-white: #FFFFFF;
 
-  /* Neutrals from the brand guide */
-  --uw-text-gray: #333333;
-  --uw-light-gray: #F7F7F7; /* A very light gray for backgrounds */
-  --uw-medium-gray: #EAEAEA; /* A slightly darker gray for borders/dividers */
+  /* Text Color */
+  --text-color-main: #333333;
 
   /* Overriding the original theme variables */
-  --bg-page: var(--uw-white);
-  --card-bg: var(--uw-light-gray);
+  --bg-page: var(--page-bg-soft);
+  --card-bg: var(--card-bg-white);
   --accent-primary: var(--uw-red);
   --accent-secondary: var(--uw-dark-red);
-  --text-color-dark: var(--uw-text-gray);
-  --text-color-light: var(--uw-white);
-  --shadow-color: rgba(0,0,0,0.06);
-  --shadow-color-hover: rgba(0,0,0,0.1);
-  --clock-bg: var(--uw-medium-gray);
+  --text-color-dark: var(--text-color-main);
+  --text-color-light: #FFFFFF;
+  --shadow-color: rgba(0,0,0,0.07);
+  --shadow-color-hover: rgba(0,0,0,0.12);
+  --clock-bg: #EAEAEA;
 }
 
 /* 2. Apply the theme to global elements */
@@ -32,7 +33,10 @@ body {
   color: var(--text-color-dark);
 }
 
-/* Make headings use the UW Red */
+.card {
+    border: 1px solid #E0E0E0;
+}
+
 h2, h3 {
   color: var(--accent-primary);
 }
@@ -41,7 +45,6 @@ h2, h3 {
     border-bottom-color: var(--accent-primary);
 }
 
-/* Make links use the UW Red */
 a {
   color: var(--accent-primary);
 }
@@ -50,7 +53,6 @@ a:hover {
   color: var(--accent-secondary);
 }
 
-/* Update buttons to use the new theme */
 .btn, .project-link-btn {
   background: var(--accent-primary);
   color: var(--text-color-light);
@@ -60,57 +62,89 @@ a:hover {
   background: var(--accent-secondary);
 }
 
-/* Update the profile photo border */
 .profile-photo {
   border-color: var(--accent-primary);
 }
 
-/* 3. Style the UW Subcard */
+/* 3. Style the Final UW Subcard Layout */
 .uw-subcard {
-  background-color: var(--uw-white); /* Make it pop on the light gray card bg */
-  border-radius: var(--border-radius-small);
-  padding: 1em;
+  padding: 1.5em;
   margin-top: 1.5em;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  border-left: 5px solid var(--uw-red);
+  border: 1px solid #DDD;
+  border-radius: var(--border-radius-small);
+  background-color: var(--card-bg-white);
+}
+
+.subcard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--uw-red);
+  padding-bottom: 0.75em;
+  margin-bottom: 1em;
+}
+
+.university-info {
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 0.75em;
 }
 
-.uw-crest {
-  width: 60px;
+.uw-crest-small {
+  width: 35px;
   height: auto;
-  flex-shrink: 0;
 }
 
-.uw-subcard .education-coursework-container {
-  flex-grow: 1;
-  margin: 0;
+.university-name {
+  font-weight: 600;
+  font-size: 1.1em;
+  color: var(--text-color-main);
 }
 
-.uw-subcard .education-details {
-  display: flex;
-  flex-direction: column;
-}
-
-.uw-subcard .year-info {
-  margin-top: 0.5em;
+.university-dates {
   font-size: 0.9em;
-  color: var(--uw-text-gray);
+  color: #555;
+  text-align: right;
 }
 
-/* 4. Responsive adjustments for the subcard */
-@media (max-width: 48rem) {
-  .uw-subcard {
-    flex-direction: column;
-    align-items: center;
-    border-left: none;
-    border-top: 5px solid var(--uw-red);
-    padding-top: 1.5em;
-  }
+.subcard-body h4 {
+  font-size: 1.05em;
+  color: var(--text-color-main);
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
 
-  .uw-crest {
+.degrees-section p {
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin-bottom: 0.25em;
+}
+
+.degrees-section {
     margin-bottom: 1em;
-  }
+}
+
+.coursework-section .course-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em 1.25em;
+}
+
+.coursework-section .course-list li {
+  font-size: 0.9em;
+  padding: 0.25em 0;
+  color: #333;
+}
+
+/* Style for the un-styled hyperlinks */
+.course-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease-in-out;
+}
+
+.course-link:hover {
+    color: var(--uw-red);
 }
