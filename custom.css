@@ -1,64 +1,116 @@
 /*
- * Custom Styles for UW Madison Subcard
+ * UW Madison Theme Override
  */
 
+/* 1. Define the UW Madison Color Palette as CSS Variables */
+:root {
+  /* Primary Palette */
+  --uw-red: #C5050C;
+  --uw-dark-red: #9B0000;
+  --uw-white: #FFFFFF;
+
+  /* Neutrals from the brand guide */
+  --uw-text-gray: #333333;
+  --uw-light-gray: #F7F7F7; /* A very light gray for backgrounds */
+  --uw-medium-gray: #EAEAEA; /* A slightly darker gray for borders/dividers */
+
+  /* Overriding the original theme variables */
+  --bg-page: var(--uw-white);
+  --card-bg: var(--uw-light-gray);
+  --accent-primary: var(--uw-red);
+  --accent-secondary: var(--uw-dark-red);
+  --text-color-dark: var(--uw-text-gray);
+  --text-color-light: var(--uw-white);
+  --shadow-color: rgba(0,0,0,0.06);
+  --shadow-color-hover: rgba(0,0,0,0.1);
+  --clock-bg: var(--uw-medium-gray);
+}
+
+/* 2. Apply the theme to global elements */
+body {
+  background: var(--bg-page);
+  color: var(--text-color-dark);
+}
+
+/* Make headings use the UW Red */
+h2, h3 {
+  color: var(--accent-primary);
+}
+
+.section-card-alt h2, .tools-section-in-profile h2 {
+    border-bottom-color: var(--accent-primary);
+}
+
+/* Make links use the UW Red */
+a {
+  color: var(--accent-primary);
+}
+
+a:hover {
+  color: var(--accent-secondary);
+}
+
+/* Update buttons to use the new theme */
+.btn, .project-link-btn {
+  background: var(--accent-primary);
+  color: var(--text-color-light);
+}
+
+.btn:hover, .project-link-btn:hover {
+  background: var(--accent-secondary);
+}
+
+/* Update the profile photo border */
+.profile-photo {
+  border-color: var(--accent-primary);
+}
+
+/* 3. Style the UW Subcard */
 .uw-subcard {
-  /* Use a slightly lighter shade for the background to make it distinct */
-  background-color: #f5f0e8;
+  background-color: var(--uw-white); /* Make it pop on the light gray card bg */
   border-radius: var(--border-radius-small);
   padding: 1em;
   margin-top: 1.5em;
-
-  /* A subtle shadow to give it depth */
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-
-  /* The main accent using UW's Cardinal Red */
-  border-left: 5px solid #C5050C;
-
-  /* Flex container for the crest and the content */
+  border-left: 5px solid var(--uw-red);
   display: flex;
-  align-items: center; /* Vertically align the crest and the content */
+  align-items: center;
   gap: 1em;
 }
 
 .uw-crest {
-  width: 60px; /* A bit larger for better visibility */
+  width: 60px;
   height: auto;
-  flex-shrink: 0; /* Prevent the crest from shrinking */
+  flex-shrink: 0;
 }
 
-/*
- * This is the crucial part to preserve the layout.
- * The .education-coursework-container is a child of .uw-subcard.
- * We let it grow to take the remaining space. Its own flex properties will handle the children.
- */
 .uw-subcard .education-coursework-container {
   flex-grow: 1;
-  margin: 0; /* Reset the margin, as padding is handled by the subcard */
+  margin: 0;
 }
 
-/*
- * Responsive adjustments.
- * On smaller screens, stack the subcard items vertically.
- */
+.uw-subcard .education-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.uw-subcard .year-info {
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: var(--uw-text-gray);
+}
+
+/* 4. Responsive adjustments for the subcard */
 @media (max-width: 48rem) {
   .uw-subcard {
     flex-direction: column;
-    align-items: center; /* Center items when stacked */
-    border-left: none; /* Remove the side border */
-    border-top: 5px solid #C5050C; /* Add a top border instead */
+    align-items: center;
+    border-left: none;
+    border-top: 5px solid var(--uw-red);
     padding-top: 1.5em;
   }
 
   .uw-crest {
-    margin-bottom: 1em; /* Add some space below the crest */
+    margin-bottom: 1em;
   }
-
-  /*
-   * On small screens, the original CSS already makes the education-coursework-container
-   * a column, so we just need to ensure our subcard layout doesn't interfere.
-   * The original rule is:
-   * .education-coursework-container { flex-direction: column; align-items: center; }
-   * This should still apply correctly.
-   */
 }
