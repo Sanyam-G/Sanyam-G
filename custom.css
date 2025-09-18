@@ -1,0 +1,64 @@
+/*
+ * Custom Styles for UW Madison Subcard
+ */
+
+.uw-subcard {
+  /* Use a slightly lighter shade for the background to make it distinct */
+  background-color: #f5f0e8;
+  border-radius: var(--border-radius-small);
+  padding: 1em;
+  margin-top: 1.5em;
+
+  /* A subtle shadow to give it depth */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+  /* The main accent using UW's Cardinal Red */
+  border-left: 5px solid #C5050C;
+
+  /* Flex container for the crest and the content */
+  display: flex;
+  align-items: center; /* Vertically align the crest and the content */
+  gap: 1em;
+}
+
+.uw-crest {
+  width: 60px; /* A bit larger for better visibility */
+  height: auto;
+  flex-shrink: 0; /* Prevent the crest from shrinking */
+}
+
+/*
+ * This is the crucial part to preserve the layout.
+ * The .education-coursework-container is a child of .uw-subcard.
+ * We let it grow to take the remaining space. Its own flex properties will handle the children.
+ */
+.uw-subcard .education-coursework-container {
+  flex-grow: 1;
+  margin: 0; /* Reset the margin, as padding is handled by the subcard */
+}
+
+/*
+ * Responsive adjustments.
+ * On smaller screens, stack the subcard items vertically.
+ */
+@media (max-width: 48rem) {
+  .uw-subcard {
+    flex-direction: column;
+    align-items: center; /* Center items when stacked */
+    border-left: none; /* Remove the side border */
+    border-top: 5px solid #C5050C; /* Add a top border instead */
+    padding-top: 1.5em;
+  }
+
+  .uw-crest {
+    margin-bottom: 1em; /* Add some space below the crest */
+  }
+
+  /*
+   * On small screens, the original CSS already makes the education-coursework-container
+   * a column, so we just need to ensure our subcard layout doesn't interfere.
+   * The original rule is:
+   * .education-coursework-container { flex-direction: column; align-items: center; }
+   * This should still apply correctly.
+   */
+}
