@@ -24,6 +24,7 @@
 <body>
 
 <div class="page-content-container">
+
   <section id="profile-area" class="grid-item profile-about-area card">
     <div class="profile-header-area">
       <img
@@ -31,27 +32,27 @@
               alt="Profile Photo"
               class="profile-photo"
       />
-      <div class="profile-details-block">
-        <h2 class="name"><strong>Sanyam Garg</strong></h2>
-        <p class="info"><strong>Age: <span id="age"></span></strong></p>
-        <p class="info"><strong>Madison, WI</strong></p>
-        <p class="info phone-info">
-          <i class="fas fa-phone"></i> <strong>+1 (646) 599-7862</strong>
-        </p>
-        <div id="clock" class="clock"></div>
-        <div class="nav-icons">
-          <a href="https://www.linkedin.com/in/sanyam-g/" target="_blank"
-          ><i class="fab fa-linkedin"></i
-          ></a>
-          <a href="https://github.com/Sanyam-G" target="_blank"
-          ><i class="fab fa-github"></i
-          ></a>
-          <a href="mailto:sanyam@sanyamgarg.com" target="_blank"
-          ><i class="fas fa-envelope"></i
-          ></a>
-        </div>
+      <div class="profile-content-wrapper">
+          <div class="profile-details-block">
+            <h2 class="name"><strong>Sanyam Garg</strong></h2>
+            <p class="info"><strong>Age: <span id="age"></span></strong></p>
+            <p class="info"><strong>Madison, WI</strong></p>
+            <div id="clock" class="clock"></div>
+          </div>
+          <div class="nav-icons">
+            <a href="https://www.linkedin.com/in/sanyam-g/" target="_blank"
+            ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="https://github.com/Sanyam-G" target="_blank"
+            ><i class="fab fa-github"></i
+            ></a>
+            <a href="mailto:sanyam@sanyamgarg.com" target="_blank"
+            ><i class="fas fa-envelope"></i
+            ></a>
+          </div>
       </div>
     </div>
+
     <div class="profile-intro-fullwidth-block">
       <p class="intro-paragraph">
         I am a passionate UW–Madison junior pursuing a B.Sc. in Computer
@@ -59,41 +60,41 @@
         exploring innovative technologies.
       </p>
     </div>
+
+    <!-- Education Section -->
+    <h2 class="section-heading">Education</h2>
     <div class="uw-subcard">
       <div class="subcard-header">
-        <div class="university-info">
-          <img src="assets/uw-crest.png" alt="UW Madison Crest" class="uw-crest-small" />
-          <span class="university-name"><strong>University of Wisconsin–Madison</strong></span>
+        <div class="uw-logo-container">
+          <img src="assets/uw-crest.png" alt="UW Madison Crest" class="uw-crest-large" />
         </div>
-        <span class="university-dates"><strong>Aug 2023 - May 2027</strong></span>
+        <div class="uw-header-text">
+          <h3 class="university-name"><strong>University of Wisconsin–Madison</strong></h3>
+          <p class="university-dates">Aug 2023 - May 2027</p>
+        </div>
       </div>
       <div class="subcard-body">
         <div class="degrees-section">
           <h4>Degrees</h4>
-          <p>Bachelor of Science in Computer Science & Data Science</p>
-          <p>Year: Junior</p>
+          <div class="degree-badges-container">
+            <span class="degree-badge">Computer Science, B.Sc.</span>
+            <span class="degree-badge">Data Science, B.Sc.</span>
+          </div>
         </div>
         <div class="coursework-section">
           <h4>Relevant Coursework</h4>
-          <ul class="course-list">
-            <li><a href="https://guide.wisc.edu/courses/comp_sci/#course_comp_sci400" target="_blank" class="course-link">Data Structures & Algorithms</a></li>
-            <li><a href="https://guide.wisc.edu/courses/comp_sci/#course_comp_sci540" target="_blank" class="course-link">Intro. to AI</a></li>
-            <li><a href="https://guide.wisc.edu/courses/comp_sci/#course_comp_sci540" target="_blank" class="course-link">Machnie Organization and Programming</a></li>
-            <li><a href="https://guide.wisc.edu/courses/math/#course_math340" target="_blank" class="course-link">Linear Algebra</a></li>
-            <li><a href="https://guide.wisc.edu/courses/stat/#course_stat301" target="_blank" class="course-link">Statistics</a></li>
-            <li><a href="https://guide.wisc.edu/courses/math/#course_math240" target="_blank" class="course-link">Discrete Mathematics</a></li>
-            <li><a href="https://guide.wisc.edu/courses/math/#course_math222" target="_blank" class="course-link">Calculus II</a></li>
-          </ul>
+          <div class="course-badges-container">
+            <span class="course-badge">Data Structures & Algorithms</span>
+            <span class="course-badge">Machine Org. & Programming</span>
+            <span class="course-badge">Intro. to AI</span>
+            <span class="course-badge">Linear Algebra</span>
+            <span class="course-badge">Discrete Mathematics</span>
+            <span class="course-badge">Statistics</span>
+          </div>
         </div>
       </div>
     </div>
-    <a
-            href="https://resume.sanyamgarg.com"
-            target="_blank"
-            class="btn resume-button"
-    >
-      <i class="fas fa-file-alt"></i> <strong>View Resume</strong>
-    </a>
+    <!-- End of Education Section -->
 
     <div class="tools-section-in-profile">
       <h2><strong>Tools</strong></h2>
@@ -124,60 +125,106 @@
     </div>
   </section>
 
-  <section
-          id="experiences-area"
-          class="grid-item experiences-area card section-card-alt"
-  >
+  <section id="experiences-area" class="grid-item experiences-area card section-card-alt">
     <h2>Experiences</h2>
     <div class="experience-list">
-      <div class="experience-item">
-        <h3>AI & Backend Development Intern, Century Financial</h3>
-        <p><strong>Dubai, UAE | June 2025 - August 2025</strong></p>
-        <ul>
-          <li>
-            Engineered a Python backend for a new AI trading assistant, utilizing <strong>Model Context Protocol (MCP)</strong> and a context management system that leverages <strong>OpenAI's API</strong> to generate real-time <strong>personalized recommendations</strong> and suggestions based on user history and holdings.
-          </li>
-          <li>
-            Built a lightweight co-Browse solution with a <strong>Node.js backend</strong>, implementing <strong>DOM mirroring</strong> with selective data masking, <strong>real-time remote control (clicks/inputs)</strong>, and network/console <strong>logging</strong> for significantly enhanced and secure customer support.
-          </li>
-        </ul>
+
+      <!-- Century Financial Experience Badge -->
+      <div class="experience-badge">
+        <div class="badge-header">
+          <div class="badge-logo-container">
+            <img src="https://logo.clearbit.com/century.ae" alt="Century Financial Logo" class="badge-logo" />
+          </div>
+          <div class="badge-header-text">
+            <h3 class="badge-title"><strong>Century Financial</strong></h3>
+            <p class="badge-subtitle">Dubai, UAE | June 2025 - Aug 2025</p>
+          </div>
+        </div>
+        <div class="badge-body">
+          <h4>AI & Backend Development Intern</h4>
+          <ul>
+            <li>
+              Engineered a Python backend for a new AI trading assistant, utilizing <strong>Model Context Protocol (MCP)</strong> and a context management system that leverages <strong>OpenAI's API</strong> to generate real-time <strong>personalized recommendations</strong>.
+            </li>
+            <li>
+              Built a lightweight co-Browse solution with a <strong>Node.js backend</strong>, implementing <strong>DOM mirroring</strong> with selective data masking, <strong>real-time remote control</strong>, and network/console <strong>logging</strong> for enhanced customer support.
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="experience-item">
-        <h3>Deep Learning Research Assistant, Keles Group (UW-Madison)</h3>
-        <p><strong>Madison, WI | May 2025 - Present</strong></p>
-        <ul>
-          <li>
-            Developed and evaluate deep learning models (<strong>VERMIN framework</strong>) in <strong>PyTorch</strong> to accurately predict DNA methylation from large-scale human/mouse genomic sequences.
-          </li>
-          <li>
-            Performed extensive Exploratory Data Analysis on a massive 22-million-row dataset using <strong>Pandas</strong> in <strong>JupyterLab</strong>, investigating genetic variation and epigenetic markers.
-          </li>
-          <li>
-            Implemented data processing/analysis workflows (<strong>Snakemake</strong>) on an HPC cluster and generated data visualizations to validate pipeline output and uncover biological insights.
-          </li>
-        </ul>
+
+      <!-- Keles Group (UW-Madison) Experience Badge -->
+      <div class="experience-badge">
+        <div class="badge-header">
+          <div class="badge-logo-container">
+            <img src="assets/uw-crest.png" alt="UW Madison Crest" class="badge-logo" />
+          </div>
+          <div class="badge-header-text">
+            <h3 class="badge-title"><strong>Keles Group (UW–Madison)</strong></h3>
+            <p class="badge-subtitle">Madison, WI | May 2025 - Present</p>
+          </div>
+        </div>
+        <div class="badge-body">
+          <h4>Deep Learning Research Assistant</h4>
+          <ul>
+            <li>
+              Developed and evaluated deep learning models (<strong>VERMIN framework</strong>) in <strong>PyTorch</strong> to accurately predict DNA methylation from large-scale human/mouse genomic sequences.
+            </li>
+            <li>
+              Performed extensive Exploratory Data Analysis on a massive 22-million-row dataset using <strong>Pandas</strong> in <strong>JupyterLab</strong> to investigate genetic variation.
+            </li>
+            <li>
+              Implemented data processing workflows (<strong>Snakemake</strong>) on an HPC cluster and generated data visualizations to validate pipeline output.
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="experience-item">
+
+      <!-- Skyscanner Job Simulation (Standard Format) -->
+      <div class="experience-item-simple">
         <h3>Skyscanner SDE Job Simulation - Forage</h3>
-        <p><strong>Remote | November 2023 - January 2024</strong></p>
+        <p class="experience-meta"><strong>Remote | November 2023 - January 2024</strong></p>
         <ul>
           <li>
             Engineered a responsive web application using <strong>React</strong>, focusing on user experience and rapid prototyping.
           </li>
           <li>
-            Built a dynamic travel date selection interface with <strong>Backpack React</strong>, contributing to enhanced product usability and customer engagement.
+            Built a dynamic travel date selection interface with <strong>Backpack React</strong>, contributing to enhanced product usability.
           </li>
         </ul>
       </div>
+
     </div>
   </section>
 
-  <section
-          id="projects-area"
-          class="grid-item projects-area card section-card-alt"
-  >
+  <section id="projects-area" class="grid-item projects-area card section-card-alt">
     <h2>Projects</h2>
     <div class="project-grid">
+
+      <div class="project-card">
+        <h3>Private Cloud & Server</h3>
+        <p><strong>Dubai, UAE | Personal Project</strong></p>
+        <p><strong>March 2025 – October 2025</strong></p>
+        <ul>
+          <li>
+            Architected and maintain a distributed, <strong>multi-server infrastructure</strong> (2 local, 1 cloud VPS) interconnected by a secure <strong>Tailscale mesh network</strong> for seamless communication
+          </li>
+          <li>
+            Managed <strong>20+ Dockerized services</strong>, implementing secure traffic routing via <strong>Cloudflare Tunnel</strong> and <strong>Caddy reverse proxy</strong>.
+          </li>
+          <li>
+            Automated critical dynamic DNS updates and daily backups with <strong>Bash</strong> and <strong>cron</strong>, ensuring continuous system integrity and operational reliability.
+          </li>
+        </ul>
+        <div class="project-links">
+          <a
+                  href="https://server.sanyamgarg.com"
+                  target="_blank"
+                  class="project-link-btn"
+          >Network Map</a
+          >
+        </div>
+      </div>
 
       <div class="project-card">
         <h3>Python Shell</h3>
@@ -188,7 +235,7 @@
             Built a custom command-line shell in <strong>Python</strong> that supports user prompts and command execution.
           </li>
           <li>
-            Added support for <strong>Bash</strong> features like input/output redirection (<strong><, ></strong>) and command piping (<strong>|</strong>).
+            Added support for <strong>Bash</strong> features like input/output redirection (<strong>&lt;, &gt;</strong>) and command piping (<strong>|</strong>).
           </li>
           <li>
             Implemented a persistent command history feature, significantly improving user workflow.
@@ -204,30 +251,6 @@
         </div>
       </div>
 
-      <div class="project-card">
-        <h3>Self-Hosted Application Server</h3>
-        <p><strong>Dubai, UAE | Personal Project</strong></p>
-        <p><strong>March 2025 – July 2025</strong></p>
-        <ul>
-          <li>
-            Engineered and maintain a <strong>24/7 Linux server</strong> managing system resources and network security.
-          </li>
-          <li>
-            Managed <strong>20+ Dockerized services</strong>, implementing secure traffic routing via <strong>Cloudflare Tunnel</strong> and <strong>Caddy reverse proxy</strong>.
-          </li>
-          <li>
-            Automated critical dynamic DNS updates and daily backups with <strong>Bash</strong> and <strong>cron</strong>, ensuring continuous system integrity and operational reliability.
-          </li>
-        </ul>
-        <div class="project-links">
-          <a
-                  href="https://server.sanyamgarg.com"
-                  target="_blank"
-                  class="project-link-btn"
-          >Landing Page</a
-          >
-        </div>
-      </div>
 
       <div class="project-card">
         <h3>Handwritten Digit Recognition Web App</h3>
@@ -262,6 +285,14 @@
 
     </div>
   </section>
+
+  <section id="resume-area" class="grid-item">
+    <a href="https://resume.sanyamgarg.com" target="_blank" class="resume-button-large">
+      <i class="fas fa-file-alt"></i>
+      <strong>View Full Resume</strong>
+    </a>
+  </section>
+
 </div>
 
 <script src="script.min.js"></script>
