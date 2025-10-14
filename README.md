@@ -7,9 +7,9 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 
 ## 🚀 Highlights
 
-* [cite_start]💡 **AI & Backend Development Intern (Century Financial):** Engineered a **Python** backend for a new AI trading assistant using **Model Context Protocol (MCP)** and **OpenAI's API**[cite: 20]. [cite_start]Also built a lightweight co-browse solution with a **Node.js backend**, replacing a third-party tool and saving the firm **$3,000+ annually**[cite: 21].
-* [cite_start]🔬 **Deep Learning Research Assistant (UW–Madison Keles Group):** Developing and evaluating deep learning models (**VERMIN framework**) in **PyTorch** for genomic sequence analysis[cite: 26]. [cite_start]Implemented data workflows (**Snakemake**) on an **HPC cluster** and performed extensive **Exploratory Data Analysis** on a 22-million-row dataset using **Pandas**[cite: 27, 28].
-* [cite_start]☁️ **Private Cloud & Server:** Architected and deployed a **hybrid-cloud infrastructure** across bare-metal and a cloud VPS, unified by a secure **Tailscale** mesh network[cite: 34]. [cite_start]Manage **20+ Dockerized services**, leveraging **Cloudflare Tunnel** for security[cite: 35].
+* 💡 **AI & Backend Development Intern (Century Financial):** Engineered a **Python** backend for a new AI trading assistant using **Model Context Protocol (MCP)** and **OpenAI's API**. Also built a lightweight co-browse solution with a **Node.js backend**, replacing a third-party tool and saving the firm **$3,000+ annually**.
+* 🔬 **Deep Learning Research Assistant (UW–Madison Keles Group):** Developing and evaluating deep learning models (**VERMIN framework**) in **PyTorch** for genomic sequence analysis. Implemented data workflows (**Snakemake**) on an **HPC cluster** and performed extensive **Exploratory Data Analysis** on a 22-million-row dataset using **Pandas**.
+* ☁️ **Private Cloud & Server:** Architected and deployed a **hybrid-cloud infrastructure** across bare-metal and a cloud VPS, unified by a secure **Tailscale** mesh network. Manage **20+ Dockerized services**, leveraging **Cloudflare Tunnel** for security.
 * ✨ Key Interests: **Machine Learning (Deep Learning)**, **Distributed Systems**, **DevOps**, and **Backend Development**.
 
 ---
@@ -18,23 +18,23 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 
 ### Private Cloud & Server
 *Architected and deployed a secure, unified hybrid-cloud infrastructure.*
-* [cite_start]**Technologies:** **Docker**, **Tailscale**, **Caddy**, **Cloudflared**, **Bash/cron**[cite: 34, 35, 36].
-* [cite_start]Managed **20+ Dockerized services** with GPU transcoding, leveraging Cloudflare Tunnel for secure public ingress and DDoS protection[cite: 35].
-* [cite_start]Engineered a custom, full-stack monitoring solution and automated daily, versioned **off-site backups**[cite: 36].
+* **Technologies:** **Docker**, **Tailscale**, **Caddy**, **Cloudflared**, **Bash/cron**.
+* Managed **20+ Dockerized services** with GPU transcoding, leveraging Cloudflare Tunnel for secure public ingress and DDoS protection.
+* Engineered a custom, full-stack monitoring solution and automated daily, versioned **off-site backups**.
 * *Network Map: [server.sanyamgarg.com](https://server.sanyamgarg.com)*
 
 ### Python Shell
 *Custom command-line shell built in Python.*
-* [cite_start]**Technologies:** **Python**, **Bash**[cite: 37, 41].
-* [cite_start]Supports user prompts, command execution, and **Bash** features like input/output redirection ($<, >$) and command piping ($|$)[cite: 41, 42].
-* [cite_start]Implemented a persistent command history feature, significantly improving user workflow[cite: 43].
+* **Technologies:** **Python**, **Bash**.
+* Supports user prompts, command execution, and **Bash** features like input/output redirection ($<, >$) and command piping ($|$).
+* Implemented a persistent command history feature, significantly improving user workflow.
 * *GitHub: [https://github.com/Sanyam-G/shell](https://github.com/Sanyam-G/shell)*
 
 ### Handwritten Digit Recognition Web App
 *Real-time machine learning application for classifying digits.*
-* [cite_start]**Technologies:** **PyTorch**, **CNN**, **Flask**, **Docker**[cite: 47, 48].
-* [cite_start]Developed and trained a **Convolutional Neural Network (CNN)** in **PyTorch**, achieving over **98% validation accuracy** on the MNIST dataset[cite: 47].
-* [cite_start]Built and **containerized a Flask-based web application** for real-time classification, enabling user input via an interactive canvas[cite: 48].
+* **Technologies:** **PyTorch**, **CNN**, **Flask**, **Docker**.
+* Developed and trained a **Convolutional Neural Network (CNN)** in **PyTorch**, achieving over **98% validation accuracy** on the MNIST dataset.
+* Built and **containerized a Flask-based web application** for real-time classification, enabling user input via an interactive canvas.
 * *GitHub: [https://github.com/Sanyam-G/MNIST-Detection](https://github.com/Sanyam-G/MNIST-Detection)*
 * *Live Demo: [http://digit-recognizer.sanyamgarg.com](http://digit-recognizer.sanyamgarg.com)*
 
