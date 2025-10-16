@@ -17,7 +17,7 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 ## 🧠 Selected Projects
 
 ### Private Cloud & Server
-*Architected and deployed a secure, unified hybrid-cloud infrastructure.*
+*Built a personal hybrid-cloud infrastructure from the ground up.*
 * **Technologies:** **Docker**, **Tailscale**, **Caddy**, **Cloudflared**, **Bash/cron**.
 * Managed **20+ Dockerized services** with GPU transcoding, leveraging Cloudflare Tunnel for secure public ingress and DDoS protection.
 * Engineered a custom, full-stack monitoring solution and automated daily, versioned **off-site backups**.
@@ -36,7 +36,7 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 * Developed and trained a **Convolutional Neural Network (CNN)** in **PyTorch**, achieving over **98% validation accuracy** on the MNIST dataset.
 * Built and **containerized a Flask-based web application** for real-time classification, enabling user input via an interactive canvas.
 * *GitHub: [https://github.com/Sanyam-G/MNIST-Detection](https://github.com/Sanyam-G/MNIST-Detection)*
-* *Live Demo: [http://digit-recognizer.sanyamgarg.com](http://digit-recognizer.sanyamgarg.com)*
+* *Live Demo: [digit-recognizer.sanyamgarg.com](https://digit-recognizer.sanyamgarg.com)*
 
 ---
 
