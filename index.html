@@ -52,7 +52,6 @@
           </div>
       </div>
     </div>
-
     <div class="profile-intro-fullwidth-block">
       <p class="intro-paragraph">
         I am a passionate UW–Madison junior pursuing a B.Sc. in Computer
@@ -60,6 +59,16 @@
         exploring innovative technologies.
       </p>
     </div>
+    <div id="lastfm-container" class="music-info">
+              <i class="fas fa-music"></i>
+              <div class="track-details">
+                <a href="#" id="lastfm-track-name" target="_blank" rel="noopener noreferrer"></a>
+                <span id="lastfm-artist-name"></span>
+                <div class="progress-bar-background">
+                  <div id="progress-bar-foreground" class="progress-bar-foreground"></div>
+                </div>
+              </div>
+            </div>
 
     <h2 class="section-heading">Education</h2>
     <div class="uw-subcard">
@@ -196,18 +205,50 @@
     <div class="project-grid">
 
       <div class="project-card">
+        <h3>Personal Portfolio Website</h3>
+        <p><strong>Madison, WI & Dubai, UAE | Personal Project</strong></p>
+        <p><strong>June 2025 – November 2025</strong></p>
+        <ul>
+          <li>
+            Built a lightweight, fully responsive single-page application from scratch using vanilla <strong>HTML5, CSS Grid, and JavaScript</strong> for optimal performance and control over the user experience.
+          </li>
+          <li>
+            Developed and deployed a serverless API proxy using a <strong>Cloudflare Worker</strong> to securely interface with the <strong>Last.fm API</strong>, protecting private credentials from client-side exposure.
+          </li>
+          <li>
+            Engineered a stateful "Now Playing" feature by programming the Cloudflare Worker to track song start-times, delivering a live, synchronized progress bar to all site visitors.
+          </li>
+        </ul>
+        <div class="project-links">
+          <a
+                  href="https://github.com/Sanyam-G/Sanyam-G" 
+                  target="_blank"
+                  class="project-link-btn"
+          >GitHub</a>
+          <div class="project-skills-container">
+          <span class="degree-badge">HTML5</span>
+          <span class="degree-badge">CSS Grid</span>
+          <span class="degree-badge">JavaScript</span>
+          <span class="degree-badge">Cloudflare Workers</span>
+          <span class="degree-badge">REST APIs</span>
+        </div>
+        </div>
+      </div>
+
+      <!-- UPDATED Private Cloud & Server -->
+      <div class="project-card">
         <h3>Private Cloud & Server</h3>
-        <p><strong>Dubai, UAE | Personal Project</strong></p>
+        <p><strong>Dubai, UAE & Madison, WI | Personal Project</strong></p>
         <p><strong>March 2025 – October 2025</strong></p>
         <ul>
           <li>
             Built a personal <strong>hybrid-cloud infrastructure</strong> from the ground up, deploying on a cloud VPS and bare-metal servers <strong>(Ubuntu/Manjaro)</strong>, unified by a secure <strong>Tailscale</strong> mesh network.
           </li>
           <li>
-            Manage a portfolio of <strong>20+ Dockerized services</strong>, leveraging <strong>Cloudflare Tunnel</strong> for secure public access and <strong>DDoS protection</strong>, including automated media pipelines with GPU transcoding. 
+            Manage a portfolio of <strong>20+ Dockerized services</strong>, leveraging <strong>Cloudflare Tunnel</strong> for secure public access and <strong>DDoS protection</strong>, including automated media pipelines with GPU transcoding.
           </li>
           <li>
-            Engineered a custom, <strong>full-stack</strong> monitoring solution to provide real-time visibility into global server health, while automating daily, versioned <strong>off-site backups</strong> with <strong>Bash/cron</strong>. 
+            Engineered a custom, <strong>full-stack</strong> monitoring solution to provide real-time visibility into global server health, while automating daily, versioned <strong>off-site backups</strong> with <strong>Bash/cron</strong>.
           </li>
         </ul>
         <div class="project-links">
@@ -215,8 +256,15 @@
                   href="https://server.sanyamgarg.com"
                   target="_blank"
                   class="project-link-btn"
-          >Network Map</a
-          >
+          >Network Map</a>
+          <div class="project-skills-container">
+            <span class="degree-badge">Linux</span>
+            <span class="degree-badge">Docker</span>
+            <span class="degree-badge">Tailscale</span>
+            <span class="degree-badge">Cloudflare Tunnel</span>
+            <span class="degree-badge">Caddy</span>
+            <span class="degree-badge">Bash</span>
+        </div>
         </div>
       </div>
 
@@ -239,45 +287,16 @@
           <a
                   href="https://github.com/Sanyam-G/shell"
                   target="_blank"
-                  class="project-link-btn"
-          >GitHub</a
-          >
+                  class="project-link-btn">GitHub
+                </a>
+        <div class="project-skills-container">
+            <span class="degree-badge">Python</span>
+            <span class="degree-badge">Bash</span>
+            <span class="degree-badge">System Calls</span>
+            <span class="degree-badge">CLI Development</span>
+        </div>
         </div>
       </div>
-
-
-      <div class="project-card">
-        <h3>Handwritten Digit Recognition Web App</h3>
-        <p><strong>Madison, WI | Personal Project</strong></p>
-        <p><strong>December 2024 – March 2025</strong></p>
-        <ul>
-          <li>
-            Developed and trained a <strong>Convolutional Neural Network (CNN)</strong> in <strong>PyTorch</strong> on the MNIST dataset, achieving over <strong>98% validation accuracy</strong> for robust digit recognition.
-          </li>
-          <li>
-            Implemented a comprehensive training and evaluation pipeline, meticulously tracking key metrics and generating a confusion matrix for detailed model performance analysis.
-          </li>
-          <li>
-            Built and <strong>containerized a Flask-based web application</strong> for real-time classification of handwritten digits, enabling direct user input to draw on an interactive canvas.
-          </li>
-        </ul>
-        <div class="project-links">
-          <a
-                  href="https://github.com/Sanyam-G/MNIST-Detection"
-                  target="_blank"
-                  class="project-link-btn"
-          >GitHub</a
-          >
-          <a
-                  href="http://digit-recognizer.sanyamgarg.com"
-                  target="_blank"
-                  class="project-link-btn"
-          >Live Demo</a
-          >
-        </div>
-      </div>
-
-    </div>
   </section>
 
   <section id="resume-area" class="grid-item">
