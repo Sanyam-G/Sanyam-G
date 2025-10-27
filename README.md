@@ -7,36 +7,37 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 
 ## 🚀 Highlights
 
-* 💡 **AI & Backend Development Intern (Century Financial):** Engineered a **Python** backend for a new AI trading assistant using **Model Context Protocol (MCP)** and **OpenAI's API**. Also built a lightweight co-browse solution with a **Node.js backend**, replacing a third-party tool and saving the firm **$3,000+ annually**.
-* 🔬 **Deep Learning Research Assistant (UW–Madison Keles Group):** Developing and evaluating deep learning models (**VERMIN framework**) in **PyTorch** for genomic sequence analysis. Implemented data workflows (**Snakemake**) on an **HPC cluster** and performed extensive **Exploratory Data Analysis** on a 22-million-row dataset using **Pandas**.
-* ☁️ **Private Cloud & Server:** Architected and deployed a **hybrid-cloud infrastructure** across bare-metal and a cloud VPS, unified by a secure **Tailscale** mesh network. Manage **20+ Dockerized services**, leveraging **Cloudflare Tunnel** for security.
-* ✨ Key Interests: **Machine Learning (Deep Learning)**, **Distributed Systems**, **DevOps**, and **Backend Development**.
+*   💡 **AI & Backend Development Intern (Century Financial):** Engineered a **Python** backend for a new AI trading assistant using **Model Context Protocol (MCP)** and **OpenAI's API**. Also built a lightweight co-browse solution with a **Node.js backend**, replacing a third-party tool and saving the firm **$3,000+ annually**.
+*   🔬 **Deep Learning Research Assistant (UW–Madison Keles Group):** Developing and evaluating deep learning models (**VERMIN framework**) in **PyTorch** for genomic sequence analysis. Implemented data workflows (**Snakemake**) on an **HPC cluster** and performed extensive **Exploratory Data Analysis** on a 22-million-row dataset using **Pandas**.
+*   ☁️ **Private Cloud & Server:** Architected and deployed a **hybrid-cloud infrastructure** across bare-metal and a cloud VPS, unified by a secure **Tailscale** mesh network. Manage **20+ Dockerized services**, leveraging **Cloudflare Tunnel** for security.
+*   ✨ Key Interests: **Machine Learning (Deep Learning)**, **Distributed Systems**, **DevOps**, and **Backend Development**.
 
 ---
 
 ## 🧠 Selected Projects
 
+### Personal Portfolio Website
+*A responsive, single-page professional portfolio with live data integration.*
+*   **Technologies:** **HTML5**, **CSS Grid**, **JavaScript**, **Cloudflare Workers**, **REST APIs**.
+*   Built a lightweight SPA from scratch, prioritizing minimal dependencies for rapid performance.
+*   Architected a secure, serverless backend proxy using a Cloudflare Worker to abstract the Last.fm API, protecting private credentials from client-side exposure.
+*   Engineered a stateful "Now Playing" feature by programming the worker to track song start-times, delivering a live, synchronized progress bar to all visitors.
+*   [Website](https://sanyamgarg.com)
+*   [Github](https://github.com/Sanyam-G/Sanyam-G)
+
 ### Private Cloud & Server
-*Built a personal hybrid-cloud infrastructure from the ground up.*
-* **Technologies:** **Docker**, **Tailscale**, **Caddy**, **Cloudflared**, **Bash/cron**.
-* Managed **20+ Dockerized services** with GPU transcoding, leveraging Cloudflare Tunnel for secure public ingress and DDoS protection.
-* Engineered a custom, full-stack monitoring solution and automated daily, versioned **off-site backups**.
-* *Network Map: [server.sanyamgarg.com](https://server.sanyamgarg.com)*
+*A personal hybrid-cloud infrastructure built from the ground up.*
+*   **Technologies:** **Linux**, **Docker**, **Tailscale**, **Cloudflare Tunnel**, **Caddy**, **Bash**.
+*   Manage a portfolio of 20+ Dockerized services, leveraging Cloudflare Tunnel for secure public access and DDoS protection, including automated media pipelines with GPU transcoding.
+*   Engineered a custom, full-stack monitoring solution and automated daily, versioned off-site backups with Bash/cron.
+*   [Network Map](https://server.sanyamgarg.com)
 
 ### Python Shell
 *Custom command-line shell built in Python.*
-* **Technologies:** **Python**, **Bash**.
-* Supports user prompts, command execution, and **Bash** features like input/output redirection ($<, >$) and command piping ($|$).
-* Implemented a persistent command history feature, significantly improving user workflow.
-* *GitHub: [https://github.com/Sanyam-G/shell](https://github.com/Sanyam-G/shell)*
-
-### Handwritten Digit Recognition Web App
-*Real-time machine learning application for classifying digits.*
-* **Technologies:** **PyTorch**, **CNN**, **Flask**, **Docker**.
-* Developed and trained a **Convolutional Neural Network (CNN)** in **PyTorch**, achieving over **98% validation accuracy** on the MNIST dataset.
-* Built and **containerized a Flask-based web application** for real-time classification, enabling user input via an interactive canvas.
-* *GitHub: [https://github.com/Sanyam-G/MNIST-Detection](https://github.com/Sanyam-G/MNIST-Detection)*
-* *Live Demo: [digit-recognizer.sanyamgarg.com](https://digit-recognizer.sanyamgarg.com)*
+*   **Technologies:** **Python**, **Bash**, **System Calls**, **CLI Development**.
+*   Supports user prompts, command execution, and Bash features like input/output redirection (`<`, `>`) and command piping (`|`).
+*   Implemented a persistent command history feature, significantly improving user workflow.
+*   [Github](https://github.com/Sanyam-G/shell)
 
 ---
 
@@ -57,7 +58,7 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 ![Tailscale](https://img.shields.io/badge/Tailscale-4F46E5?style=for-the-badge&logo=tailscale&logoColor=white)
 ![Caddy](https://img.shields.io/badge/Caddy-2487D4?style=for-the-badge&logo=caddy&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
-![Cloudflared](https://img.shields.io/badge/Cloudflared-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=cloudflare&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![Conda](https://img.shields.io/badge/Conda-00ADD8?style=for-the-badge&logo=anaconda&logoColor=white)
 ![Snakemake](https://img.shields.io/badge/Snakemake-70D5ED?style=for-the-badge&logo=snakemake&logoColor=white)
@@ -81,9 +82,9 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 
 ## 📬 Get in Touch
 
-* 🔗 **LinkedIn:** [linkedin.com/in/Sanyam-G](https://www.linkedin.com/in/Sanyam-G)
-* 🐙 **GitHub:** [github.com/Sanyam-G](https://github.com/Sanyam-G)
-* ✉️ **Email:** **[sanyam@sanyamgarg.com](mailto:sanyam@sanyamgarg.com)**
+*   🔗 **LinkedIn:** [linkedin.com/in/sanyam-g](https://www.linkedin.com/in/sanyam-g)
+*   🐙 **GitHub:** [github.com/Sanyam-G](https://github.com/Sanyam-G)
+*   ✉️ **Email:** **[sanyam@sanyamgarg.com](mailto:sanyam@sanyamgarg.com)**
 
 ---
 
