@@ -634,3 +634,82 @@ a#lastfm-track-name:hover {
   border-radius: 3px;
   transition: width 0.5s linear;
 }
+
+/* =========================================
+   PART 3: MOBILE & RESPONSIVE OVERRIDES
+   ========================================= */
+@media (max-width: 768px) {
+  /* Reset Grid to Single Column Stack */
+  .page-content-container {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding: 1em 0.5em;
+    grid-template-areas: none;
+    gap: 1.5em;
+  }
+
+  /* Fix Profile Header Layout */
+  .profile-header-area {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile-content-wrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .profile-details-block {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5em;
+  }
+
+  /* Switch Icons to horizontal row for mobile */
+  .nav-icons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  /* Fix Experience/University Headers (Logo + Text) */
+  .subcard-header, .badge-header {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 0.8em;
+  }
+
+  .uw-logo-container, .badge-logo-container {
+    flex: 0 0 auto; /* Let logo size naturally */
+    margin-right: 0;
+    margin-bottom: 0.2em;
+  }
+
+  .uw-header-text, .badge-header-text {
+    align-items: center;
+  }
+
+  /* Stack Degrees on Mobile */
+  .degrees-section {
+    flex-direction: column;
+    gap: 0.5em;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .degree-badges-container {
+    justify-content: center;
+  }
+
+  /* Ensure Resume Button sits nicely at bottom */
+  #resume-area {
+    margin-top: 1em;
+    width: 100%;
+  }
+}
