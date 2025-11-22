@@ -1,0 +1,636 @@
+/* =========================================
+   PART 1: BASE STYLES (style.min.css)
+   ========================================= */
+:root {
+  --bg-page: #5d4037;
+  --card-bg: #eae0d1;
+  --accent-primary: #b08d57;
+  --accent-secondary: #8a6e4b;
+  --text-color-dark: #3e2723;
+  --text-color-light: #fdfbf5;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --shadow-color-hover: rgba(0, 0, 0, 0.12);
+  --border-radius-main: 10px;
+  --border-radius-small: 6px;
+  --clock-bg: #dcd0bf;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 100%;
+}
+body {
+  font-family: Montserrat, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-color-dark);
+  line-height: 1.55;
+  font-size: .875rem;
+}
+.nav-icons a {
+  margin-left: 1em;
+  color: var(--navbar-text);
+  font-size: 1.35em;
+  transition: color .3s ease, transform .2s ease;
+}
+.nav-icons a:hover {
+  color: var(--navbar-hover);
+  transform: translateY(-.125rem);
+}
+.page-content-container {
+  display: grid;
+  grid-template-columns: 0.9fr 0.9fr 1.2fr;
+  grid-template-areas: "profile experiences projects";
+  gap: 1.25em;
+  padding: 1.25em 1%;
+  margin: 0 auto;
+  width: 98%;
+  max-width: 118.75rem;
+}
+.profile-about-area {
+  grid-area: profile;
+}
+.experiences-area {
+  grid-area: experiences;
+}
+.projects-area {
+  grid-area: projects;
+}
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--accent-secondary);
+  border-radius: var(--border-radius-main);
+  padding: 1.2em;
+  box-shadow: 0 .1875rem .625rem var(--shadow-color);
+  transition: transform .3s ease, box-shadow .3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.card:hover {
+  transform: translateY(-.25rem);
+  box-shadow: 0 .375rem 1rem var(--shadow-color-hover);
+}
+.profile-header-area {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2em;
+  margin-bottom: 1em;
+}
+.profile-photo {
+  width: 6.25rem;
+  height: 6.25rem;
+  object-fit: cover;
+  border-radius: 50%;
+  border: .1875rem solid var(--accent-primary);
+  flex-shrink: 0;
+}
+.profile-details-block {
+  flex-grow: 1;
+  text-align: left;
+}
+.name {
+  font-size: 1.75em;
+  margin-bottom: .25em;
+  font-weight: 600;
+}
+.info {
+  font-size: .95em;
+  margin-bottom: .25em;
+  color: #555;
+  line-height: 1.5;
+}
+.info.phone-info i.fas.fa-phone {
+  margin-right: .4em;
+}
+.clock {
+  font-family: "Courier New", Courier, monospace;
+  margin-top: .5em;
+  font-size: 1em;
+  color: var(--text-color-dark);
+  background-color: var(--clock-bg);
+  padding: .3em .5em;
+  border-radius: var(--border-radius-small);
+  display: inline-block;
+}
+.profile-intro-fullwidth-block {
+  margin-bottom: 1.2em;
+  margin-top: .5em;
+}
+.intro-paragraph {
+  font-size: 1em;
+  line-height: 1.6;
+  text-align: left;
+}
+.education-coursework-container {
+  display: flex;
+  gap: 1.5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  align-items: flex-start;
+}
+.coursework-block,
+.education-block {
+  flex: 1;
+  min-width: 10rem;
+}
+.education-coursework-container h3 {
+  font-size: 1.2em;
+  color: var(--text-color-dark);
+  margin-bottom: .4em;
+  font-weight: 600;
+  border-bottom: 1px solid var(--accent-secondary);
+  padding-bottom: .2em;
+}
+.education-coursework-container p {
+  font-size: .9em;
+  margin-bottom: .5em;
+}
+.course-list {
+  list-style: none;
+  padding-left: 0;
+}
+.course-list li {
+  padding-left: 1.2em;
+  position: relative;
+  font-size: .9em;
+  margin-bottom: .3em;
+}
+.course-list li::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  top: .0625rem;
+  color: var(--accent-primary);
+  font-weight: 700;
+}
+.resume-button {
+  display: block;
+  width: fit-content;
+  margin: 1em auto 0 auto;
+  padding: .7em 1.5em;
+  border-radius: var(--border-radius-small);
+  font-size: .95em;
+  text-align: center;
+}
+.resume-button i.fas {
+  margin-right: .5em;
+}
+.section-card-alt h2 {
+  font-size: 1.6em;
+  color: var(--accent-primary);
+  border-bottom: .125rem solid var(--accent-primary);
+  padding-bottom: .3em;
+  margin-bottom: .8em;
+  font-weight: 600;
+}
+.project-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--accent-secondary);
+  border-radius: var(--border-radius-main);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  box-shadow: 0 .125rem .375rem var(--shadow-color);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.project-card:hover {
+  transform: translateY(-.1875rem);
+  box-shadow: 0 .25rem .625rem var(--shadow-color-hover);
+}
+.project-card h3 {
+  font-size: 1.25em;
+  color: var(--accent-primary);
+  margin-bottom: .3em;
+}
+.project-card p {
+  font-size: .9em;
+  color: #666;
+  margin-bottom: .4em;
+}
+.project-card ul {
+  list-style: disc;
+  padding-left: 1.3em;
+  font-size: .9em;
+  flex-grow: 1;
+  margin-bottom: .1em;
+}
+.project-card ul li {
+  margin-bottom: .25em;
+}
+.project-links {
+  margin-top: .8em;
+  display: flex;
+  gap: .5em;
+  flex-wrap: wrap;
+}
+.project-link-btn {
+  display: inline-block;
+  background: var(--accent-secondary);
+  color: var(--text-color-light);
+  padding: .4em .8em;
+  border-radius: .9375rem;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: .85em;
+  transition: background .3s ease, transform .2s ease;
+  border: none;
+  cursor: pointer;
+}
+.project-link-btn:hover {
+  background: var(--accent-primary);
+  transform: translateY(-1px);
+}
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+.experience-item {
+  background: var(--card-bg);
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-small);
+  padding: .8em;
+}
+.experience-item h3 {
+  font-size: 1.3em;
+  color: var(--accent-primary);
+  margin-bottom: .2em;
+}
+.experience-item p {
+  font-size: .9em;
+  color: #666;
+  margin-bottom: .5em;
+  font-style: italic;
+}
+.experience-item ul {
+  list-style: disc;
+  padding-left: 1.3em;
+  font-size: .9em;
+  margin-bottom: .1em;
+}
+.experience-item ul li {
+  margin-bottom: .3em;
+}
+.tools-section-in-profile {
+  margin-top: 2em;
+}
+.tools-section-in-profile h2 {
+  font-size: 1.6em;
+  color: var(--accent-primary);
+  border-bottom: .125rem solid var(--accent-primary);
+  padding-bottom: .3em;
+  margin-bottom: 1em;
+  font-weight: 600;
+  text-align: center;
+}
+.tools-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5em;
+}
+.tool-category h3 {
+  font-size: 1.25em;
+  color: var(--text-color-dark);
+  margin-bottom: .4em;
+  font-weight: 600;
+}
+.tool-category p {
+  font-size: .9em;
+  line-height: 1.5;
+}
+.btn {
+  display: inline-block;
+  background: var(--accent-primary);
+  color: var(--text-color-light);
+  padding: .6em 1.4em;
+  border-radius: 1.25rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background .3s ease, transform .2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: .9em;
+}
+.btn:hover {
+  background: var(--accent-secondary);
+  transform: translateY(-.125rem);
+}
+.sparkle {
+  position: absolute;
+  width: .375rem;
+  height: .375rem;
+  background: radial-gradient(circle, #fff, var(--accent-primary));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 4000;
+  animation: sparkle .8s ease-out forwards;
+}
+@keyframes sparkle {
+  0% {
+    transform: scale(1.2) rotate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3) rotate(90deg);
+    opacity: 0;
+  }
+}
+@media (max-width:64rem) {
+  body {
+    font-size: .875rem;
+  }
+  .page-content-container {
+    grid-template-columns: 1fr 1.2fr;
+    grid-template-areas: "profile   projects" "experiences projects";
+    width: 95%;
+  }
+}
+.profile-details-block .nav-icons {
+  margin-top: 1em;
+  display: flex;
+  gap: 1em;
+  justify-content: flex-start;
+}
+.profile-details-block .nav-icons a {
+  color: var(--text-color-dark);
+  font-size: 1.35em;
+  transition: color .3s ease, transform .2s ease;
+  margin-left: 0;
+}
+.profile-details-block .nav-icons a:hover {
+  color: var(--accent-primary);
+  transform: translateY(-.125rem);
+}
+@media (max-width:48rem) {
+  body {
+    font-size: .875rem;
+  }
+  .page-content-container {
+    grid-template-columns: 1fr;
+    grid-template-areas: "profile" "experiences" "projects";
+    padding: .8em;
+    margin-top: 0;
+  }
+  .navbar-container {
+    width: 95%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .logo {
+    margin-bottom: .5em;
+    font-size: 1.7em;
+  }
+  .nav-right {
+    margin-bottom: .5em;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .profile-header-area {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .profile-details-block {
+    text-align: center;
+    flex-basis: auto;
+    width: 100%;
+  }
+  .profile-intro-fullwidth-block {
+    text-align: center;
+  }
+  .education-coursework-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .coursework-block,
+  .education-block {
+    text-align: center;
+  }
+  .education-coursework-container h3 {
+    border-bottom: none;
+  }
+  .course-list {
+    display: inline-block;
+    text-align: left;
+  }
+  .resume-button {
+    margin: 1.2em auto 0 auto;
+  }
+  .tool-category {
+    text-align: center;
+  }
+  .section-card-alt h2,
+  .tools-section-in-profile h2 {
+    text-align: center;
+  }
+}
+
+/* =========================================
+   PART 2: CUSTOM OVERRIDES (custom.css)
+   ========================================= */
+/*
+ * UW Madison Theme - V12 (Final Header Layout)
+ */
+
+/* 1. Define the Color Palette */
+:root {
+  --page-bg-soft: #F8F9FA;
+  --card-bg-white: #FFFFFF;
+  --border-color-subtle: #E9ECEF;
+  --badge-bg-color: #F1F3F5;
+  --uw-red: #C5050C;
+  --uw-dark-red: #9B0000;
+  --text-color-main: #212529;
+  --text-color-secondary: #495057;
+  --bg-page: var(--page-bg-soft);
+  --card-bg: var(--card-bg-white);
+  --accent-primary: var(--uw-red);
+  --accent-secondary: var(--uw-dark-red);
+  --text-color-dark: var(--text-color-main);
+  --text-color-light: #FFFFFF;
+  --shadow-color: rgba(0,0,0,0.05);
+  --shadow-color-hover: rgba(0,0,0,0.1);
+  --clock-bg: #EAEAEA;
+}
+
+/* 2. Global Styling & Final Refinements */
+body { background: var(--bg-page); color: var(--text-color-dark); }
+.card { border: 1px solid var(--border-color-subtle); }
+h2, .profile-about-area h3 { color: var(--accent-primary); }
+.section-card-alt h2, .tools-section-in-profile h2 { border-bottom-color: var(--accent-primary); }
+a { color: var(--accent-primary); }
+a:hover { color: var(--accent-secondary); }
+.btn, .project-link-btn { background: var(--accent-primary); color: var(--text-color-light); }
+.btn:hover, .project-link-btn:hover { background: var(--accent-secondary); }
+.profile-photo { border-color: var(--accent-primary); }
+.experience-list { display: flex; flex-direction: column; gap: 1.25em; }
+.profile-intro-fullwidth-block { margin-bottom: 0.6em !important; }
+.section-heading { font-size: 1.6em; color: var(--accent-primary); border-bottom: 0.125rem solid var(--accent-primary); padding-bottom: 0.3em; margin-bottom: 0.8em; font-weight: 600; margin-top: 0.75em; }
+.tools-section-in-profile { margin-top: 1em !important; }
+
+/* HEADER REFINED: Main content wrapper */
+.profile-content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Vertically aligns text block and icon block */
+  width: 100%;
+}
+
+/* HEADER REFINED: Icon layout */
+.nav-icons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8em;
+  margin: 0;
+}
+.nav-icons a {
+  margin-left: 0;
+  font-size: 1.4em;
+  color: var(--text-color-dark);
+}
+.nav-icons a:hover {
+  color: var(--accent-primary);
+}
+
+
+/* 3. Main Page Grid Layout */
+.page-content-container {
+  display: grid;
+  grid-template-columns: 0.9fr 0.9fr 1.2fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "profile experiences projects"
+    "profile resume-area resume-area";
+  gap: 1.25em; padding: 1.25em 1%; margin: 0 auto;
+  width: 98%; max-width: 118.75rem;
+}
+#profile-area { grid-area: profile; }
+#experiences-area { grid-area: experiences; }
+#projects-area { grid-area: projects; }
+#resume-area { grid-area: resume-area; }
+
+/* 4. Resume Button Area */
+#resume-area { display: flex; align-items: center; justify-content: center; background: transparent; border: none; box-shadow: none; padding: 0; }
+.resume-button-large {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; height: 100%; padding: 1.5em;
+  font-size: 1.2em; font-weight: 600; text-decoration: none;
+  border-radius: var(--border-radius-main);
+  background: var(--accent-primary); color: var(--text-color-light);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.resume-button-large:hover { background: var(--uw-dark-red); transform: translateY(-4px); box-shadow: 0 .375rem 1rem var(--shadow-color-hover); }
+.resume-button-large i { margin-right: 0.7em; font-size: 1.1em; }
+
+/* 5. Unified Badge Styles (UW-Madison & Experiences) */
+.uw-subcard, .experience-badge { padding: 1.5em; border: 1px solid var(--border-color-subtle); border-radius: var(--border-radius-small); background-color: var(--card-bg-white); }
+.uw-subcard { margin-top: 0; }
+.subcard-header, .badge-header { display: flex; align-items: center; gap: 1em; border-bottom: 1px solid var(--border-color-subtle); padding-bottom: 1em; margin-bottom: 1.2em; }
+.uw-logo-container, .badge-logo-container { flex: 0 0 20%; margin-right: 0.5em; }
+.uw-crest-large, .badge-logo { width: 100%; height: auto; max-height: 55px; object-fit: contain; }
+.uw-header-text, .badge-header-text { display: flex; flex-direction: column; justify-content: center; }
+.university-name, .badge-title { font-size: 1.2em; font-weight: 600; color: var(--text-color-main); margin: 0; line-height: 1.3; }
+.university-dates, .badge-subtitle { font-size: 0.95em; color: var(--text-color-secondary); margin: 0; padding-top: 0.15em; }
+.subcard-body h4, .badge-body h4 { font-size: 1.1em; font-weight: 600; color: var(--text-color-main); margin-bottom: 0.8em; }
+
+/* UW-Madison: Degrees Section */
+.degrees-section { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5em; }
+.degrees-section h4 { margin-bottom: 0; }
+.degree-badges-container { display: flex; flex-wrap: wrap; gap: 0.6em; justify-content: flex-end; }
+
+/* UW-Madison: Coursework Section */
+.course-badges-container { display: flex; flex-wrap: wrap; gap: 0.6em; }
+.degree-badge, .course-badge { display: inline-block; background-color: var(--badge-bg-color); color: var(--text-color-main); padding: 0.4em 0.9em; border-radius: 1em; font-size: 0.85em; font-weight: 500; border: 1px solid #DEE2E6; white-space: nowrap; }
+
+/* Experience Badge Body */
+.badge-body ul { list-style: disc; padding-left: 1.3em; font-size: 0.9em; display: flex; flex-direction: column; gap: 0.5em; }
+
+/* 6. Simple Experience Item Styling (Skyscanner) */
+.experience-item-simple { padding: 1.2em; border: 1px solid var(--border-color-subtle); border-radius: var(--border-radius-small); }
+.experience-item-simple h3 { font-size: 1.3em; color: var(--accent-primary); margin-bottom: .2em; }
+.experience-item-simple .experience-meta { font-size: .9em; color: #666; margin-bottom: .5em; font-style: italic; }
+.experience-item-simple ul { list-style: disc; padding-left: 1.3em; font-size: 0.9em; }
+.experience-item-simple ul li { margin-bottom: .3em; }
+
+/*
+ * Last.fm Music Info Styling (v3.1 - Corrected Alignment)
+ */
+.music-info {
+  display: none; /* Hidden by default, shown by JS */
+  position: relative;
+  /* Adjust margin to align with the intro text that is now above it */
+  margin-top: 1em; 
+  margin-bottom: 1em; /* Add space between it and the "Education" heading */
+  padding-left: 24px; /* A bit more padding for the icon */
+  max-width: 100%;
+}
+
+.music-info i.fa-music {
+  position: absolute;
+  left: 0;
+  top: 4px; /* Adjusted for better vertical alignment with the first line of text */
+  color: var(--text-color-secondary);
+  font-size: 0.9em;
+}
+
+.track-details {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Make the track name a clickable link */
+a#lastfm-track-name { /* Target the anchor tag directly */
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  color: var(--text-color-main);
+  font-size: 0.9em;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+a#lastfm-track-name:hover {
+  color: var(--accent-primary);
+}
+
+#lastfm-artist-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  font-size: 0.8em;
+  color: var(--text-color-secondary);
+  line-height: 1.3;
+  margin-bottom: 5px;
+}
+
+.progress-bar-background {
+  width: 100%;
+  height: 3px;
+  background-color: var(--badge-bg-color);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar-foreground {
+  height: 100%;
+  width: 0%;
+  background-color: var(--accent-primary);
+  border-radius: 3px;
+  transition: width 0.5s linear;
+}
