@@ -87,24 +87,24 @@
       <div class="tools-content-grid">
         <div class="tool-category">
           <h3><strong>Programming Languages</strong></h3>
-          <p><strong>Python, Java, C, Assembly, Dart, SQL, R, Bash</strong></p>
+          <p><strong>Python, Java, C, Dart, SQL, Bash</strong></p>
         </div>
         <div class="tool-category">
           <h3><strong>DevOps & Infrastructure</strong></h3>
           <p>
-            <strong>Docker, Tailscale, Caddy, Linux, Cloudflared, Git, Conda, Snakemake</strong>
+            <strong>Docker, Tailscale, Linux, Cloudflared, Git, Conda, Snakemake</strong>
           </p>
         </div>
         <div class="tool-category">
           <h3><strong>Machine Learning & Data Science</strong></h3>
           <p>
-            <strong>PyTorch, NumPy, Pandas, Scikit-learn, Deep Learning, NLP</strong>
+            <strong>PyTorch, NumPy, Pandas, Deep Learning, NLP</strong>
           </p>
         </div>
         <div class="tool-category">
           <h3><strong>Web & Application Development</strong></h3>
           <p>
-            <strong>Flask, Flutter, Firebase, Node.js, REST APIs</strong>
+            <strong>Flask, Flutter, Firebase, Node.js, REST APIs, WebSocket</strong>
           </p>
         </div>
       </div>
@@ -129,10 +129,16 @@
           <h4>AI & Backend Development Intern</h4>
           <ul>
             <li>
-              Engineered a <strong>Python</strong> backend for a new AI trading assistant, utilizing <strong>Model Context Protocol</strong> and a context management system that leverages <strong>OpenAI's API</strong> to generate real-time personalized recommendations based on user holdings.
+              <strong>AI Trading Assistant:</strong> Engineered the <strong>Python</strong> backend, integrating OpenAI's API with a <strong>RAG system</strong> to fetch live user portfolio data and generate personalized financial insights.
             </li>
             <li>
-              Built a lightweight co-browse solution with a <strong>Node.js backend</strong> implementing <strong>DOM mirroring</strong>, <strong>selective data masking</strong>, <strong>real-time remote control</strong>, and <strong>network/console logging</strong>, replacing a third-party tool and saving the firm <strong>$3,000+ annually in licensing fees</strong>.
+              Implemented the <strong>Model Context Protocol (MCP)</strong> to orchestrate <strong>tool calls</strong>, enabling the AI to securely manipulate data and store context across sessions while optimizing <strong>token usage</strong>.
+            </li>
+            <li>
+              <strong>Real-Time Co-Browsing Engine:</strong> Built using <strong>Node.js</strong> and <strong>WebSockets</strong>. Utilized <strong>DOM mirroring</strong> instead of video streaming to drastically reduce bandwidth and latency.
+            </li>
+            <li>
+              Developed a <strong>client-side masking</strong> feature to redact sensitive financial data before network transmission. This solution replaced a third-party tool and saved the firm <strong>$3,000+ annually</strong>.
             </li>
           </ul>
         </div>
@@ -152,29 +158,16 @@
           <h4>Deep Learning Research Assistant</h4>
           <ul>
             <li>
-              Developed and evaluated deep learning models (<strong>VERMIN framework</strong>) in <strong>PyTorch</strong> to accurately predict DNA methylation from large-scale human/mouse genomic sequences.
+              Developing and evaluating deep learning models (<strong>VERMIN framework</strong>) in <strong>PyTorch</strong> to accurately predict DNA methylation from large-scale human/mouse genomic sequences.
             </li>
             <li>
-              Performed extensive Exploratory Data Analysis on a massive 22-million-row dataset using <strong>Pandas</strong> in <strong>JupyterLab</strong> to investigate genetic variation.
+              Performed extensive Exploratory Data Analysis on a massive 22-million-row dataset using <strong>Pandas</strong> in <strong>JupyterLab</strong> to investigate genetic variation and epigenetic markers.
             </li>
             <li>
               Implemented data processing workflows (<strong>Snakemake</strong>) on an HPC cluster and generated data visualizations to validate pipeline output.
             </li>
           </ul>
         </div>
-      </div>
-
-      <div class="experience-item-simple">
-        <h3>Skyscanner SDE Job Simulation - Forage</h3>
-        <p class="experience-meta"><strong>Remote | November 2023 - January 2024</strong></p>
-        <ul>
-          <li>
-            Engineered a responsive web application using <strong>React</strong>, focusing on user experience and rapid prototyping.
-          </li>
-          <li>
-            Built a dynamic travel date selection interface with <strong>Backpack React</strong>, contributing to enhanced product usability.
-          </li>
-        </ul>
       </div>
 
     </div>
@@ -185,45 +178,18 @@
     <div class="project-grid">
 
       <div class="project-card">
-        <h3>Personal Portfolio Website</h3>
-        <p><strong>Madison, WI & Dubai, UAE | Personal Project</strong></p>
-        <p><strong>June 2025 – November 2025</strong></p>
-        <ul>
-          <li>
-            Built a lightweight, fully responsive single-page application from scratch using vanilla <strong>HTML5, CSS Grid, and JavaScript</strong> for optimal performance and control over the user experience.
-          </li>
-          <li>
-            Developed and deployed a serverless API proxy using a <strong>Cloudflare Worker</strong> to securely interface with the <strong>Last.fm API</strong>, protecting private credentials from client-side exposure.
-          </li>
-          <li>
-            Engineered a stateful "Now Playing" feature by programming the Cloudflare Worker to track song start-times, delivering a live, synchronized progress bar to all site visitors.
-          </li>
-        </ul>
-        <div class="project-links">
-          <a href="https://github.com/Sanyam-G/Sanyam-G" target="_blank" class="project-link-btn">GitHub</a>
-          <div class="project-skills-container">
-            <span class="degree-badge">HTML5</span>
-            <span class="degree-badge">CSS Grid</span>
-            <span class="degree-badge">JavaScript</span>
-            <span class="degree-badge">Cloudflare Workers</span>
-            <span class="degree-badge">REST APIs</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card">
         <h3>Private Cloud & Server</h3>
         <p><strong>Dubai, UAE & Madison, WI | Personal Project</strong></p>
-        <p><strong>March 2025 – October 2025</strong></p>
+        <p><strong>March 2025 – Present</strong></p>
         <ul>
           <li>
-            Built a personal <strong>hybrid-cloud infrastructure</strong> from the ground up, deploying on a cloud VPS and bare-metal servers <strong>(Ubuntu/Manjaro)</strong>, unified by a secure <strong>Tailscale</strong> mesh network.
+            Built a personal <strong>hybrid-cloud</strong> infrastructure from the ground up, deploying on cloud VPS and <strong>bare-metal Linux servers</strong> unified by a secure <strong>Tailscale</strong> mesh network.
           </li>
           <li>
-            Manage a portfolio of <strong>20+ Dockerized services</strong>, leveraging <strong>Cloudflare Tunnel</strong> for secure public access and <strong>DDoS protection</strong>, including automated media pipelines with GPU transcoding.
+            Deployed <strong>20+ containerized services</strong> using <strong>Docker</strong> and <strong>Caddy</strong>, leveraging <strong>Cloudflare Tunnels</strong> for secure, zero-trust ingress without exposing public IP addresses. Secured using <strong>UFW</strong>.
           </li>
           <li>
-            Engineered a custom, <strong>full-stack</strong> monitoring solution to provide real-time visibility into global server health, while automating daily, versioned <strong>off-site backups</strong> with <strong>Bash/cron</strong>.
+            Engineered a custom monitoring solution using <strong>Python</strong> for real-time server statistics, and automated daily off-site backups using <strong>Bash/Cron</strong> to ensure data sovereignty.
           </li>
         </ul>
         <div class="project-links">
@@ -232,9 +198,35 @@
             <span class="degree-badge">Linux</span>
             <span class="degree-badge">Docker</span>
             <span class="degree-badge">Tailscale</span>
-            <span class="degree-badge">Cloudflare Tunnel</span>
-            <span class="degree-badge">Caddy</span>
+            <span class="degree-badge">Cloudflare</span>
             <span class="degree-badge">Bash</span>
+            <span class="degree-badge">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <h3>Raven / Talon (Open Source)</h3>
+        <p><strong>Remote | Contributor</strong></p>
+        <p><strong>December 2025</strong></p>
+        <ul>
+          <li>
+            Re-engineered the execution module of a <strong>1.7k+ Star</strong> utility, implementing a <strong>Python</strong> JSON engine to decouple logic from configuration and support dynamic <strong>PowerShell</strong> parameters.
+          </li>
+          <li>
+            Implemented the <strong>Unified Configuration</strong> logic to allow custom parameters for PowerShell scripts.
+          </li>
+          <li>
+            Collaborated with project maintainers to refactor the legacy argument parser, ensuring backward compatibility while enabling dynamic script configurations.
+          </li>
+        </ul>
+        <div class="project-links">
+          <a href="https://github.com/ravendevteam/talon" target="_blank" class="project-link-btn">GitHub</a>
+          <div class="project-skills-container">
+            <span class="degree-badge">Python</span>
+            <span class="degree-badge">Open Source</span>
+            <span class="degree-badge">Refactoring</span>
+            <span class="degree-badge">PowerShell</span>
           </div>
         </div>
       </div>
@@ -242,28 +234,26 @@
       <div class="project-card">
         <h3>Python Shell</h3>
         <p><strong>Dubai, UAE | Personal Project</strong></p>
-        <p><strong>May 2025 – July 2025</strong></p>
+        <p><strong>May 2025 – June 2025</strong></p>
         <ul>
           <li>
-            Built a custom command-line shell in <strong>Python</strong> that supports user prompts and command execution.
+            Built a custom <strong>command-line shell</strong> in Python that supports user prompts, execution loops, and <strong>child process management</strong>.
           </li>
           <li>
-            Added support for <strong>Bash</strong> features like input/output redirection (<strong>&lt;, &gt;</strong>) and command piping (<strong>|</strong>).
-          </li>
-          <li>
-            Implemented a persistent command history feature, significantly improving user workflow.
+            Engineered support for <strong>Bash</strong> features like <strong>input/output redirection (&lt;, &gt;)</strong> and <strong>command piping (|)</strong> by manually manipulating STDIN/OUT streams.
           </li>
         </ul>
         <div class="project-links">
           <a href="https://github.com/Sanyam-G/shell" target="_blank" class="project-link-btn">GitHub</a>
           <div class="project-skills-container">
             <span class="degree-badge">Python</span>
-            <span class="degree-badge">Bash</span>
             <span class="degree-badge">System Calls</span>
-            <span class="degree-badge">CLI Development</span>
+            <span class="degree-badge">Process Mgmt</span>
+            <span class="degree-badge">CLI</span>
           </div>
         </div>
       </div>
+
   </section>
 
   <section id="resume-area" class="grid-item">
