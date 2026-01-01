@@ -190,13 +190,13 @@ body {
 .project-grid {
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.9em;
 }
 .project-card {
   background: var(--card-bg);
   border: 1px solid var(--accent-secondary);
   border-radius: var(--border-radius-main);
-  padding: 1em;
+  padding: 0.95em;
   display: flex;
   flex-direction: column;
   color: inherit;
@@ -212,10 +212,21 @@ body {
   color: var(--accent-primary);
   margin-bottom: .3em;
 }
+.project-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5em;
+}
+.project-meta span {
+  font-size: .9em;
+  color: #666;
+}
 .project-card p {
   font-size: .9em;
   color: #666;
-  margin-bottom: .4em;
+  margin-bottom: .5em;
+  line-height: 1.6;
 }
 .project-card ul {
   list-style: disc;
@@ -228,7 +239,7 @@ body {
   margin-bottom: .25em;
 }
 .project-links {
-  margin-top: .8em;
+  margin-top: .75em;
   display: flex;
   gap: .5em;
   flex-wrap: wrap;
