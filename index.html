@@ -179,19 +179,16 @@
 
       <div class="project-card">
         <h3>Private Cloud & Server</h3>
-        <p><strong>Dubai, UAE & Madison, WI | Personal Project</strong></p>
-        <p><strong>March 2025 – Present</strong></p>
-        <ul>
-          <li>
-            Built a personal <strong>hybrid-cloud</strong> infrastructure from the ground up, deploying on cloud VPS and <strong>bare-metal Linux servers</strong> unified by a secure <strong>Tailscale</strong> mesh network.
-          </li>
-          <li>
-            Deployed <strong>20+ containerized services</strong> using <strong>Docker</strong> and <strong>Caddy</strong>, leveraging <strong>Cloudflare Tunnels</strong> for secure, zero-trust ingress without exposing public IP addresses. Secured using <strong>UFW</strong>.
-          </li>
-          <li>
-            Engineered a custom monitoring solution using <strong>Python</strong> for real-time server statistics, and automated daily off-site backups using <strong>Bash/Cron</strong> to ensure data sovereignty.
-          </li>
-        </ul>
+        <div class="project-meta">
+          <span><strong>Dubai, UAE & Madison, WI | Personal Project</strong></span>
+          <span><strong>March 2025 – Present</strong></span>
+        </div>
+        <p>
+          Wanted full control over my data and a playground to experiment with infrastructure. Built a <strong>hybrid-cloud</strong> setup spanning cloud VPS and <strong>bare-metal Linux</strong>, connected securely with a <strong>Tailscale</strong> mesh network.
+        </p>
+        <p>
+          Now running <strong>20+ services</strong> in <strong>Docker</strong> containers—from media automation to development tools. Used <strong>Cloudflare Tunnels</strong> for public access without exposing my IP. Wrote custom monitoring in <strong>Python</strong> and automated daily <strong>Bash/Cron</strong> backups to an off-site location.
+        </p>
         <div class="project-links">
           <a href="https://server.sanyamgarg.com" target="_blank" class="project-link-btn">Network Map</a>
           <div class="project-skills-container">
@@ -206,43 +203,42 @@
       </div>
 
       <div class="project-card">
-        <h3>Raven / Talon (Open Source)</h3>
-        <p><strong>Remote | Contributor</strong></p>
-        <p><strong>December 2025</strong></p>
-        <ul>
-          <li>
-            Re-engineered the execution module of a <strong>1.7k+ Star</strong> utility, implementing a <strong>Python</strong> JSON engine to decouple logic from configuration and support dynamic <strong>PowerShell</strong> parameters.
-          </li>
-          <li>
-            Implemented the <strong>Unified Configuration</strong> logic to allow custom parameters for PowerShell scripts.
-          </li>
-          <li>
-            Collaborated with project maintainers to refactor the legacy argument parser, ensuring backward compatibility while enabling dynamic script configurations.
-          </li>
-        </ul>
+        <h3>Sentinel – Real-Time Threat Monitor</h3>
+        <div class="project-meta">
+          <span><strong>Dubai, UAE | Personal Project</strong></span>
+          <span><strong>December 2025 – January 2026</strong></span>
+        </div>
+        <p>
+          After exposing my server's SSH to the internet, I got curious—who's actually trying to break in? Within minutes, bots worldwide were hammering it with credentials like "root:admin". Built this to watch it happen in real-time.
+        </p>
+        <p>
+          Created a <strong>Python (FastAPI)</strong> pipeline that tails system logs over SSH, extracts attacker IPs, resolves their locations, and serves everything through a <strong>REST API</strong> that the dashboard polls every 1.5 seconds. Deployed with <strong>Docker</strong> and <strong>Cloudflare Tunnels</strong>. The map uses <strong>Leaflet.js</strong> to animate each attack as it happens.
+        </p>
         <div class="project-links">
-          <a href="https://github.com/ravendevteam/talon" target="_blank" class="project-link-btn">GitHub</a>
+          <a href="https://sentinel.sanyamgarg.com" target="_blank" class="project-link-btn">View Dashboard</a>
           <div class="project-skills-container">
             <span class="degree-badge">Python</span>
-            <span class="degree-badge">Open Source</span>
-            <span class="degree-badge">Refactoring</span>
-            <span class="degree-badge">PowerShell</span>
+            <span class="degree-badge">FastAPI</span>
+            <span class="degree-badge">Docker</span>
+            <span class="degree-badge">Cloudflare</span>
+            <span class="degree-badge">SQLite</span>
+            <span class="degree-badge">Security</span>
           </div>
         </div>
       </div>
 
       <div class="project-card">
         <h3>Python Shell</h3>
-        <p><strong>Dubai, UAE | Personal Project</strong></p>
-        <p><strong>May 2025 – June 2025</strong></p>
-        <ul>
-          <li>
-            Built a custom <strong>command-line shell</strong> in Python that supports user prompts, execution loops, and <strong>child process management</strong>.
-          </li>
-          <li>
-            Engineered support for <strong>Bash</strong> features like <strong>input/output redirection (&lt;, &gt;)</strong> and <strong>command piping (|)</strong> by manually manipulating STDIN/OUT streams.
-          </li>
-        </ul>
+        <div class="project-meta">
+          <span><strong>Dubai, UAE | Personal Project</strong></span>
+          <span><strong>May 2025 – June 2025</strong></span>
+        </div>
+        <p>
+          Ever wonder how Bash actually works under the hood? I did. Built my own <strong>command-line shell</strong> in Python to learn how shells parse commands, spawn processes, and manage I/O.
+        </p>
+        <p>
+          Implemented core shell features like <strong>input/output redirection (&lt;, &gt;)</strong> and <strong>piping (|)</strong> by manually wiring up STDIN/STDOUT between child processes. Also added persistent command history.
+        </p>
         <div class="project-links">
           <a href="https://github.com/Sanyam-G/shell" target="_blank" class="project-link-btn">GitHub</a>
           <div class="project-skills-container">
