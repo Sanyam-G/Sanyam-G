@@ -34,17 +34,6 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1e3);
 
-document.addEventListener("mousemove", function(e) {
-    const sparkle = document.createElement("div");
-    sparkle.classList.add("sparkle");
-    sparkle.style.left = e.pageX - 3 + "px";
-    sparkle.style.top = e.pageY - 3 + "px";
-    document.body.appendChild(sparkle);
-    setTimeout(() => {
-        sparkle.remove()
-    }, 800)
-});
-
 document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function(e) {
         e.preventDefault();
