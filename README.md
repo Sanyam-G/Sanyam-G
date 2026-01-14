@@ -22,7 +22,7 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 *   Connects to remote servers via secure SSH tunnels to stream system logs in real-time.
 *   Parses authentication failures and geolocates IP addresses using MaxMind GeoLite2.
 *   Visualizes attack vectors on an animated map with live statistics.
-*   [Github](https://github.com/Sanyam-G/Sentinel)
+*   [Live - Tracking one of my servers](https://sentinel.sanyamgarg.com) [Github](https://github.com/Sanyam-G/Sentinel)
 
 ### Personal Portfolio Website
 *Responsive professional portfolio with serverless backend integration.*
