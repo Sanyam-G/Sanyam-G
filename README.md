@@ -1,47 +1,54 @@
-# Hi, I'm Sanyam Garg 👋 <p align="right"><a href="https://resume.sanyamgarg.com" target="_blank"><img src="https://img.shields.io/badge/Resume-red?style=for-the-badge&logo=googledocs&logoColor=white" alt="Resume PDF"></a> <a href="https://sanyamgarg.com" target="_blank"><img src="https://img.shields.io/badge/sanyamgarg.com-blue?style=for-the-badge&logoColor=white" alt="Personal Website"></a></p>
+# Hi, I'm Sanyam Garg <p align="right"><a href="https://resume.sanyamgarg.com" target="_blank"><img src="https://img.shields.io/badge/Resume-red?style=for-the-badge&logo=googledocs&logoColor=white" alt="Resume PDF"></a> <a href="https://sanyamgarg.com" target="_blank"><img src="https://img.shields.io/badge/sanyamgarg.com-blue?style=for-the-badge&logoColor=white" alt="Personal Website"></a></p>
 
 Junior at **University of Wisconsin–Madison** (Computer Science & Data Science, **May 2027**).
 Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-driven application development.
 
 ---
 
-## 🚀 Highlights
+## Highlights
 
-*   💡 **AI & Backend Development Intern (Century Financial):** Engineered a **Python** backend for a new AI trading assistant using **Model Context Protocol (MCP)** and **OpenAI's API**. Also built a lightweight co-browse solution with a **Node.js backend**, replacing a third-party tool and saving the firm **$3,000+ annually**.
-*   🔬 **Deep Learning Research Assistant (UW–Madison Keles Group):** Developing and evaluating deep learning models (**VERMIN framework**) in **PyTorch** for genomic sequence analysis. Implemented data workflows (**Snakemake**) on an **HPC cluster** and performed extensive **Exploratory Data Analysis** on a 22-million-row dataset using **Pandas**.
-*   ☁️ **Private Cloud & Server:** Architected and deployed a **hybrid-cloud infrastructure** across bare-metal and a cloud VPS, unified by a secure **Tailscale** mesh network. Manage **20+ Dockerized services**, leveraging **Cloudflare Tunnel** for security.
-*   ✨ Key Interests: **Machine Learning (Deep Learning)**, **Distributed Systems**, **DevOps**, and **Backend Development**.
+*   **AI & Backend Development Intern (Century Financial):** Engineered a **Python** backend for a new AI trading assistant using **Model Context Protocol (MCP)** and **OpenAI's API**. Built a lightweight co-browse solution with a **Node.js** backend, replacing a legacy third-party tool.
+*   **Deep Learning Research Assistant (UW–Madison Keles Group):** Developing deep learning models (**VERMIN framework**) in **PyTorch** for genomic sequence analysis. Implemented **Snakemake** workflows on an **HPC cluster** and performed extensive EDA on large-scale datasets using **Pandas**.
+*   **Private Cloud & Server:** Architected a **hybrid-cloud infrastructure** across bare-metal and a cloud VPS, unified by a secure **Tailscale** mesh network. Manage **20+ Dockerized services**, leveraging **Cloudflare Tunnel** for security.
+*   **Key Interests:** Machine Learning (Deep Learning), Distributed Systems, DevOps, and Backend Development.
 
 ---
 
-## 🧠 Selected Projects
+## Selected Projects
+
+### Sentinel — SSH Attack Monitor
+*Real-time security dashboard visualizing unauthorized SSH login attempts.*
+*   **Technologies:** Python, FastAPI, Docker, SQLite, Leaflet.js.
+*   Connects to remote servers via secure SSH tunnels to stream system logs in real-time.
+*   Parses authentication failures and geolocates IP addresses using MaxMind GeoLite2.
+*   Visualizes attack vectors on an animated map with live statistics.
+*   [Github](https://github.com/Sanyam-G/Sentinel)
 
 ### Personal Portfolio Website
-*A responsive, single-page professional portfolio with live data integration.*
-*   **Technologies:** **HTML5**, **CSS Grid**, **JavaScript**, **Cloudflare Workers**, **REST APIs**.
-*   Built a lightweight SPA from scratch, prioritizing minimal dependencies for rapid performance.
-*   Architected a secure, serverless backend proxy using a Cloudflare Worker to abstract the Last.fm API, protecting private credentials from client-side exposure.
-*   Engineered a stateful "Now Playing" feature by programming the worker to track song start-times, delivering a live, synchronized progress bar to all visitors.
-*   [Website](https://sanyamgarg.com)
-*   [Github](https://github.com/Sanyam-G/Sanyam-G)
+*Responsive professional portfolio with serverless backend integration.*
+*   **Technologies:** HTML5, CSS Grid, JavaScript, Cloudflare Workers, REST APIs.
+*   Built a lightweight SPA from scratch, prioritizing minimal dependencies.
+*   Architected a serverless backend proxy using a Cloudflare Worker to abstract the Last.fm API, protecting private credentials.
+*   Engineered a stateful "Now Playing" feature, delivering a live, synchronized progress bar to all visitors.
+*   [Website](https://sanyamgarg.com) | [Github](https://github.com/Sanyam-G/Sanyam-G)
 
 ### Private Cloud & Server
-*A personal hybrid-cloud infrastructure built from the ground up.*
-*   **Technologies:** **Linux**, **Docker**, **Tailscale**, **Cloudflare Tunnel**, **Caddy**, **Bash**.
-*   Manage a portfolio of 20+ Dockerized services, leveraging Cloudflare Tunnel for secure public access and DDoS protection, including automated media pipelines with GPU transcoding.
-*   Engineered a custom, full-stack monitoring solution and automated daily, versioned off-site backups with Bash/cron.
+*Personal hybrid-cloud infrastructure built from the ground up.*
+*   **Technologies:** Linux, Docker, Tailscale, Cloudflare Tunnel, Caddy, Bash.
+*   Manage a portfolio of 20+ Dockerized services, leveraging Cloudflare Tunnel for secure public access and DDoS protection.
+*   Engineered a custom, full-stack monitoring solution and automated daily, versioned off-site backups.
 *   [Network Map](https://server.sanyamgarg.com)
 
 ### Python Shell
-*Custom command-line shell built in Python.*
-*   **Technologies:** **Python**, **Bash**, **System Calls**, **CLI Development**.
-*   Supports user prompts, command execution, and Bash features like input/output redirection (`<`, `>`) and command piping (`|`).
-*   Implemented a persistent command history feature, significantly improving user workflow.
+*Custom command-line shell implementation.*
+*   **Technologies:** Python, Bash, System Calls, CLI Development.
+*   Supports user prompts, command execution, input/output redirection (`<`, `>`), and command piping (`|`).
+*   Implemented persistent command history to improve user workflow.
 *   [Github](https://github.com/Sanyam-G/shell)
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 ### Programming Languages
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -80,12 +87,8 @@ Focused on **AI/Machine Learning**, **Backend Systems**, and practical, data-dri
 
 ---
 
-## 📬 Get in Touch
+## Get in Touch
 
-*   🔗 **LinkedIn:** [linkedin.com/in/sanyam-g](https://www.linkedin.com/in/sanyam-g)
-*   🐙 **GitHub:** [github.com/Sanyam-G](https://github.com/Sanyam-G)
-*   ✉️ **Email:** **[sanyam@sanyamgarg.com](mailto:sanyam@sanyamgarg.com)**
-
----
-
-Thanks for visiting! Open to connecting or collaborating. 🚀
+*   **LinkedIn:** [linkedin.com/in/sanyam-g](https://www.linkedin.com/in/sanyam-g)
+*   **GitHub:** [github.com/Sanyam-G](https://github.com/Sanyam-G)
+*   **Email:** [sanyam@sanyamgarg.com](mailto:sanyam@sanyamgarg.com)
