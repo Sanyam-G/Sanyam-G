@@ -207,10 +207,16 @@ body {
   transform: translateY(-.1875rem);
   box-shadow: 0 .25rem .625rem var(--shadow-color-hover);
 }
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .3em;
+}
 .project-card h3 {
   font-size: 1.25em;
   color: var(--accent-primary);
-  margin-bottom: .3em;
+  margin-bottom: 0;
 }
 .project-meta {
   display: flex;
@@ -239,6 +245,12 @@ body {
   margin-bottom: .25em;
 }
 .project-links {
+  margin-top: .75em;
+  display: flex;
+  gap: .5em;
+  flex-wrap: wrap;
+}
+.project-skills-container {
   margin-top: .75em;
   display: flex;
   gap: .5em;
