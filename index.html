@@ -70,14 +70,13 @@
         <div class="coursework-section">
           <h4>Relevant Coursework</h4>
           <div class="course-badges-container">
-            <span class="course-badge">Data Structures & Algorithms</span>
+            <span class="course-badge">Intro to Operating Systems</span>
             <span class="course-badge">Machine Org. & Programming</span>
+            <span class="course-badge">Data Structures & Algorithms</span>
             <span class="course-badge">Intro. to AI</span>
             <span class="course-badge">Linear Algebra</span>
             <span class="course-badge">Discrete Mathematics</span>
             <span class="course-badge">Statistics</span>
-            <span class="course-badge">Intro to Operating Systems</span>
-            <span class="course-badge">UI (CS 571)</span>
           </div>
         </div>
       </div>
@@ -115,14 +114,9 @@
         </div>
         <div class="badge-body">
           <h4>Undergraduate Research Assistant</h4>
-          <ul>
-            <li>
-              Selected for the Wireless and Networked Systems Lab to engineer edge computing architectures.
-            </li>
-            <li>
-              Developing indoor localization for HoloLens 2 headsets using Monte Carlo Localization on building floor plans.
-            </li>
-          </ul>
+          <p class="experience-prose">
+            Got picked up by the <strong>Wireless and Networked Systems Lab</strong> to work on edge computing. Basically, making devices smarter without relying on the cloud. Right now I'm building <span class="highlight">indoor localization for HoloLens 2 headsets</span> using Monte Carlo Localization on building floor plans. The goal is for the headset to know exactly where you are inside a building, down to the room.
+          </p>
         </div>
       </div>
 
@@ -138,20 +132,12 @@
         </div>
         <div class="badge-body">
           <h4>AI & Backend Development Intern</h4>
-          <ul>
-            <li>
-              <strong>AI Trading Assistant:</strong> Engineered the <strong>Python</strong> backend, integrating OpenAI's API with a <strong>RAG system</strong> to fetch live user portfolio data and generate personalized financial insights.
-            </li>
-            <li>
-              Implemented the <strong>Model Context Protocol (MCP)</strong> to orchestrate <strong>tool calls</strong>, enabling the AI to securely manipulate data and store context across sessions while optimizing <strong>token usage</strong>.
-            </li>
-            <li>
-              <strong>Real-Time Co-Browsing Engine:</strong> Built using <strong>Node.js</strong> and <strong>WebSockets</strong>. Utilized <strong>DOM mirroring</strong> instead of video streaming to drastically reduce bandwidth and latency.
-            </li>
-            <li>
-              Developed a <strong>client-side masking</strong> feature to redact sensitive financial data before network transmission. This solution replaced a third-party tool and saved the firm <strong>$3,000+ annually</strong>.
-            </li>
-          </ul>
+          <p class="experience-prose">
+            Built two major things here. The first was an <span class="highlight">AI Trading Assistant</span>. I wrote the <strong>Python</strong> backend that connected OpenAI's API to a <strong>RAG system</strong> pulling live portfolio data, so users could ask the AI questions about their actual holdings. Used the <strong>Model Context Protocol (MCP)</strong> to orchestrate tool calls so the AI could securely read data and persist context across sessions.
+          </p>
+          <p class="experience-prose">
+            The second was a <span class="highlight">real-time co-browsing engine</span>. Instead of screen-sharing over video (slow, expensive), I built it with <strong>Node.js</strong> and <strong>WebSockets</strong> using <strong>DOM mirroring</strong>, which uses way less bandwidth. I also added <strong>client-side masking</strong> to redact sensitive financial data before it ever hit the network. That feature replaced a third-party tool and saved the firm <strong>$3,000+/year</strong>.
+          </p>
         </div>
       </div>
 
@@ -172,10 +158,10 @@
           <span><strong>December 2025 – January 2026</strong></span>
         </div>
         <p>
-          Built a <strong>CLI tool in Go</strong> that transfers files between servers and devices by scanning a QR code. No apps, no accounts. Just scan and download.
+          I needed to move files between my servers and my phone without installing anything. So I built it. <span class="highlight">One command, one QR code, done.</span> Written in <strong>Go</strong>, it spins up a relay that your device connects to by just scanning.
         </p>
         <p>
-          Architected a <strong>zero-knowledge relay</strong> using <strong>WebSocket</strong> where encryption keys never leave the client. Uses <strong>NaCl secretbox (XSalsa20-Poly1305)</strong> encryption with the key embedded in the URL fragment, so the relay only ever sees encrypted bytes. Open sourced with <strong>50+ GitHub stars</strong>, featured on <strong>r/selfhosted</strong>.
+          The fun part: the relay is <strong>zero-knowledge</strong>. Encryption keys live in the URL fragment (never sent to the server), and everything is encrypted with <strong>NaCl secretbox (XSalsa20-Poly1305)</strong>. The relay only ever touches encrypted bytes. Open sourced it, got <strong>50+ GitHub stars</strong>, and it was featured on <strong>r/selfhosted</strong>.
         </p>
         <div class="project-skills-container">
           <span class="degree-badge">Go</span>
@@ -197,10 +183,10 @@
           <span><strong>March 2025 – December 2025</strong></span>
         </div>
         <p>
-          Wanted full control over my data and a playground to experiment with infrastructure. Built a <strong>hybrid-cloud</strong> setup spanning cloud VPS and <strong>bare-metal Linux</strong>, connected securely with a <strong>Tailscale</strong> mesh network.
+          I didn't want to rent someone else's computer for everything, so I built my own cloud. It's a <strong>hybrid-cloud</strong> setup with <span class="highlight">cloud VPS + bare-metal Linux boxes</span> in two countries, stitched together with a <strong>Tailscale</strong> mesh network.
         </p>
         <p>
-          Now running <strong>20+ services</strong> in <strong>Docker</strong> containers, from media automation to development tools. Used <strong>Cloudflare Tunnels</strong> for public access without exposing my IP. Wrote custom monitoring in <strong>Python</strong> and automated daily <strong>Bash/Cron</strong> backups to an off-site location.
+          Currently running <strong>20+ services</strong> in <strong>Docker</strong>: media automation, dev tools, monitoring, you name it. Public access goes through <strong>Cloudflare Tunnels</strong> so my IP stays hidden. Wrote my own monitoring in <strong>Python</strong> and automated daily <strong>Bash/Cron</strong> backups to an off-site location. It's basically my playground for learning infrastructure by actually running it.
         </p>
         <div class="project-skills-container">
           <span class="degree-badge">Linux</span>
@@ -223,10 +209,10 @@
           <span><strong>October 2025 – January 2026</strong></span>
         </div>
         <p>
-          After exposing my server's SSH to the internet, I got curious about who's actually trying to get in Within minutes, bots worldwide were hammering it with credentials like "root:admin". Built this to watch it happen in real-time.
+          I exposed my server's SSH to the internet just to see what would happen. Within minutes, bots from all over the world were hammering it with credentials like <span class="highlight">"root:admin"</span>. So naturally, I built a dashboard to watch it happen live.
         </p>
         <p>
-          Created a <strong>Python (FastAPI)</strong> pipeline that tails system logs over SSH, extracts attacker IPs, resolves their locations, and serves everything through a <strong>REST API</strong> that the dashboard polls every 1.5 seconds. Deployed with <strong>Docker</strong> and <strong>Cloudflare Tunnels</strong>. The map uses <strong>Leaflet.js</strong> to animate each attack as it happens.
+          The backend is a <strong>Python (FastAPI)</strong> pipeline that tails system logs over SSH, extracts attacker IPs, geolocates them, and serves it all through a <strong>REST API</strong> that the frontend polls every 1.5 seconds. Deployed with <strong>Docker</strong> and <strong>Cloudflare Tunnels</strong>. The map uses <strong>Leaflet.js</strong> to animate each attack as it lands. It's weirdly mesmerizing.
         </p>
         <div class="project-skills-container">
           <span class="degree-badge">Python</span>
