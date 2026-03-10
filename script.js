@@ -47,6 +47,91 @@ document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
     })
 });
 
+// Live cursors
+(function() {
+    const WS_URL = 'wss://cursors.sanyamgarg.com';
+    const THROTTLE_MS = 50;
+    const CURSOR_TIMEOUT = 10000;
+    const COLORS = ['#f7768e','#ff9e64','#e0af68','#9ece6a','#7dcfff','#7aa2f7','#bb9af7','#f7768e'];
+
+    let ws = null;
+    let myId = null;
+    let cursors = {};
+    let lastSend = 0;
+
+    function connect() {
+        try { ws = new WebSocket(WS_URL); } catch(e) { return; }
+
+        ws.onmessage = function(e) {
+            let msg;
+            try { msg = JSON.parse(e.data); } catch(e) { return; }
+
+            if (msg.type === 'id') {
+                myId = msg.id;
+                return;
+            }
+            if (msg.type === 'move' && msg.id !== myId) {
+                if (!cursors[msg.id]) {
+                    cursors[msg.id] = createCursor(msg.id);
+                }
+                const c = cursors[msg.id];
+                c.el.style.left = (msg.x * window.innerWidth) + 'px';
+                c.el.style.top = (msg.y * document.documentElement.scrollHeight) + 'px';
+                c.el.style.opacity = '1';
+                c.lastSeen = Date.now();
+            }
+            if (msg.type === 'leave') {
+                removeCursor(msg.id);
+            }
+        };
+
+        ws.onclose = function() { setTimeout(connect, 3000); };
+        ws.onerror = function() { ws.close(); };
+    }
+
+    function createCursor(id) {
+        const el = document.createElement('div');
+        el.style.cssText = 'position:absolute;pointer-events:none;z-index:9999;transition:left 0.1s,top 0.1s;opacity:0;';
+        const color = COLORS[Math.abs(hashCode(id)) % COLORS.length];
+        el.innerHTML = '<svg width="16" height="20" viewBox="0 0 16 20"><path d="M0 0L16 12L8 12L12 20L8 18L4 12L0 16Z" fill="'+color+'" stroke="#fff" stroke-width="1"/></svg>';
+        document.body.appendChild(el);
+        return { el: el, lastSeen: Date.now() };
+    }
+
+    function removeCursor(id) {
+        if (cursors[id]) {
+            cursors[id].el.remove();
+            delete cursors[id];
+        }
+    }
+
+    function hashCode(s) {
+        let h = 0;
+        for (let i = 0; i < s.length; i++) h = ((h << 5) - h + s.charCodeAt(i)) | 0;
+        return h;
+    }
+
+    document.addEventListener('mousemove', function(e) {
+        const now = Date.now();
+        if (now - lastSend < THROTTLE_MS || !ws || ws.readyState !== 1) return;
+        lastSend = now;
+        ws.send(JSON.stringify({
+            type: 'move',
+            x: e.pageX / window.innerWidth,
+            y: e.pageY / document.documentElement.scrollHeight
+        }));
+    });
+
+    setInterval(function() {
+        const now = Date.now();
+        for (const id in cursors) {
+            if (now - cursors[id].lastSeen > CURSOR_TIMEOUT) removeCursor(id);
+        }
+    }, 2000);
+
+    connect();
+})();
+
 // Last.fm Logic
 document.addEventListener("DOMContentLoaded", () => {
     const POLLING_INTERVAL = 5000;
