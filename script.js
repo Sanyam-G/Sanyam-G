@@ -164,9 +164,23 @@ async function startReplay() {
     btn.disabled = false;
     btn.onclick = stopReplay;
 
+    // Group events by visitor ID and normalize each session to start at t=0
+    const sessions = {};
     events.forEach(({ t, msg }) => {
-        const timer = setTimeout(() => {
             const data = typeof msg === 'string' ? JSON.parse(msg) : msg;
+        if (!data.id) return;
+        if (!sessions[data.id]) sessions[data.id] = [];
+        sessions[data.id].push({ t, data });
+    });
+
+    let maxSessionLength = 0;
+
+    Object.values(sessions).forEach(session => {
+        const base = session[0].t;
+        session.forEach(({ t, data }) => {
+            const relT = t - base;
+            maxSessionLength = Math.max(maxSessionLength, relT);
+            const timer = setTimeout(() => {
             if (data.type === 'move') {
                 const key = 'ghost-' + data.id;
                 if (!ghostCursors[key]) {
@@ -187,14 +201,14 @@ async function startReplay() {
                 const key = 'ghost-' + data.id;
                 if (ghostCursors[key]) { ghostCursors[key].remove(); delete ghostCursors[key]; }
             }
-        }, t);
+            }, relT);
         replayTimers.push(timer);
+        });
     });
 
-    const maxT = events[events.length - 1]?.t || 0;
     replayTimers.push(setTimeout(() => {
         stopReplay();
-    }, maxT + 1500));
+    }, maxSessionLength + 1500));
 }
 
 function stopReplay() {
