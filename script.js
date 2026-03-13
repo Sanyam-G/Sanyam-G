@@ -47,6 +47,13 @@ document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
     })
 });
 
+// Country code -> flag emoji
+function countryFlag(code) {
+    if (!code || code.length !== 2) return '';
+    return [...code.toUpperCase()].map(c =>
+        String.fromCodePoint(c.charCodeAt(0) + 127397)).join('');
+}
+
 // Live cursors
 (function() {
     const WS_URL = 'wss://cursors.sanyamgarg.com';
@@ -72,7 +79,7 @@ document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
             }
             if (msg.type === 'move' && msg.id !== myId) {
                 if (!cursors[msg.id]) {
-                    cursors[msg.id] = createCursor(msg.id);
+                    cursors[msg.id] = createCursor(msg.id, msg.country);
                 }
                 const c = cursors[msg.id];
                 c.el.style.left = (msg.x * window.innerWidth) + 'px';
@@ -89,11 +96,13 @@ document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
         ws.onerror = function() { ws.close(); };
     }
 
-    function createCursor(id) {
+    function createCursor(id, country) {
         const el = document.createElement('div');
-        el.style.cssText = 'position:absolute;pointer-events:none;z-index:9999;transition:left 0.1s,top 0.1s;opacity:0;';
+        el.style.cssText = 'position:absolute;pointer-events:none;z-index:9999;transition:left 0.1s,top 0.1s;opacity:0;display:flex;align-items:center;gap:3px;';
         const color = COLORS[Math.abs(hashCode(id)) % COLORS.length];
-        el.innerHTML = '<svg width="16" height="20" viewBox="0 0 16 20"><path d="M0 0L16 12L8 12L12 20L8 18L4 12L0 16Z" fill="'+color+'" stroke="#fff" stroke-width="1"/></svg>';
+        const flag = countryFlag(country);
+        el.innerHTML = '<svg width="16" height="20" viewBox="0 0 16 20"><path d="M0 0L16 12L8 12L12 20L8 18L4 12L0 16Z" fill="'+color+'" stroke="#fff" stroke-width="1"/></svg>'
+            + (flag ? '<span style="font-size:12px">' + flag + '</span>' : '');
         document.body.appendChild(el);
         return { el: el, lastSeen: Date.now() };
     }
@@ -131,6 +140,75 @@ document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
 
     connect();
 })();
+
+// Ghost replay
+let replayTimers = [];
+let ghostCursors = {};
+
+async function startReplay() {
+    stopReplay();
+    const btn = document.getElementById('replay-btn');
+    btn.textContent = '⏳ Loading...';
+    btn.disabled = true;
+
+    const events = await fetch('https://cursors.sanyamgarg.com/replay')
+        .then(r => r.json()).catch(() => []);
+
+    if (!events || events.length === 0) {
+        btn.textContent = '👻 Watch this week\'s visitors';
+        btn.disabled = false;
+        return;
+    }
+
+    btn.textContent = '✕ Stop';
+    btn.disabled = false;
+    btn.onclick = stopReplay;
+
+    events.forEach(({ t, msg }) => {
+        const timer = setTimeout(() => {
+            const data = JSON.parse(msg);
+            if (data.type === 'move') {
+                const key = 'ghost-' + data.id;
+                if (!ghostCursors[key]) {
+                    const el = document.createElement('div');
+                    el.style.cssText = 'position:absolute;pointer-events:none;z-index:9998;transition:left 0.1s,top 0.1s;opacity:0;display:flex;align-items:center;gap:3px;';
+                    const flag = countryFlag(data.country);
+                    el.innerHTML = '<svg width="16" height="20" viewBox="0 0 16 20" style="opacity:0.35"><path d="M0 0L16 12L8 12L12 20L8 18L4 12L0 16Z" fill="#a9b1d6" stroke="#fff" stroke-width="1"/></svg>'
+                        + (flag ? '<span style="font-size:12px;opacity:0.5">' + flag + '</span>' : '');
+                    document.body.appendChild(el);
+                    ghostCursors[key] = el;
+                }
+                const el = ghostCursors[key];
+                el.style.left = (data.x * window.innerWidth) + 'px';
+                el.style.top = (data.y * document.documentElement.scrollHeight) + 'px';
+                el.style.opacity = '1';
+            }
+            if (data.type === 'leave') {
+                const key = 'ghost-' + data.id;
+                if (ghostCursors[key]) { ghostCursors[key].remove(); delete ghostCursors[key]; }
+            }
+        }, t);
+        replayTimers.push(timer);
+    });
+
+    const maxT = events[events.length - 1]?.t || 0;
+    replayTimers.push(setTimeout(() => {
+        stopReplay();
+    }, maxT + 1500));
+}
+
+function stopReplay() {
+    replayTimers.forEach(clearTimeout);
+    replayTimers = [];
+    Object.values(ghostCursors).forEach(el => el.remove());
+    ghostCursors = {};
+    const btn = document.getElementById('replay-btn');
+    if (btn) {
+        btn.textContent = '👻 Watch this week\'s visitors';
+        btn.disabled = false;
+        btn.onclick = startReplay;
+    }
+}
 
 // Last.fm Logic
 document.addEventListener("DOMContentLoaded", () => {
