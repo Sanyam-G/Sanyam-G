@@ -166,7 +166,7 @@ async function startReplay() {
 
     events.forEach(({ t, msg }) => {
         const timer = setTimeout(() => {
-            const data = JSON.parse(msg);
+            const data = typeof msg === 'string' ? JSON.parse(msg) : msg;
             if (data.type === 'move') {
                 const key = 'ghost-' + data.id;
                 if (!ghostCursors[key]) {
