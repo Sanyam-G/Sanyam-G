@@ -548,6 +548,18 @@ a:hover { color: var(--accent-secondary); }
 #projects-area { grid-area: projects; }
 #resume-area { grid-area: resume-area; }
 
+/* Book a Call Button */
+.book-call-section { margin-top: 1.5em; text-align: center; }
+.book-call-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.8em 2em; font-size: 0.95em; font-weight: 600; text-decoration: none;
+  border-radius: var(--border-radius-small);
+  background: var(--accent-secondary); color: var(--text-color-light);
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+.book-call-btn:hover { background: var(--accent-primary); transform: translateY(-2px); box-shadow: 0 .25rem .75rem var(--shadow-color-hover); }
+.book-call-btn i { margin-right: 0.5em; }
+
 /* 4. Resume Button Area */
 #resume-area { display: flex; align-items: center; justify-content: center; background: transparent; border: none; box-shadow: none; padding: 0; }
 .resume-button-large {
