@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sanyam Garg | UW–Madison Student Portfolio</title>
+  <title>Sanyam Garg</title>
   <meta name="description" content="Sanyam Garg - UW-Madison CS junior. I build backend systems, infrastructure, and developer tools. Go, Python, Docker, self-hosted servers." />
   <meta name="keywords" content="Sanyam Garg, UW-Madison, Computer Science, Backend Systems, Infrastructure, Go, Golang, Python, Docker, Self-Hosted, AirPipe, Sentinel, WebSocket, Cloudflare, Tailscale, FastAPI, React, Server Infrastructure, CLI Tools, Open Source, Software Engineer, Intern" />
   <meta name="google-site-verification" content="hjAc_Rh9TUSgsKK4-sjB36mPPkB74GsNaASZQ9zYTP4" />
   <meta name="author" content="Sanyam Garg" />
-  <meta property="og:title" content="Sanyam Garg | Backend Systems & Infrastructure" />
+  <meta property="og:title" content="Sanyam Garg" />
   <meta property="og:description" content="UW-Madison CS junior. I build backend systems, infrastructure, and developer tools. I run my own servers." />
   <meta property="og:image" content="https://sanyamgarg.com/assets/photo1.png" />
   <meta property="og:url" content="https://sanyamgarg.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@sanyamg_" />
-  <meta name="twitter:title" content="Sanyam Garg | Backend Systems & Infrastructure" />
+  <meta name="twitter:title" content="Sanyam Garg" />
   <meta name="twitter:description" content="UW-Madison CS junior. I build backend systems, infrastructure, and developer tools. I run my own servers." />
   <meta name="twitter:image" content="https://sanyamgarg.com/assets/photo1.png" />
   <link rel="canonical" href="https://sanyamgarg.com/" />
@@ -23,9 +23,28 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, push, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    const app = initializeApp({
+      apiKey: "AIzaSyBXnD06kQVVAGQbzPuiw2rwtXZYAeWNMWc",
+      authDomain: "blog-guestbook-9f19c.firebaseapp.com",
+      databaseURL: "https://blog-guestbook-9f19c-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "blog-guestbook-9f19c",
+      storageBucket: "blog-guestbook-9f19c.firebasestorage.app",
+      messagingSenderId: "1048608095926",
+      appId: "1:1048608095926:web:baeb4c90e45115fa9b3017"
+    });
+    const db = getDatabase(app);
+    window._fbRef = ref(db, 'guestbook');
+    window._fbPush = push;
+    window._fbQuery = query;
+    window._fbLimitToLast = limitToLast;
+    window._fbOnValue = onValue;
+    window.dispatchEvent(new Event('fb-ready'));
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -50,33 +69,45 @@
 </head>
 <body>
 
-<div class="page-content-container">
-
-  <section id="profile-area" class="grid-item profile-about-area card">
-    <div class="profile-header-area">
-      <img src="assets/photo1.png" alt="Profile Photo" class="profile-photo" />
-      <div class="profile-content-wrapper">
-          <div class="profile-details-block">
-            <h2 class="name"><strong>Sanyam Garg</strong></h2>
-            <p class="info"><strong>Age: <span id="age"></span></strong></p>
-            <p class="info"><strong>Madison, WI</strong></p>
-            <div id="clock" class="clock"></div>
-          </div>
-          <div class="nav-icons">
-            <a href="https://www.linkedin.com/in/sanyam-g/" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/Sanyam-G" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:sanyam@sanyamgarg.com" target="_blank"><i class="fas fa-envelope"></i></a>
-          </div>
+<!-- IDENTITY BAR -->
+<header class="identity-bar">
+  <div class="identity-left">
+    <img src="assets/photo1-sm.jpg" alt="Sanyam Garg" class="identity-photo" />
+    <div class="identity-meta">
+      <h1 class="identity-name">Sanyam Garg</h1>
+      <div class="identity-data">
+        <span class="data-label">Age</span><span id="age" class="data-value"></span>
+        <span class="data-label">Loc</span><span class="data-value">Madison, WI</span>
+        <span class="data-label">Time</span><span id="clock" class="data-value"></span>
       </div>
     </div>
-    <div class="profile-intro-fullwidth-block">
-      <p class="intro-paragraph">
-        UW–Madison junior studying Computer Science & Data Science. I build infrastructure, backend systems, and tools that solve problems I actually have.
-      </p>
+  </div>
+  <nav class="identity-links">
+    <a href="https://www.linkedin.com/in/sanyam-g/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Sanyam-G" target="_blank">GitHub</a>
+    <a href="#" class="copy-email" onclick="copyEmail(event)">Email</a>
+    <span class="link-sep"></span>
+    <a href="https://cal.sanyamgarg.com" target="_blank">Book a Call</a>
+    <span class="link-sep"></span>
+    <a href="https://blog.sanyamgarg.com" target="_blank">Blog &#8599;</a>
+    <a href="https://resume.sanyamgarg.com" target="_blank" class="resume-link">Resume &#8599;</a>
+  </nav>
+</header>
+
+<!-- CONTENT -->
+<div class="content-grid">
+
+  <!-- LEFT COLUMN -->
+  <div class="content-left">
+
+    <div class="section">
+      <span class="section-label" data-section>About</span>
+      <p class="intro-body" id="intro-text"></p>
     </div>
-    <div id="lastfm-container" class="music-info">
-      <i class="fas fa-music"></i>
-      <div class="track-details">
+
+    <div class="section now-playing" id="lastfm-container">
+      <span class="section-label" data-section><span class="np-status"></span> Now Playing</span>
+      <div class="track-info">
         <a href="#" id="lastfm-track-name" target="_blank" rel="noopener noreferrer"></a>
         <span id="lastfm-artist-name"></span>
         <div class="progress-bar-background">
@@ -85,229 +116,172 @@
       </div>
     </div>
 
-    <h2 class="section-heading">Education</h2>
-    <div class="uw-subcard">
-      <div class="subcard-header">
-        <div class="uw-logo-container">
-          <img src="assets/uw-crest.png" alt="UW Madison Crest" class="uw-crest-large" />
+    <div class="section">
+      <span class="section-label" data-section>Education</span>
+      <div class="edu-row">
+        <span class="data-value">University of Wisconsin-Madison</span>
+        <span class="data-secondary">B.Sc. Computer Science & Data Science</span>
+        <span class="data-secondary">Aug 2023 - Dec 2026</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <span class="section-label" data-section>Tools</span>
+      <div class="tools-grid">
+        <div class="tool-row">
+          <span class="tool-label">Lang</span>
+          <span class="tool-value"><span class="tool-item" title="Sentinel, scripts">Python</span>, <span class="tool-item" title="AirPipe, Drift">Go</span>, <span class="tool-item" title="OS coursework, xv6">C</span>, <span class="tool-item" title="Data structures">Java</span>, <span class="tool-item" title="Data analysis">SQL</span>, <span class="tool-item" title="Server automation">Bash</span></span>
         </div>
-        <div class="uw-header-text">
-          <h3 class="university-name"><strong>University of Wisconsin–Madison</strong></h3>
-          <p class="university-dates">Aug 2023 - Dec 2026</p>
+        <div class="tool-row">
+          <span class="tool-label">Backend</span>
+          <span class="tool-value"><span class="tool-item" title="Sentinel">FastAPI</span>, <span class="tool-item" title="CS 320">Flask</span>, <span class="tool-item" title="Century Financial">Node.js</span>, <span class="tool-item" title="CS 571">React</span>, <span class="tool-item" title="Sentinel, AirPipe">REST</span>, <span class="tool-item" title="AirPipe, Drift, Century">WebSocket</span></span>
+        </div>
+        <div class="tool-row">
+          <span class="tool-label">Infra</span>
+          <span class="tool-value"><span class="tool-item" title="All projects">Docker</span>, <span class="tool-item" title="All servers">Linux</span>, <span class="tool-item" title="Private Cloud VMs">Proxmox</span>, <span class="tool-item" title="Server mesh VPN">Tailscale</span>, <span class="tool-item" title="Tunnels, DNS, CDN">Cloudflare</span>, <span class="tool-item" title="Everything">Git</span></span>
         </div>
       </div>
-      <div class="subcard-body">
-        <div class="degrees-section">
-          <h4>Degrees</h4>
-          <div class="degree-badges-container">
-            <span class="degree-badge">Computer Science, B.Sc.</span>
-            <span class="degree-badge">Data Science, B.Sc.</span>
+    </div>
+
+    <div class="section">
+      <span class="section-label" data-section>Experience</span>
+      <div class="exp-list">
+        <div class="exp-entry">
+          <div class="exp-badge">
+            <img src="assets/uw-crest.png" alt="UW-Madison" class="exp-logo" />
+            <div class="exp-badge-text">
+              <div class="exp-header">
+                <span class="exp-role">Undergraduate Research Assistant</span>
+                <span class="exp-date">Jan 2026 - Present</span>
+              </div>
+              <span class="exp-org">WiNGS Lab, Prof. Suman Bannerjee - UW-Madison</span>
+            </div>
+          </div>
+          <p class="exp-desc">Indoor localization for HoloLens 2 headsets using Monte Carlo Localization on building floor plans. Edge computing for first-responder navigation.</p>
+          <div class="data-chips"><span class="data-chip">MCL</span><span class="data-chip">HoloLens 2</span><span class="data-chip">Particle Filters</span></div>
+        </div>
+        <div class="exp-entry">
+          <div class="exp-badge">
+            <img src="assets/century-logo.jpg" alt="Century Financial" class="exp-logo" />
+            <div class="exp-badge-text">
+              <div class="exp-header">
+                <span class="exp-role">AI & Backend Development Intern</span>
+                <span class="exp-date">Jun - Aug 2025</span>
+              </div>
+              <span class="exp-org">Century Financial - Dubai, UAE</span>
+            </div>
+          </div>
+          <p class="exp-desc">Built RAG-powered AI trading assistant. Built real-time co-browsing engine with DOM mirroring over WebSockets.</p>
+          <div class="data-chips"><span class="data-chip">MCP</span><span class="data-chip">RAG</span><span class="data-chip">WebSocket</span><span class="data-chip accent">$20k/yr saved</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div class="content-right">
+
+    <div class="section">
+      <span class="section-label" data-section>Projects</span>
+      <div class="project-list">
+
+        <div class="project-entry featured">
+          <div class="project-head">
+            <h3 class="project-name">AirPipe</h3>
+            <div class="project-tags">
+              <span class="tag">Go</span><span class="tag">WebSocket</span><span class="tag">NaCl</span><span class="tag">Docker</span>
+            </div>
+            <a href="https://github.com/Sanyam-G/Airpipe" target="_blank" class="project-ext">GitHub &#8599;</a>
+          </div>
+          <p class="project-desc">CLI file transfer. One command, one QR code. Zero-knowledge relay with NaCl encryption. Keys live in the URL fragment, server only touches ciphertext.</p>
+          <div class="project-stats">
+            <span class="stat"><span class="stat-val">50+</span> stars</span>
+            <span class="stat"><span class="stat-val">r/selfhosted</span> featured</span>
+            <span class="stat"><span class="stat-val">E2E</span> encrypted</span>
           </div>
         </div>
-        <div class="coursework-section">
-          <h4>Relevant Coursework</h4>
-          <div class="course-badges-container">
-            <span class="course-badge">Intro to Operating Systems</span>
-            <span class="course-badge">Machine Org. & Programming</span>
-            <span class="course-badge">Data Structures & Algorithms</span>
-            <span class="course-badge">Intro. to AI</span>
-            <span class="course-badge">Linear Algebra</span>
-            <span class="course-badge">Discrete Mathematics</span>
-            <span class="course-badge">Statistics</span>
+
+        <div class="project-entry alt">
+          <div class="project-head">
+            <h3 class="project-name">Drift</h3>
+            <div class="project-tags">
+              <span class="tag">Go</span><span class="tag">WebSocket</span>
+            </div>
+            <button id="replay-btn" onclick="startReplay()" class="project-ext">Replay &#8599;</button>
+          </div>
+          <p class="project-desc">The cursors you see on this page are real. Go WebSocket relay, GeoIP country flags, session recording with ghost replay. <span id="visitor-count" class="live-readout"></span></p>
+        </div>
+
+        <div class="project-entry">
+          <div class="project-head">
+            <h3 class="project-name">Sentinel</h3>
+            <div class="project-tags">
+              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Docker</span>
+            </div>
+            <a href="https://github.com/Sanyam-G/Sentinel" target="_blank" class="project-ext">GitHub &#8599;</a>
+            <a href="https://sentinel.sanyamgarg.com" target="_blank" class="project-ext">Live &#8599;</a>
+          </div>
+          <p class="project-desc">Real-time SSH attack monitor. Exposed a server to the internet, built a dashboard to watch bots hammer it. FastAPI tails syslog, geolocates IPs, Leaflet.js animates attacks live.</p>
+          <div class="project-stats">
+            <span id="sentinel-stats" class="live-readout"></span>
+          </div>
+        </div>
+
+        <div class="project-entry alt">
+          <div class="project-head">
+            <h3 class="project-name">Private Cloud</h3>
+            <div class="project-tags">
+              <span class="tag">Linux</span><span class="tag">Docker</span><span class="tag">Tailscale</span>
+            </div>
+            <a href="https://servers.sanyamgarg.com" target="_blank" class="project-ext">Network Map &#8599;</a>
+          </div>
+          <p class="project-desc">Bare-metal + VPS across two countries, meshed with Tailscale. Custom monitoring, automated backups behind Cloudflare Tunnels.</p>
+          <div class="project-stats">
+            <span class="stat"><span class="stat-val">20+</span> services</span>
+            <span class="stat"><span class="stat-val">2</span> countries</span>
+            <span class="stat"><span class="stat-val">$2k+/yr</span> saved</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section guestbook-section">
+      <span class="section-label" data-section>Guestbook</span>
+      <div id="gb-gallery" class="gb-gallery">
+        <div class="guestbook-loading">Loading stamps...</div>
+      </div>
+      <div class="gb-editor">
+        <div class="gb-editor-left">
+          <div class="gb-grid" id="gb-grid"></div>
+          <div class="gb-palette" id="gb-palette">
+            <div class="gb-swatch active" style="background:#1A1A1A" data-c="#1A1A1A"></div>
+            <div class="gb-swatch" style="background:#FF4F00" data-c="#FF4F00"></div>
+            <div class="gb-swatch" style="background:#3E46B8" data-c="#3E46B8"></div>
+            <div class="gb-swatch" style="background:#4CAF50" data-c="#4CAF50"></div>
+            <div class="gb-swatch" style="background:#F5F3EF" data-c="#F5F3EF"></div>
+          </div>
+        </div>
+        <div class="gb-editor-right">
+          <span class="gb-editor-label">Leave a stamp</span>
+          <input type="text" id="gb-name" class="gb-input" placeholder="Name" maxlength="30" />
+          <div class="gb-btn-row">
+            <button type="button" class="gb-btn-clear" onclick="clearStamp()">Clear</button>
+            <button type="button" class="project-ext gb-submit" onclick="submitStamp()">Stamp &#8599;</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="tools-section-in-profile">
-      <h2><strong>Tools</strong></h2>
-      <div class="tools-content-grid">
-        <div class="tool-category">
-          <h3><strong>Programming Languages</strong></h3>
-          <p><strong>Python, Go, C, Java, SQL, Bash</strong></p>
-        </div>
-        <div class="tool-category">
-          <h3><strong>Backend & Web</strong></h3>
-          <p><strong>FastAPI, Flask, Node.js, React, REST APIs, WebSocket, RAG</strong></p>
-        </div>
-        <div class="tool-category">
-          <h3><strong>Infrastructure</strong></h3>
-          <p><strong>Docker, Linux, Proxmox, Tailscale, Cloudflare Tunnels, Git</strong></p>
-        </div>
-      </div>
-    </div>
-    <div class="book-call-section">
-      <a href="https://cal.sanyamgarg.com" target="_blank" class="book-call-btn">
-        <i class="fas fa-calendar-alt"></i>
-        <strong>Book a Call</strong>
-      </a>
-    </div>
-  </section>
 
-  <section id="experiences-area" class="grid-item experiences-area card section-card-alt">
-    <h2>Experiences</h2>
-    <div class="experience-list">
-
-      <div class="experience-badge">
-        <div class="badge-header">
-          <div class="badge-logo-container">
-            <img src="assets/uw-crest.png" alt="UW Madison Crest" class="badge-logo" />
-          </div>
-          <div class="badge-header-text">
-            <h3 class="badge-title"><strong>WiNGS Lab, Prof. Suman Bannerjee (UW–Madison)</strong></h3>
-            <p class="badge-subtitle">Madison, WI | January 2026 - Present</p>
-          </div>
-        </div>
-        <div class="badge-body">
-          <h4>Undergraduate Research Assistant</h4>
-          <p class="experience-prose">
-            Got picked up by the <strong>Wireless and Networked Systems Lab</strong> to work on edge computing. Basically, making devices smarter without relying on the cloud. The work is focused on <span class="highlight">indoor localization for HoloLens 2 headsets</span> using Monte Carlo Localization on building floor plans. The idea is to help first responders and people in high-stakes situations map out a building in real time, know where they are, and stay connected with each other through their headsets.
-          </p>
-        </div>
-      </div>
-
-      <div class="experience-badge">
-        <div class="badge-header">
-          <div class="badge-logo-container">
-            <img src="Label-Century-Financial.jpg" alt="Century Financial Logo" class="badge-logo" />
-          </div>
-          <div class="badge-header-text">
-            <h3 class="badge-title"><strong>Century Financial</strong></h3>
-            <p class="badge-subtitle">Dubai, UAE | June 2025 - Aug 2025</p>
-          </div>
-        </div>
-        <div class="badge-body">
-          <h4>AI & Backend Development Intern</h4>
-          <p class="experience-prose">
-            Built two major things here. The first was an <span class="highlight">AI Trading Assistant</span>. I wrote the <strong>Python</strong> backend that connected OpenAI's API to a <strong>RAG system</strong> pulling live portfolio data, so users could ask the AI questions about their actual holdings. Used the <strong>Model Context Protocol (MCP)</strong> to orchestrate tool calls so the AI could securely read data and persist context across sessions.
-          </p>
-          <p class="experience-prose">
-            The second was a <span class="highlight">real-time co-browsing engine</span>. Instead of screen-sharing over video (slow, expensive), I built it with <strong>Node.js</strong> and <strong>WebSockets</strong> using <strong>DOM mirroring</strong>, which uses way less bandwidth. I also added <strong>client-side masking</strong> to redact sensitive financial data before it ever hit the network. That feature replaced a third-party tool and saved the firm <strong>$20,000+/year</strong>.
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="projects-area" class="grid-item projects-area card section-card-alt">
-    <h2>Projects</h2>
-    <div class="project-grid">
-
-      <div class="project-card">
-        <div class="project-header">
-          <h3>AirPipe – CLI File Transfer Tool</h3>
-          <a href="https://github.com/Sanyam-G/Airpipe" target="_blank" class="project-link-btn">GitHub</a>
-        </div>
-        <div class="project-meta">
-          <span><strong>Madison, WI | Personal Project</strong></span>
-          <span><strong>December 2025 – January 2026</strong></span>
-        </div>
-        <p>
-          I needed to move files between my servers and my phone without installing anything. So I built it. <span class="highlight">One command, one QR code, done.</span> Written in <strong>Go</strong>, it spins up a relay that your device connects to by just scanning.
-        </p>
-        <p>
-          The fun part: the relay is <strong>zero-knowledge</strong>. Encryption keys live in the URL fragment (never sent to the server), and everything is encrypted with <strong>NaCl secretbox (XSalsa20-Poly1305)</strong>. The relay only ever touches encrypted bytes. Open sourced it, got <strong>50+ GitHub stars</strong>, and it was featured on <strong>r/selfhosted</strong>.
-        </p>
-        <div class="project-skills-container">
-          <span class="degree-badge">Go</span>
-          <span class="degree-badge">WebSocket</span>
-          <span class="degree-badge">Cryptography</span>
-          <span class="degree-badge">Docker</span>
-          <span class="degree-badge">CLI</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <h3>Drift – Live Multiplayer Cursors</h3>
-          <a href="https://github.com/Sanyam-G/Drift" target="_blank" class="project-link-btn">GitHub</a>
-        </div>
-        <div class="project-meta">
-          <span><strong>Madison, WI | Personal Project</strong></span>
-          <span><strong>March 2026</strong></span>
-        </div>
-        <p>
-          You might be seeing other cursors on this page right now. That's <strong>Drift</strong>. A <strong>Go</strong> WebSocket relay broadcasts mouse positions to every visitor in real time, with <strong>GeoIP</strong> country detection and flag emoji cursors.
-        </p>
-        <p>
-          Sessions are recorded server-side. Hit the button below to replay this week's visitors as ghost cursors.
-        </p>
-        <div style="margin-top: 10px;">
-          <button id="replay-btn" onclick="startReplay()" class="project-link-btn" style="border:none;cursor:pointer;font-family:Montserrat,sans-serif;font-size:0.85rem;">
-            Watch this week's visitors
-          </button>
-        </div>
-        <div class="project-skills-container">
-          <span class="degree-badge">Go</span>
-          <span class="degree-badge">WebSocket</span>
-          <span class="degree-badge">JavaScript</span>
-          <span class="degree-badge">Docker</span>
-          <span class="degree-badge">GeoIP</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <h3>Sentinel – Real-Time Threat Monitor</h3>
-          <a href="https://github.com/Sanyam-G/Sentinel" target="_blank" class="project-link-btn">GitHub</a>
-          <a href="https://sentinel.sanyamgarg.com" target="_blank" class="project-link-btn">View Dashboard</a>
-        </div>
-        <div class="project-meta">
-          <span><strong>Dubai, UAE | Personal Project</strong></span>
-          <span><strong>October 2025 – January 2026</strong></span>
-        </div>
-        <p>
-          I exposed my server's SSH to the internet just to see what would happen. Within minutes, bots from all over the world were hammering it with credentials like <span class="highlight">"root:admin"</span>. So naturally, I built a dashboard to watch it happen live.
-        </p>
-        <p>
-          The backend is a <strong>Python (FastAPI)</strong> pipeline that tails system logs over SSH, extracts attacker IPs, geolocates them, and serves it all through a <strong>REST API</strong> that the frontend polls every 1.5 seconds. Deployed with <strong>Docker</strong> and <strong>Cloudflare Tunnels</strong>. The map uses <strong>Leaflet.js</strong> to animate each attack as it lands. It's weirdly mesmerizing.
-        </p>
-        <div class="project-skills-container">
-          <span class="degree-badge">Python</span>
-          <span class="degree-badge">FastAPI</span>
-          <span class="degree-badge">Docker</span>
-          <span class="degree-badge">Cloudflare</span>
-          <span class="degree-badge">SQLite</span>
-          <span class="degree-badge">Security</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-header">
-          <h3>Private Cloud & Server</h3>
-          <a href="https://servers.sanyamgarg.com" target="_blank" class="project-link-btn">Network Map</a>
-        </div>
-        <div class="project-meta">
-          <span><strong>Dubai, UAE & Madison, WI | Personal Project</strong></span>
-          <span><strong>March 2025 – December 2025</strong></span>
-        </div>
-        <p>
-          I didn't want to rent someone else's computer for everything, so I built my own cloud. It's a <strong>hybrid-cloud</strong> setup with <span class="highlight">cloud VPS + bare-metal Linux boxes</span> in two countries, stitched together with a <strong>Tailscale</strong> mesh network.
-        </p>
-        <p>
-          Currently running <strong>20+ services</strong> in <strong>Docker</strong>: media automation, dev tools, monitoring, you name it. Public access goes through <strong>Cloudflare Tunnels</strong> so my IP stays hidden. Wrote my own monitoring in <strong>Python</strong> and automated daily <strong>Bash/Cron</strong> backups to an off-site location. It's basically my playground for learning infrastructure by actually running it.
-        </p>
-        <div class="project-skills-container">
-          <span class="degree-badge">Linux</span>
-          <span class="degree-badge">Docker</span>
-          <span class="degree-badge">Tailscale</span>
-          <span class="degree-badge">Cloudflare</span>
-          <span class="degree-badge">Bash</span>
-          <span class="degree-badge">Python</span>
-        </div>
-      </div>
-
-  </section>
-
-  <section id="resume-area" class="grid-item">
-    <a href="https://resume.sanyamgarg.com" target="_blank" class="resume-button-large">
-      <i class="fas fa-file-alt"></i>
-      <strong>View Full Resume</strong>
-    </a>
-  </section>
+  </div>
 
 </div>
 
+<footer class="status-bar">
+  <span>sanyamgarg.com · apr 2026 · built from scratch</span>
+  <span class="status-shortcuts"><kbd>r</kbd> resume · <kbd>g</kbd> github · <kbd>e</kbd> email</span>
+</footer>
 
 <script src="script.js"></script>
 </body>
