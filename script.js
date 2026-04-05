@@ -17,18 +17,15 @@ function updateClock() {
     const clockEl = document.getElementById("clock");
     if (clockEl) {
         const now = new Date();
-        const options = {
-            hour: "2-digit",
-            minute: "2-digit",
+        const hm = now.toLocaleTimeString("en-US", {
+            hour: "2-digit", minute: "2-digit",
+            timeZone: "America/Chicago", hour12: true
+        });
+        const sec = now.toLocaleTimeString("en-US", {
             second: "2-digit",
-            timeZone: "America/Chicago",
-            hour12: true
-        };
-        try {
-            clockEl.textContent = now.toLocaleTimeString("en-US", options) + " CT"
-        } catch (e) {
-            clockEl.textContent = "Time N/A"
-        }
+            timeZone: "America/Chicago", hour12: false
+        }).slice(-2);
+        clockEl.innerHTML = hm + ':<span class="clock-sec">' + sec + '</span> CT';
     }
 }
 updateClock();
@@ -46,6 +43,197 @@ document.querySelectorAll('.nav-right a[href^="#"]').forEach(anchor => {
         }
     })
 });
+
+// Copy email to clipboard
+function copyEmail(e) {
+    if (e) e.preventDefault();
+    navigator.clipboard.writeText('sanyam@sanyamgarg.com').then(() => {
+        const link = document.querySelector('.copy-email');
+        if (!link) return;
+        let tip = link.querySelector('.copy-tooltip');
+        if (!tip) {
+            tip = document.createElement('span');
+            tip.className = 'copy-tooltip';
+            link.appendChild(tip);
+        }
+        tip.textContent = 'Copied!';
+        tip.classList.add('show');
+        link.classList.add('flash');
+        setTimeout(() => {
+            tip.classList.remove('show');
+            link.classList.remove('flash');
+        }, 1500);
+    });
+}
+
+// Keyboard shortcuts
+document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    switch(e.key.toLowerCase()) {
+        case 'r': window.open('https://resume.sanyamgarg.com', '_blank'); break;
+        case 'g': window.open('https://github.com/Sanyam-G', '_blank'); break;
+        case 'e': copyEmail(null); break;
+    }
+});
+
+// Typing effect on intro
+(function() {
+    const text = "UW\u2013Madison junior studying Computer Science & Data Science. I build infrastructure, backend systems, and tools that solve problems I actually have.";
+    const el = document.getElementById('intro-text');
+    if (!el) return;
+    let i = 0;
+    const speed = 18;
+    function type() {
+        if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        } else {
+            setTimeout(() => el.classList.add('done'), 1500);
+        }
+    }
+    type();
+})();
+
+// Guestbook (pixel stamps via Firebase, shared with blog.sanyamgarg.com)
+(function() {
+    const grid = document.getElementById('gb-grid');
+    const palette = document.getElementById('gb-palette');
+    if (!grid || !palette) return;
+
+    let paintColor = '#1A1A1A';
+    let pixels = new Array(100).fill('#F5F3EF');
+
+    // Build 10x10 grid
+    for (let i = 0; i < 100; i++) {
+        const p = document.createElement('div');
+        p.className = 'pixel';
+        p.dataset.i = i;
+        p.addEventListener('mousedown', () => paint(i, p));
+        p.addEventListener('mouseenter', (e) => { if (e.buttons === 1) paint(i, p); });
+        grid.appendChild(p);
+    }
+
+    // Touch support
+    grid.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const t = e.touches[0];
+        const el = document.elementFromPoint(t.clientX, t.clientY);
+        if (el && el.classList.contains('pixel')) paint(parseInt(el.dataset.i), el);
+    }, { passive: false });
+
+    grid.addEventListener('touchstart', (e) => {
+        const t = e.touches[0];
+        const el = document.elementFromPoint(t.clientX, t.clientY);
+        if (el && el.classList.contains('pixel')) paint(parseInt(el.dataset.i), el);
+    }, { passive: true });
+
+    function paint(i, el) {
+        pixels[i] = paintColor;
+        el.style.backgroundColor = paintColor;
+    }
+
+    // Palette
+    palette.querySelectorAll('.gb-swatch').forEach(s => {
+        s.addEventListener('click', () => {
+            palette.querySelector('.active').classList.remove('active');
+            s.classList.add('active');
+            paintColor = s.dataset.c;
+        });
+    });
+
+    // Clear
+    window.clearStamp = function() {
+        pixels.fill('#F5F3EF');
+        Array.from(grid.children).forEach(p => p.style.backgroundColor = '');
+    };
+
+    // Submit
+    window.submitStamp = function() {
+        const name = document.getElementById('gb-name').value.trim();
+        if (!name) { document.getElementById('gb-name').focus(); return; }
+        if (pixels.every(c => c === '#F5F3EF')) return;
+
+        if (!window._fbRef || !window._fbPush) return;
+
+        const btn = document.querySelector('.gb-submit');
+        btn.textContent = '...';
+        btn.disabled = true;
+
+        window._fbPush(window._fbRef, pixels).then(() => {
+            clearStamp();
+            btn.innerHTML = 'Stamp &#8599;';
+            btn.disabled = false;
+        }).catch(() => {
+            btn.innerHTML = 'Stamp &#8599;';
+            btn.disabled = false;
+        });
+    };
+
+    // Load gallery from Firebase (real-time)
+    function renderGallery(data) {
+        const gallery = document.getElementById('gb-gallery');
+        if (!gallery) return;
+        if (!data) { gallery.innerHTML = '<div class="gb-empty">No stamps yet. Be the first.</div>'; return; }
+        gallery.innerHTML = '';
+        Object.values(data).reverse().forEach(art => {
+            const stamp = document.createElement('div');
+            stamp.className = 'gb-stamp';
+            const g = document.createElement('div');
+            g.className = 'gb-stamp-grid';
+            art.forEach(c => {
+                const d = document.createElement('div');
+                d.className = 'gp';
+                d.style.backgroundColor = c;
+                g.appendChild(d);
+            });
+            stamp.appendChild(g);
+            gallery.appendChild(stamp);
+        });
+    }
+
+    function initFirebaseGallery() {
+        if (!window._fbRef) return;
+        const q = window._fbQuery(window._fbRef, window._fbLimitToLast(30));
+        window._fbOnValue(q, (snapshot) => renderGallery(snapshot.val()));
+    }
+
+    if (window._fbRef) {
+        initFirebaseGallery();
+    } else {
+        window.addEventListener('fb-ready', initFirebaseGallery);
+    }
+})();
+
+// Sentinel live stats
+(function() {
+    const el = document.getElementById('sentinel-stats');
+    if (!el) return;
+    function update() {
+        fetch('https://sentinel.sanyamgarg.com/api/stats')
+            .then(r => r.json())
+            .then(data => {
+                el.textContent = data.total.toLocaleString() + ' attacks · ' + data.unique_ips + ' IPs · ' + data.unique_countries + ' countries · last hour';
+            })
+            .catch(() => {});
+    }
+    update();
+    setInterval(update, 30000);
+})();
+
+// Dynamic section numbering (skips hidden sections)
+function numberSections() {
+    const labels = document.querySelectorAll('[data-section]');
+    let n = 1;
+    labels.forEach(label => {
+        const section = label.closest('.section');
+        if (section && (section.offsetParent === null || section.style.display === 'none')) return;
+        label.dataset.num = String(n).padStart(2, '0');
+        n++;
+    });
+}
+numberSections();
 
 // Country code -> flag emoji
 function countryFlag(code) {
@@ -80,6 +268,7 @@ function countryFlag(code) {
             if (msg.type === 'move' && msg.id !== myId) {
                 if (!cursors[msg.id]) {
                     cursors[msg.id] = createCursor(msg.id, msg.country);
+                    updateVisitorCount();
                 }
                 const c = cursors[msg.id];
                 c.el.style.left = (msg.x * window.innerWidth) + 'px';
@@ -111,6 +300,18 @@ function countryFlag(code) {
         if (cursors[id]) {
             cursors[id].el.remove();
             delete cursors[id];
+        }
+        updateVisitorCount();
+    }
+
+    function updateVisitorCount() {
+        const el = document.getElementById('visitor-count');
+        if (!el) return;
+        const others = Object.keys(cursors).length;
+        if (others > 0) {
+            el.textContent = (others + 1) + ' people on this page right now';
+        } else {
+            el.textContent = '';
         }
     }
 
@@ -273,17 +474,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, PROGRESS_UPDATE_INTERVAL);
 
                 lastFmContainer.style.display = 'flex';
+                numberSections();
             } else {
                 lastFmContainer.style.display = 'none';
+                numberSections();
                 if (progressInterval) clearInterval(progressInterval);
             }
         } catch (error) {
             console.error('Error fetching from proxy:', error);
             lastFmContainer.style.display = 'none';
+            numberSections();
             if (progressInterval) clearInterval(progressInterval);
         }
     }
 
     fetchLastFmTrack();
     setInterval(fetchLastFmTrack, POLLING_INTERVAL);
+});
+
+// Stagger load animation
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('.section, .identity-bar, .status-bar');
+    sections.forEach((el, i) => {
+        el.classList.add('stagger');
+        el.style.animationDelay = (i * 60) + 'ms';
+    });
 });
