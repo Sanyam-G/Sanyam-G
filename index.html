@@ -4,13 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sanyam Garg | UW–Madison Student Portfolio</title>
-  <meta name="description" content="Sanyam Garg's official portfolio website. UW–Madison student specializing in AI/Machine Learning, Backend Systems, and practical tech development." />
-  <meta name="keywords" content="Sanyam Garg, UW-Madison, Computer Science, Data Science, AI, Machine Learning, Backend Systems, Software Development, Portfolio, Projects, Python, C, PyTorch, Flask, Flutter, React, Node.js, Distributed Systems, Web Development, Internship, Data, Software" />
+  <meta name="description" content="Sanyam Garg - UW-Madison CS junior. I build backend systems, infrastructure, and developer tools. Go, Python, Docker, self-hosted servers." />
+  <meta name="keywords" content="Sanyam Garg, UW-Madison, Computer Science, Backend Systems, Infrastructure, Go, Golang, Python, Docker, Self-Hosted, AirPipe, Sentinel, WebSocket, Cloudflare, Tailscale, FastAPI, React, Server Infrastructure, CLI Tools, Open Source, Software Engineer, Intern" />
   <meta name="google-site-verification" content="hjAc_Rh9TUSgsKK4-sjB36mPPkB74GsNaASZQ9zYTP4" />
-  <meta property="og:image" content="assets/photo1.png" />
+  <meta name="author" content="Sanyam Garg" />
+  <meta property="og:title" content="Sanyam Garg | Backend Systems & Infrastructure" />
+  <meta property="og:description" content="UW-Madison CS junior. I build backend systems, infrastructure, and developer tools. I run my own servers." />
+  <meta property="og:image" content="https://sanyamgarg.com/assets/photo1.png" />
+  <meta property="og:url" content="https://sanyamgarg.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@sanyamg_" />
+  <meta name="twitter:title" content="Sanyam Garg | Backend Systems & Infrastructure" />
+  <meta name="twitter:description" content="UW-Madison CS junior. I build backend systems, infrastructure, and developer tools. I run my own servers." />
+  <meta name="twitter:image" content="https://sanyamgarg.com/assets/photo1.png" />
+  <link rel="canonical" href="https://sanyamgarg.com/" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Sanyam Garg",
+    "url": "https://sanyamgarg.com",
+    "image": "https://sanyamgarg.com/assets/photo1.png",
+    "jobTitle": "Computer Science Student",
+    "email": "sanyam@sanyamgarg.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/sanyam-g/",
+      "https://github.com/Sanyam-G",
+      "https://x.com/sanyamg_"
+    ],
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of Wisconsin-Madison"
+    },
+    "knowsAbout": ["Go", "Python", "Backend Systems", "Docker", "Server Infrastructure", "WebSocket", "Self-Hosting"]
+  }
+  </script>
 </head>
 <body>
 
@@ -90,10 +126,12 @@
           <p><strong>Python, Go, C, Java, SQL, Bash</strong></p>
         </div>
         <div class="tool-category">
-          <h3><strong>DevOps & Infrastructure</strong></h3>
-          <p>
-            <strong>Git, Docker, Tailscale, Linux, Cloudflare Tunnels, Flask, Node.js, Firebase, REST APIs, WebSocket, CI/CD, Containerization, GCP</strong>
-          </p>
+          <h3><strong>Backend & Web</strong></h3>
+          <p><strong>FastAPI, Flask, Node.js, React, REST APIs, WebSocket, RAG</strong></p>
+        </div>
+        <div class="tool-category">
+          <h3><strong>Infrastructure</strong></h3>
+          <p><strong>Docker, Linux, Proxmox, Tailscale, Cloudflare Tunnels, Git</strong></p>
         </div>
       </div>
     </div>
@@ -176,7 +214,35 @@
           <span class="degree-badge">Cryptography</span>
           <span class="degree-badge">Docker</span>
           <span class="degree-badge">CLI</span>
-          <span class="degree-badge">Python</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <h3>Drift – Live Multiplayer Cursors</h3>
+          <a href="https://github.com/Sanyam-G/Drift" target="_blank" class="project-link-btn">GitHub</a>
+        </div>
+        <div class="project-meta">
+          <span><strong>Madison, WI | Personal Project</strong></span>
+          <span><strong>March 2026</strong></span>
+        </div>
+        <p>
+          You might be seeing other cursors on this page right now. That's <strong>Drift</strong>. A <strong>Go</strong> WebSocket relay broadcasts mouse positions to every visitor in real time, with <strong>GeoIP</strong> country detection and flag emoji cursors.
+        </p>
+        <p>
+          Sessions are recorded server-side. Hit the button below to replay this week's visitors as ghost cursors.
+        </p>
+        <div style="margin-top: 10px;">
+          <button id="replay-btn" onclick="startReplay()" class="project-link-btn" style="border:none;cursor:pointer;font-family:Montserrat,sans-serif;font-size:0.85rem;">
+            Watch this week's visitors
+          </button>
+        </div>
+        <div class="project-skills-container">
+          <span class="degree-badge">Go</span>
+          <span class="degree-badge">WebSocket</span>
+          <span class="degree-badge">JavaScript</span>
+          <span class="degree-badge">Docker</span>
+          <span class="degree-badge">GeoIP</span>
         </div>
       </div>
 
@@ -242,14 +308,6 @@
 
 </div>
 
-<button id="replay-btn" onclick="startReplay()" style="
-    position:fixed;bottom:20px;right:20px;z-index:10000;
-    background:#1a1b26;color:#a9b1d6;border:1px solid #414868;
-    border-radius:8px;padding:8px 14px;font-size:13px;
-    cursor:pointer;font-family:Montserrat,sans-serif;
-    box-shadow:0 2px 8px rgba(0,0,0,0.4);">
-    👻 Watch this week's visitors
-</button>
 
 <script src="script.js"></script>
 </body>
