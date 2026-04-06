@@ -431,6 +431,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const PROGRESS_UPDATE_INTERVAL = 500;
 
     const lastFmContainer = document.getElementById('lastfm-container');
+    const currentlyContainer = document.getElementById('currently-container');
     const trackNameEl = document.getElementById('lastfm-track-name');
     const artistNameEl = document.getElementById('lastfm-artist-name');
     const progressBarEl = document.getElementById('progress-bar-foreground');
@@ -474,15 +475,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, PROGRESS_UPDATE_INTERVAL);
 
                 lastFmContainer.style.display = 'flex';
+                if (currentlyContainer) currentlyContainer.style.display = 'none';
                 numberSections();
             } else {
                 lastFmContainer.style.display = 'none';
+                if (currentlyContainer) currentlyContainer.style.display = '';
                 numberSections();
                 if (progressInterval) clearInterval(progressInterval);
             }
         } catch (error) {
             console.error('Error fetching from proxy:', error);
             lastFmContainer.style.display = 'none';
+            if (currentlyContainer) currentlyContainer.style.display = '';
             numberSections();
             if (progressInterval) clearInterval(progressInterval);
         }
