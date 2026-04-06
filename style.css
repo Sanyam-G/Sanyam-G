@@ -56,16 +56,17 @@ a:hover { color: var(--accent); }
 }
 
 .identity-photo {
-  width: 72px;
-  height: 72px;
+  width: 88px;
+  height: 88px;
   object-fit: cover;
   border: 1px solid var(--border);
   filter: grayscale(100%);
-  transition: filter 0.4s ease;
+  transition: filter 0.4s ease, border-color 0.3s;
 }
 
 .identity-photo:hover {
   filter: grayscale(0%);
+  border-color: var(--accent);
 }
 
 .identity-meta {
@@ -261,6 +262,66 @@ a:hover { color: var(--accent); }
 .clock-sec {
   display: inline-block;
   animation: tickFade 1s ease-in-out;
+}
+
+/* =========================================
+   CURRENTLY (favorite song / now reading)
+   ========================================= */
+.currently-section {
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  position: relative;
+}
+
+.currently-section .section-label {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: var(--bg);
+  padding: 0 6px;
+  border-bottom: none;
+  margin-bottom: 0;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+}
+
+.currently-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.currently-type {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-secondary);
+  flex-shrink: 0;
+}
+
+.currently-value {
+  font-family: var(--sans);
+  font-size: var(--text-sm);
+  color: var(--fg);
+  font-weight: 500;
+}
+
+.currently-value a {
+  color: var(--fg);
+  border-bottom: 1px dotted var(--border);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.currently-value a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.currently-secondary {
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  color: var(--fg-secondary);
 }
 
 /* =========================================
@@ -495,17 +556,24 @@ a:hover { color: var(--accent); }
 }
 
 .project-entry {
-  padding: 16px 0;
+  padding: 16px 12px;
   border-bottom: 1px solid var(--border);
+  margin: 0 -12px;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  border-radius: 2px;
 }
 
-.project-entry:first-child { padding-top: 0; }
+.project-entry:hover {
+  background: rgba(0,0,0,0.025);
+  transform: translateY(-1px);
+}
+
+.project-entry:first-child { padding-top: 12px; }
 .project-entry:last-child { border-bottom: none; }
 
 .project-entry.featured {
   border-left: 2px solid var(--accent);
   padding-left: 14px;
-  margin-left: -14px;
 }
 
 .project-head {
@@ -597,9 +665,10 @@ a:hover { color: var(--accent); }
 /* Alternating project rows */
 .project-entry.alt {
   background: rgba(0,0,0,0.015);
-  margin: 0 -14px;
-  padding-left: 14px;
-  padding-right: 14px;
+}
+
+.project-entry.alt:hover {
+  background: rgba(0,0,0,0.035);
 }
 
 /* Data chips (experience) */
@@ -944,8 +1013,8 @@ a:hover { color: var(--accent); }
   .gb-input { width: 100%; }
 
   .identity-photo {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
   }
 
   .identity-name {
