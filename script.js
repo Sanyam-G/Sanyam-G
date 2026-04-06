@@ -244,7 +244,8 @@ function countryFlag(code) {
 
 // Live cursors
 (function() {
-    const WS_URL = 'wss://cursors.sanyamgarg.com';
+    const isOwner = localStorage.getItem('drift-owner') === '1';
+    const WS_URL = 'wss://cursors.sanyamgarg.com' + (isOwner ? '?norecord=1' : '');
     const THROTTLE_MS = 50;
     const CURSOR_TIMEOUT = 10000;
     const COLORS = ['#f7768e','#ff9e64','#e0af68','#9ece6a','#7dcfff','#7aa2f7','#bb9af7','#f7768e'];
