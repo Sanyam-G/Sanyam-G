@@ -195,8 +195,7 @@ document.addEventListener('keydown', function(e) {
 
     function initFirebaseGallery() {
         if (!window._fbRef) return;
-        const q = window._fbQuery(window._fbRef, window._fbLimitToLast(30));
-        window._fbOnValue(q, (snapshot) => renderGallery(snapshot.val()));
+        window._fbOnValue(window._fbRef, (snapshot) => renderGallery(snapshot.val()));
     }
 
     if (window._fbRef) {
