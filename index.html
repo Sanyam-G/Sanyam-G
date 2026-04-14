@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="style.css" />
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getDatabase, ref, push, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
     const app = initializeApp({
       apiKey: "AIzaSyBXnD06kQVVAGQbzPuiw2rwtXZYAeWNMWc",
       authDomain: "blog-guestbook-9f19c.firebaseapp.com",
@@ -40,8 +40,6 @@
     const db = getDatabase(app);
     window._fbRef = ref(db, 'guestbook');
     window._fbPush = push;
-    window._fbQuery = query;
-    window._fbLimitToLast = limitToLast;
     window._fbOnValue = onValue;
     window.dispatchEvent(new Event('fb-ready'));
   </script>
