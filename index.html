@@ -292,9 +292,40 @@
 
 <footer class="status-bar">
   <span>sanyamgarg.com · apr 2026 · built from scratch</span>
+  <span class="status-visitor">visitor #<span id="visitor-num">...</span></span>
   <span class="status-shortcuts"><kbd>r</kbd> resume · <kbd>g</kbd> github · <kbd>e</kbd> email</span>
 </footer>
 
 <script src="script.js?v=2"></script>
+
+<script>
+(function() {
+  var countEl = document.getElementById("visitor-num");
+  if (!countEl) return;
+  var dbUrl = "https://blog-guestbook-9f19c-default-rtdb.asia-southeast1.firebasedatabase.app";
+  var countPath = "/main_visitor_count.json";
+  var TTL_MS = 12 * 60 * 60 * 1000;
+  var last = parseInt(localStorage.getItem("sg_visit_ts") || "0", 10);
+  var shouldIncrement = !last || (Date.now() - last) >= TTL_MS;
+  if (!shouldIncrement) {
+    fetch(dbUrl + countPath)
+      .then(function(r){return r.json()})
+      .then(function(n){countEl.textContent = (n || 0).toLocaleString()})
+      .catch(function(){countEl.textContent = "?"});
+  } else {
+    fetch(dbUrl + countPath)
+      .then(function(r){return r.json()})
+      .then(function(c){
+        var n = (c || 0) + 1;
+        return fetch(dbUrl + countPath, {method: "PUT", body: JSON.stringify(n)}).then(function(){return n});
+      })
+      .then(function(n){
+        countEl.textContent = n.toLocaleString();
+        localStorage.setItem("sg_visit_ts", String(Date.now()));
+      })
+      .catch(function(){countEl.textContent = "?"});
+  }
+})();
+</script>
 </body>
 </html>
