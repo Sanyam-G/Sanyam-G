@@ -173,7 +173,6 @@ document.addEventListener('keydown', function(e) {
     };
 
     // Load gallery from Firebase (real-time)
-    const isOwner = localStorage.getItem('drift-owner') === '1';
     function renderGallery(data) {
         const gallery = document.getElementById('gb-gallery');
         if (!gallery) return;
@@ -194,7 +193,7 @@ document.addEventListener('keydown', function(e) {
                 g.appendChild(d);
             });
             stamp.appendChild(g);
-            if (name && isOwner) {
+            if (name) {
                 const label = document.createElement('div');
                 label.className = 'gb-stamp-name';
                 label.textContent = name;
