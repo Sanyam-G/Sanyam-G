@@ -161,7 +161,8 @@ document.addEventListener('keydown', function(e) {
         btn.textContent = '...';
         btn.disabled = true;
 
-        window._fbPush(window._fbRef, pixels).then(() => {
+        window._fbPush(window._fbRef, { name: name, pixels: pixels, ts: Date.now() }).then(() => {
+            document.getElementById('gb-name').value = '';
             clearStamp();
             btn.innerHTML = 'Stamp &#8599;';
             btn.disabled = false;
@@ -177,7 +178,10 @@ document.addEventListener('keydown', function(e) {
         if (!gallery) return;
         if (!data) { gallery.innerHTML = '<div class="gb-empty">No stamps yet. Be the first.</div>'; return; }
         gallery.innerHTML = '';
-        Object.values(data).reverse().forEach(art => {
+        Object.values(data).reverse().forEach(entry => {
+            const art = Array.isArray(entry) ? entry : entry.pixels;
+            const name = Array.isArray(entry) ? null : entry.name;
+            if (!art) return;
             const stamp = document.createElement('div');
             stamp.className = 'gb-stamp';
             const g = document.createElement('div');
@@ -189,6 +193,12 @@ document.addEventListener('keydown', function(e) {
                 g.appendChild(d);
             });
             stamp.appendChild(g);
+            if (name) {
+                const label = document.createElement('div');
+                label.className = 'gb-stamp-name';
+                label.textContent = name;
+                stamp.appendChild(label);
+            }
             gallery.appendChild(stamp);
         });
     }
