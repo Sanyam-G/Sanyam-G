@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "guestbook": {
+      ".read": true,
+      ".write": "auth != null && auth.uid === '7aBJ5B8JqBgoyYewVqDb2nGGpS83'"
+    },
+    "guestbook_pending": {
+      ".read": true,
+      "$id": {
+        ".write": "(!data.exists() && newData.hasChild('pixels')) || (auth != null && auth.uid === '7aBJ5B8JqBgoyYewVqDb2nGGpS83')",
+        ".validate": "newData.hasChild('pixels') || !newData.exists()"
+      }
+    },
+    "main_visitor_count": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}

@@ -102,8 +102,15 @@ document.addEventListener('keydown', function(e) {
     const palette = document.getElementById('gb-palette');
     if (!grid || !palette) return;
 
+    const ADMIN_HASH = 'e7825154f47cc7fd221c47e4ed733bf03b5c687390ac6e3a6a5eefd8ba76ce8b';
+    const MY_PENDING_KEY = 'gb-my-pending';
+    const ADMIN_FLAG_KEY = 'sg-admin';
+
     let paintColor = '#1A1A1A';
     let pixels = new Array(100).fill('#F5F3EF');
+    let approvedData = null;
+    let pendingData = null;
+    let isAdmin = false;
 
     // Build 10x10 grid
     for (let i = 0; i < 100; i++) {
@@ -115,7 +122,6 @@ document.addEventListener('keydown', function(e) {
         grid.appendChild(p);
     }
 
-    // Touch support
     grid.addEventListener('touchmove', (e) => {
         e.preventDefault();
         const t = e.touches[0];
@@ -134,7 +140,6 @@ document.addEventListener('keydown', function(e) {
         el.style.backgroundColor = paintColor;
     }
 
-    // Palette
     palette.querySelectorAll('.gb-swatch').forEach(s => {
         s.addEventListener('click', () => {
             palette.querySelector('.active').classList.remove('active');
@@ -143,76 +148,211 @@ document.addEventListener('keydown', function(e) {
         });
     });
 
-    // Clear
     window.clearStamp = function() {
         pixels.fill('#F5F3EF');
         Array.from(grid.children).forEach(p => p.style.backgroundColor = '');
     };
 
-    // Submit
-    window.submitStamp = function() {
+    async function sha256Hex(str) {
+        const buf = new TextEncoder().encode(str);
+        const digest = await crypto.subtle.digest('SHA-256', buf);
+        return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function readMyPending() {
+        try { return JSON.parse(localStorage.getItem(MY_PENDING_KEY) || '[]'); } catch(e) { return []; }
+    }
+    function writeMyPending(arr) {
+        try { localStorage.setItem(MY_PENDING_KEY, JSON.stringify(arr.slice(-20))); } catch(e) {}
+    }
+
+    window.submitStamp = async function() {
         const name = document.getElementById('gb-name').value.trim();
         if (!name) { document.getElementById('gb-name').focus(); return; }
         if (pixels.every(c => c === '#F5F3EF')) return;
-
-        if (!window._fbRef || !window._fbPush) return;
+        if (!window._fbPendingRef || !window._fbPush) return;
 
         const btn = document.querySelector('.gb-submit');
         btn.textContent = '...';
         btn.disabled = true;
 
-        window._fbPush(window._fbRef, { name: name, pixels: pixels, ts: Date.now() }).then(() => {
+        const payload = pixels.map(c => c.toLowerCase()).join('|') + '::' + name.toLowerCase();
+        try {
+            const h = await sha256Hex(payload);
+            if (h === ADMIN_HASH) {
+                btn.innerHTML = 'Stamp &#8599;';
+                btn.disabled = false;
+                clearStamp();
+                document.getElementById('gb-name').value = '';
+                promptAdminLogin();
+                return;
+            }
+        } catch(e) {}
+
+        window._fbPush(window._fbPendingRef, { name: name, pixels: pixels, ts: Date.now() }).then((result) => {
+            const id = result.key;
+            if (id) {
+                const mine = readMyPending();
+                mine.push(id);
+                writeMyPending(mine);
+            }
             document.getElementById('gb-name').value = '';
             clearStamp();
             btn.innerHTML = 'Stamp &#8599;';
             btn.disabled = false;
+            rerender();
         }).catch(() => {
             btn.innerHTML = 'Stamp &#8599;';
             btn.disabled = false;
         });
     };
 
-    // Load gallery from Firebase (real-time)
-    function renderGallery(data) {
+    function makeStampEl(entry, id, bucket) {
+        const art = Array.isArray(entry) ? entry : entry.pixels;
+        const name = Array.isArray(entry) ? null : entry.name;
+        if (!art) return null;
+        const stamp = document.createElement('div');
+        stamp.className = 'gb-stamp';
+        if (bucket === 'pending') stamp.classList.add('gb-stamp-pending');
+        const g = document.createElement('div');
+        g.className = 'gb-stamp-grid';
+        art.forEach(c => {
+            const d = document.createElement('div');
+            d.className = 'gp';
+            d.style.backgroundColor = c;
+            g.appendChild(d);
+        });
+        stamp.appendChild(g);
+        if (name) {
+            const label = document.createElement('div');
+            label.className = 'gb-stamp-name';
+            label.textContent = name + (bucket === 'pending' ? ' (pending)' : '');
+            stamp.appendChild(label);
+        }
+        if (isAdmin) {
+            const actions = document.createElement('div');
+            actions.className = 'gb-stamp-actions';
+            if (bucket === 'pending') {
+                const approve = document.createElement('button');
+                approve.textContent = 'approve';
+                approve.onclick = () => adminApprove(id, entry);
+                const reject = document.createElement('button');
+                reject.textContent = 'reject';
+                reject.onclick = () => adminReject(id);
+                actions.appendChild(approve);
+                actions.appendChild(reject);
+            } else {
+                const del = document.createElement('button');
+                del.textContent = 'delete';
+                del.onclick = () => adminDelete(id);
+                actions.appendChild(del);
+            }
+            stamp.appendChild(actions);
+        }
+        return stamp;
+    }
+
+    function rerender() {
         const gallery = document.getElementById('gb-gallery');
         if (!gallery) return;
-        if (!data) { gallery.innerHTML = '<div class="gb-empty">No stamps yet. Be the first.</div>'; return; }
         gallery.innerHTML = '';
-        Object.values(data).reverse().forEach(entry => {
-            const art = Array.isArray(entry) ? entry : entry.pixels;
-            const name = Array.isArray(entry) ? null : entry.name;
-            if (!art) return;
-            const stamp = document.createElement('div');
-            stamp.className = 'gb-stamp';
-            const g = document.createElement('div');
-            g.className = 'gb-stamp-grid';
-            art.forEach(c => {
-                const d = document.createElement('div');
-                d.className = 'gp';
-                d.style.backgroundColor = c;
-                g.appendChild(d);
-            });
-            stamp.appendChild(g);
-            if (name) {
-                const label = document.createElement('div');
-                label.className = 'gb-stamp-name';
-                label.textContent = name;
-                stamp.appendChild(label);
-            }
-            gallery.appendChild(stamp);
+
+        const mine = readMyPending();
+        const showPending = isAdmin ? Object.keys(pendingData || {}) : mine.filter(id => pendingData && pendingData[id]);
+
+        showPending.slice().reverse().forEach(id => {
+            const entry = (pendingData || {})[id];
+            if (!entry) return;
+            const el = makeStampEl(entry, id, 'pending');
+            if (el) gallery.appendChild(el);
         });
+
+        if (approvedData) {
+            Object.entries(approvedData).reverse().forEach(([id, entry]) => {
+                const el = makeStampEl(entry, id, 'approved');
+                if (el) gallery.appendChild(el);
+            });
+        }
+
+        if (!gallery.children.length) {
+            gallery.innerHTML = '<div class="gb-empty">No stamps yet. Be the first.</div>';
+        }
+
+        // Clean stale localStorage pending (no longer in DB)
+        if (pendingData !== null && approvedData !== null) {
+            const stale = mine.filter(id => !(pendingData && pendingData[id]));
+            if (stale.length) writeMyPending(mine.filter(id => pendingData && pendingData[id]));
+        }
     }
 
-    function initFirebaseGallery() {
-        if (!window._fbRef) return;
-        window._fbOnValue(window._fbRef, (snapshot) => renderGallery(snapshot.val()));
+    function promptAdminLogin() {
+        const email = prompt('Admin email:');
+        if (!email) return;
+        const pwd = prompt('Password:');
+        if (!pwd) return;
+        if (!window._fbAuth || !window._fbSignIn) return;
+        window._fbSignIn(window._fbAuth, email, pwd)
+            .catch(err => alert('Login failed: ' + (err.code || err.message)));
     }
 
-    if (window._fbRef) {
-        initFirebaseGallery();
-    } else {
-        window.addEventListener('fb-ready', initFirebaseGallery);
+    function adminApprove(id, entry) {
+        if (!isAdmin) return;
+        const approvedNode = window._fbRefFn(window._fbDb, 'guestbook/' + id);
+        const pendingNode = window._fbRefFn(window._fbDb, 'guestbook_pending/' + id);
+        window._fbSet(approvedNode, entry)
+            .then(() => window._fbRemove(pendingNode))
+            .catch(err => alert('Approve failed: ' + err.message));
     }
+    function adminReject(id) {
+        if (!isAdmin) return;
+        const pendingNode = window._fbRefFn(window._fbDb, 'guestbook_pending/' + id);
+        window._fbRemove(pendingNode).catch(err => alert('Reject failed: ' + err.message));
+    }
+    function adminDelete(id) {
+        if (!isAdmin) return;
+        if (!confirm('Delete this stamp?')) return;
+        const approvedNode = window._fbRefFn(window._fbDb, 'guestbook/' + id);
+        window._fbRemove(approvedNode).catch(err => alert('Delete failed: ' + err.message));
+    }
+
+    window.exitAdminMode = function() {
+        localStorage.removeItem(ADMIN_FLAG_KEY);
+        if (window._fbAuth && window._fbSignOut) window._fbSignOut(window._fbAuth);
+    };
+
+    function ensureAdminBadge() {
+        if (document.querySelector('.sg-admin-badge')) return;
+        const b = document.createElement('button');
+        b.className = 'sg-admin-badge';
+        b.textContent = 'ADMIN · exit';
+        b.onclick = () => window.exitAdminMode();
+        document.body.appendChild(b);
+    }
+
+    function setAdminState(on) {
+        isAdmin = on;
+        if (on) {
+            localStorage.setItem(ADMIN_FLAG_KEY, '1');
+            document.body.classList.add('sg-admin-active');
+            ensureAdminBadge();
+        } else {
+            localStorage.removeItem(ADMIN_FLAG_KEY);
+            document.body.classList.remove('sg-admin-active');
+        }
+        rerender();
+    }
+
+    function initFirebase() {
+        if (!window._fbApprovedRef) return;
+        window._fbOnValue(window._fbApprovedRef, (snap) => { approvedData = snap.val(); rerender(); });
+        window._fbOnValue(window._fbPendingRef, (snap) => { pendingData = snap.val(); rerender(); });
+        if (window._fbAuth && window._fbOnAuth) {
+            window._fbOnAuth(window._fbAuth, (user) => setAdminState(!!user));
+        }
+    }
+
+    if (window._fbApprovedRef) initFirebase();
+    else window.addEventListener('fb-ready', initFirebase);
 })();
 
 // Sentinel live stats
@@ -254,7 +394,9 @@ function countryFlag(code) {
 // Live cursors
 (function() {
     const isOwner = localStorage.getItem('drift-owner') === '1';
-    const WS_URL = 'wss://cursors.sanyamgarg.com' + (isOwner ? '?norecord=1' : '');
+    const isAdmin = localStorage.getItem('sg-admin') === '1';
+    const noRecord = isOwner || isAdmin;
+    const WS_URL = 'wss://cursors.sanyamgarg.com' + (noRecord ? '?norecord=1' : '');
     const THROTTLE_MS = 50;
     const CURSOR_TIMEOUT = 10000;
     const COLORS = ['#f7768e','#ff9e64','#e0af68','#9ece6a','#7dcfff','#7aa2f7','#bb9af7','#f7768e'];
