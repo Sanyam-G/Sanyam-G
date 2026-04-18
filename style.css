@@ -808,6 +808,53 @@ a:hover { color: var(--accent); }
   color: var(--border);
 }
 
+.gb-stamp-pending .gb-stamp-grid {
+  outline: 1px dashed var(--accent, #FF4F00);
+  opacity: 0.75;
+}
+.gb-stamp-pending .gb-stamp-name {
+  font-style: italic;
+  color: var(--accent, #FF4F00);
+  max-width: 60px;
+}
+
+.gb-stamp-actions {
+  display: none;
+  flex-direction: row;
+  gap: 2px;
+  margin-top: 2px;
+}
+body.sg-admin-active .gb-stamp-actions { display: flex; }
+.gb-stamp-actions button {
+  font-family: var(--mono);
+  font-size: 0.45rem;
+  padding: 1px 3px;
+  background: var(--fg);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+}
+.gb-stamp-actions button:hover { opacity: 0.8; }
+
+.sg-admin-badge {
+  display: none;
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  background: var(--accent, #FF4F00);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 3px 6px;
+  z-index: 99999;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  border: none;
+}
+body.sg-admin-active .sg-admin-badge { display: inline-block; }
+.sg-admin-badge:hover { opacity: 0.85; }
+
 /* Editor */
 .gb-editor {
   display: flex;

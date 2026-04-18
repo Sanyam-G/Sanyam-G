@@ -27,7 +27,8 @@
   <link rel="stylesheet" href="style.css" />
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { getDatabase, ref, push, onValue, remove, set, child, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
     const app = initializeApp({
       apiKey: "AIzaSyBXnD06kQVVAGQbzPuiw2rwtXZYAeWNMWc",
       authDomain: "blog-guestbook-9f19c.firebaseapp.com",
@@ -38,9 +39,23 @@
       appId: "1:1048608095926:web:baeb4c90e45115fa9b3017"
     });
     const db = getDatabase(app);
-    window._fbRef = ref(db, 'guestbook');
+    const auth = getAuth(app);
+    setPersistence(auth, browserLocalPersistence).catch(() => {});
+    window._fbApprovedRef = ref(db, 'guestbook');
+    window._fbPendingRef = ref(db, 'guestbook_pending');
+    window._fbRef = window._fbApprovedRef;
+    window._fbDb = db;
+    window._fbRefFn = ref;
     window._fbPush = push;
     window._fbOnValue = onValue;
+    window._fbRemove = remove;
+    window._fbSet = set;
+    window._fbChild = child;
+    window._fbGet = get;
+    window._fbAuth = auth;
+    window._fbSignIn = signInWithEmailAndPassword;
+    window._fbSignOut = signOut;
+    window._fbOnAuth = onAuthStateChanged;
     window.dispatchEvent(new Event('fb-ready'));
   </script>
   <script type="application/ld+json">
