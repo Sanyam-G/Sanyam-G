@@ -348,24 +348,132 @@ document.addEventListener('keydown', function(e) {
         }, 30);
     }
 
+    function ensureConfirmModal() {
+        let modal = document.getElementById('sg-confirm-modal');
+        if (modal) return modal;
+        modal = document.createElement('div');
+        modal.id = 'sg-confirm-modal';
+        modal.innerHTML =
+            '<div class="sg-confirm-inner" role="dialog" aria-modal="true">' +
+            '<div class="sg-confirm-header"></div>' +
+            '<div class="sg-confirm-message"></div>' +
+            '<div class="sg-confirm-preview"></div>' +
+            '<div class="sg-confirm-actions">' +
+            '<button type="button" class="sg-confirm-cancel">cancel</button>' +
+            '<button type="button" class="sg-confirm-ok">confirm</button>' +
+            '</div>' +
+            '</div>';
+        document.body.appendChild(modal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) hideConfirm(); });
+        return modal;
+    }
+
+    let activeConfirmHandler = null;
+
+    function hideConfirm() {
+        const modal = document.getElementById('sg-confirm-modal');
+        if (!modal) return;
+        modal.classList.remove('open');
+        if (activeConfirmHandler) {
+            document.removeEventListener('keydown', activeConfirmHandler);
+            activeConfirmHandler = null;
+        }
+    }
+
+    function showConfirm(opts) {
+        const modal = ensureConfirmModal();
+        modal.querySelector('.sg-confirm-header').textContent = opts.header || 'confirm';
+        modal.querySelector('.sg-confirm-message').textContent = opts.message || '';
+        const previewSlot = modal.querySelector('.sg-confirm-preview');
+        previewSlot.innerHTML = '';
+        if (opts.preview) {
+            previewSlot.appendChild(opts.preview);
+            previewSlot.style.display = 'flex';
+        } else {
+            previewSlot.style.display = 'none';
+        }
+        const ok = modal.querySelector('.sg-confirm-ok');
+        const cancel = modal.querySelector('.sg-confirm-cancel');
+        ok.textContent = opts.okLabel || 'confirm';
+        cancel.textContent = opts.cancelLabel || 'cancel';
+        ok.classList.toggle('danger', !!opts.danger);
+
+        ok.onclick = () => { hideConfirm(); if (opts.onConfirm) opts.onConfirm(); };
+        cancel.onclick = () => { hideConfirm(); if (opts.onCancel) opts.onCancel(); };
+
+        if (activeConfirmHandler) document.removeEventListener('keydown', activeConfirmHandler);
+        activeConfirmHandler = (e) => {
+            if (e.key === 'Escape') { e.preventDefault(); cancel.click(); }
+            if (e.key === 'Enter')  { e.preventDefault(); ok.click(); }
+        };
+        document.addEventListener('keydown', activeConfirmHandler);
+
+        modal.classList.add('open');
+        setTimeout(() => ok.focus(), 30);
+    }
+
+    function makePreview(entry) {
+        if (!entry) return null;
+        const art = Array.isArray(entry) ? entry : entry.pixels;
+        const name = Array.isArray(entry) ? null : entry.name;
+        if (!art) return null;
+        const wrap = document.createElement('div');
+        wrap.className = 'sg-confirm-stamp';
+        const g = document.createElement('div');
+        g.className = 'gb-stamp-grid';
+        art.forEach(c => {
+            const d = document.createElement('div');
+            d.className = 'gp';
+            d.style.backgroundColor = c;
+            g.appendChild(d);
+        });
+        wrap.appendChild(g);
+        if (name) {
+            const label = document.createElement('div');
+            label.className = 'gb-stamp-name';
+            label.textContent = name;
+            wrap.appendChild(label);
+        }
+        return wrap;
+    }
+
     function adminApprove(id, entry) {
         if (!isAdmin) return;
         const approvedNode = window._fbRefFn(window._fbDb, 'guestbook/' + id);
         const pendingNode = window._fbRefFn(window._fbDb, 'guestbook_pending/' + id);
         window._fbSet(approvedNode, entry)
             .then(() => window._fbRemove(pendingNode))
-            .catch(err => alert('Approve failed: ' + err.message));
+            .catch(err => showConfirm({ header: 'approve failed', message: err.message || 'unknown error', okLabel: 'ok', cancelLabel: '' }));
     }
     function adminReject(id) {
         if (!isAdmin) return;
-        const pendingNode = window._fbRefFn(window._fbDb, 'guestbook_pending/' + id);
-        window._fbRemove(pendingNode).catch(err => alert('Reject failed: ' + err.message));
+        const entry = (pendingData || {})[id];
+        showConfirm({
+            header: 'reject pending stamp',
+            message: 'This stamp will not be shown publicly.',
+            preview: makePreview(entry),
+            okLabel: 'reject',
+            danger: true,
+            onConfirm: () => {
+                const pendingNode = window._fbRefFn(window._fbDb, 'guestbook_pending/' + id);
+                window._fbRemove(pendingNode).catch(err => showConfirm({ header: 'reject failed', message: err.message || 'unknown error', okLabel: 'ok', cancelLabel: '' }));
+            }
+        });
     }
     function adminDelete(id) {
         if (!isAdmin) return;
-        if (!confirm('Delete this stamp?')) return;
-        const approvedNode = window._fbRefFn(window._fbDb, 'guestbook/' + id);
-        window._fbRemove(approvedNode).catch(err => alert('Delete failed: ' + err.message));
+        const entry = (approvedData || {})[id];
+        showConfirm({
+            header: 'delete stamp',
+            message: 'This removes the stamp from the public gallery.',
+            preview: makePreview(entry),
+            okLabel: 'delete',
+            danger: true,
+            onConfirm: () => {
+                const approvedNode = window._fbRefFn(window._fbDb, 'guestbook/' + id);
+                window._fbRemove(approvedNode).catch(err => showConfirm({ header: 'delete failed', message: err.message || 'unknown error', okLabel: 'ok', cancelLabel: '' }));
+            }
+        });
     }
 
     window.exitAdminMode = function() {
