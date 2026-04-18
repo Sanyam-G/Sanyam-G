@@ -285,14 +285,67 @@ document.addEventListener('keydown', function(e) {
         }
     }
 
-    function promptAdminLogin() {
-        const email = prompt('Admin email:');
-        if (!email) return;
-        const pwd = prompt('Password:');
-        if (!pwd) return;
+    function ensureLoginModal() {
+        let modal = document.getElementById('sg-admin-modal');
+        if (modal) return modal;
+        modal = document.createElement('div');
+        modal.id = 'sg-admin-modal';
+        modal.innerHTML =
+            '<div class="sg-admin-modal-inner" role="dialog" aria-modal="true">' +
+            '<div class="sg-admin-modal-header">admin</div>' +
+            '<input type="email" id="sg-admin-email" placeholder="email" autocomplete="username" />' +
+            '<input type="password" id="sg-admin-password" placeholder="password" autocomplete="current-password" />' +
+            '<div class="sg-admin-modal-err" aria-live="polite"></div>' +
+            '<div class="sg-admin-modal-actions">' +
+            '<button type="button" id="sg-admin-cancel">cancel</button>' +
+            '<button type="button" id="sg-admin-login">sign in</button>' +
+            '</div>' +
+            '</div>';
+        document.body.appendChild(modal);
+        document.getElementById('sg-admin-cancel').addEventListener('click', hideLoginModal);
+        document.getElementById('sg-admin-login').addEventListener('click', doAdminLogin);
+        modal.addEventListener('click', (e) => { if (e.target === modal) hideLoginModal(); });
+        modal.querySelectorAll('input').forEach(i => {
+            i.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); doAdminLogin(); }
+                if (e.key === 'Escape') hideLoginModal();
+            });
+        });
+        return modal;
+    }
+
+    function hideLoginModal() {
+        const modal = document.getElementById('sg-admin-modal');
+        if (!modal) return;
+        modal.classList.remove('open');
+        modal.querySelectorAll('input').forEach(i => i.value = '');
+        const err = modal.querySelector('.sg-admin-modal-err');
+        if (err) err.textContent = '';
+    }
+
+    function doAdminLogin() {
+        const email = (document.getElementById('sg-admin-email') || {}).value;
+        const pwd = (document.getElementById('sg-admin-password') || {}).value;
+        const err = document.querySelector('.sg-admin-modal-err');
+        if (!email || !pwd) { if (err) err.textContent = 'email and password required'; return; }
         if (!window._fbAuth || !window._fbSignIn) return;
-        window._fbSignIn(window._fbAuth, email, pwd)
-            .catch(err => alert('Login failed: ' + (err.code || err.message)));
+        if (err) err.textContent = 'signing in...';
+        const loginBtn = document.getElementById('sg-admin-login');
+        if (loginBtn) loginBtn.disabled = true;
+        window._fbSignIn(window._fbAuth, email.trim(), pwd)
+            .then(() => { hideLoginModal(); })
+            .catch(e => {
+                if (err) err.textContent = 'failed: ' + (e.code || e.message || 'unknown');
+            })
+            .finally(() => { if (loginBtn) loginBtn.disabled = false; });
+    }
+
+    function promptAdminLogin() {
+        ensureLoginModal().classList.add('open');
+        setTimeout(() => {
+            const emailInput = document.getElementById('sg-admin-email');
+            if (emailInput) emailInput.focus();
+        }, 30);
     }
 
     function adminApprove(id, entry) {
