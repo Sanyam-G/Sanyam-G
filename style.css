@@ -929,6 +929,92 @@ body.sg-admin-active .sg-admin-badge { display: inline-block; }
 }
 #sg-admin-cancel:hover { background: var(--fg, #1A1A1A); color: var(--bg, #F5F3EF); }
 
+#sg-confirm-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.55);
+  z-index: 100000;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+#sg-confirm-modal.open { display: flex; }
+.sg-confirm-inner {
+  background: var(--bg, #F5F3EF);
+  color: var(--fg, #1A1A1A);
+  border: 1px solid var(--border, #1A1A1A);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 260px;
+  max-width: 340px;
+  width: 100%;
+  font-family: var(--mono);
+  box-shadow: 6px 6px 0 rgba(26, 26, 26, 0.15);
+}
+.sg-confirm-header {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--accent, #FF4F00);
+  text-transform: uppercase;
+}
+.sg-confirm-message {
+  font-size: 0.75rem;
+  line-height: 1.45;
+}
+.sg-confirm-preview {
+  display: none;
+  justify-content: center;
+  padding: 8px 0;
+}
+.sg-confirm-stamp {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+.sg-confirm-stamp .gb-stamp-grid {
+  width: 80px;
+  height: 80px;
+}
+.sg-confirm-stamp .gb-stamp-name {
+  font-size: 0.65rem;
+  max-width: 80px;
+}
+.sg-confirm-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 4px;
+}
+.sg-confirm-actions button {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  padding: 6px 12px;
+  border: 1px solid var(--fg, #1A1A1A);
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+.sg-confirm-cancel {
+  background: transparent;
+  color: var(--fg, #1A1A1A);
+}
+.sg-confirm-cancel:hover { background: var(--fg, #1A1A1A); color: var(--bg, #F5F3EF); }
+.sg-confirm-ok {
+  background: var(--fg, #1A1A1A);
+  color: var(--bg, #F5F3EF);
+}
+.sg-confirm-ok:hover:not(:disabled) { background: var(--accent, #FF4F00); border-color: var(--accent, #FF4F00); }
+.sg-confirm-ok.danger {
+  background: #c0392b;
+  border-color: #c0392b;
+  color: #fff;
+}
+.sg-confirm-ok.danger:hover:not(:disabled) { background: #a52c20; border-color: #a52c20; }
+
 /* Editor */
 .gb-editor {
   display: flex;
