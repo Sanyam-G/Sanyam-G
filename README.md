@@ -7,6 +7,7 @@ I build backend systems, infrastructure, and tools that solve problems I actuall
 
 ## Highlights
 
+*   **Systems Analyst Intern (Incoming), [Idea Fund of La Crosse](https://ideafundvc.com/):** Building AI agents and automation tooling for operations across 25+ portfolio companies. Starts May 2026.
 *   **Research Assistant, [WiNGS Lab](https://wingslab.cs.wisc.edu/) (UW-Madison):** Building a Monte Carlo Localization system for HoloLens 2 headsets, placing first responders on indoor floor plans using particle filters, VLM scene understanding, and OCR room detection.
 *   **AI & Backend Engineering Intern (Century Financial, Dubai):** Built the Python backend for an AI trading assistant using OpenAI's API with RAG and MCP for autonomous tool chaining. Built a real-time co-browsing engine with Node.js and WebSockets, replacing a $20k/year vendor tool.
 *   **Private Cloud Infrastructure:** Run a hybrid-cloud server network across Dubai, Buffalo, and Madison. 20+ Dockerized services, Tailscale mesh VPN, Cloudflare Tunnels. Saves $2k+/year vs cloud hosting. [servers.sanyamgarg.com](https://servers.sanyamgarg.com)
