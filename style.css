@@ -784,13 +784,6 @@ a:hover { color: var(--accent); }
   aspect-ratio: 1;
 }
 
-.gb-stamp-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  width: 60px;
-}
-
 .gb-stamp-name {
   font-family: var(--mono);
   font-size: 0.5rem;
@@ -799,13 +792,7 @@ a:hover { color: var(--accent); }
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 38px;
-}
-
-.gb-stamp-time {
-  font-family: var(--mono);
-  font-size: 0.45rem;
-  color: var(--border);
+  max-width: 60px;
 }
 
 .gb-stamp-pending .gb-stamp-grid {
@@ -815,7 +802,6 @@ a:hover { color: var(--accent); }
 .gb-stamp-pending .gb-stamp-name {
   font-style: italic;
   color: var(--accent, #FF4F00);
-  max-width: 60px;
 }
 
 .gb-stamp-actions {
