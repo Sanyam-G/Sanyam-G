@@ -593,7 +593,7 @@ function countryFlag(code) {
                 removeCursor(msg.id);
                 removeHalo(msg.id);
             }
-            if (msg.type === 'point' && msg.id !== myId) {
+            if (msg.type === 'point') {
                 showHalo(msg.id, msg.sel, 0);
             }
             if (msg.type === 'pin' && msg.id !== myId) {
