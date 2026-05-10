@@ -591,6 +591,13 @@ function countryFlag(code) {
             }
             if (msg.type === 'leave') {
                 removeCursor(msg.id);
+                removeHalo(msg.id);
+            }
+            if (msg.type === 'point' && msg.id !== myId) {
+                showHalo(msg.id, msg.sel, 0);
+            }
+            if (msg.type === 'pin' && msg.id !== myId) {
+                showPin(msg.sel, msg.ttl || 8000);
             }
         };
 
@@ -651,6 +658,127 @@ function countryFlag(code) {
             if (now - cursors[id].lastSeen > CURSOR_TIMEOUT) removeCursor(id);
         }
     }, 2000);
+
+    // ---- Presenter mode ----
+    let presenterOn = false;
+    let lastPointSent = 0;
+    const POINT_THROTTLE = 120;
+    let presenterIndicator = null;
+    const halos = {};
+
+    function selectorFor(el) {
+        if (!el || el === document.body || el === document.documentElement) return null;
+        if (el.classList && (el.classList.contains('drift-halo') || el.classList.contains('drift-pin'))) return null;
+        const parts = [];
+        let cur = el;
+        while (cur && cur.nodeType === 1 && cur !== document.body) {
+            let s = cur.tagName.toLowerCase();
+            if (cur.id) { parts.unshift(s + '#' + CSS.escape(cur.id)); break; }
+            const parent = cur.parentNode;
+            if (!parent) break;
+            const sibs = [...parent.children].filter(c => c.tagName === cur.tagName);
+            if (sibs.length > 1) s += ':nth-of-type(' + (sibs.indexOf(cur) + 1) + ')';
+            parts.unshift(s);
+            cur = parent;
+        }
+        return parts.length ? parts.join(' > ') : null;
+    }
+
+    function showHalo(id, sel, ttl) {
+        const target = document.querySelector(sel);
+        if (!target) return;
+        const rect = target.getBoundingClientRect();
+        let h = halos[id];
+        if (!h) {
+            const el = document.createElement('div');
+            el.className = 'drift-halo';
+            el.style.cssText = 'position:absolute;pointer-events:none;z-index:9997;border:2px solid #7aa2f7;border-radius:4px;box-shadow:0 0 0 4px rgba(122,162,247,0.18),0 0 24px rgba(122,162,247,0.4);transition:left 0.12s,top 0.12s,width 0.12s,height 0.12s,opacity 0.2s;opacity:0;';
+            document.body.appendChild(el);
+            h = halos[id] = { el: el, timeout: null };
+        }
+        h.el.style.left = (rect.left + window.scrollX) + 'px';
+        h.el.style.top = (rect.top + window.scrollY) + 'px';
+        h.el.style.width = rect.width + 'px';
+        h.el.style.height = rect.height + 'px';
+        h.el.style.opacity = '1';
+        if (h.timeout) clearTimeout(h.timeout);
+        const fadeMs = ttl > 0 ? ttl : 1500;
+        h.timeout = setTimeout(function() {
+            h.el.style.opacity = '0';
+            setTimeout(function() {
+                if (halos[id] === h) { h.el.remove(); delete halos[id]; }
+            }, 250);
+        }, fadeMs);
+    }
+
+    function removeHalo(id) {
+        const h = halos[id];
+        if (!h) return;
+        if (h.timeout) clearTimeout(h.timeout);
+        h.el.remove();
+        delete halos[id];
+    }
+
+    function showPin(sel, ttl) {
+        const target = document.querySelector(sel);
+        if (!target) return;
+        const rect = target.getBoundingClientRect();
+        const el = document.createElement('div');
+        el.className = 'drift-pin';
+        el.style.cssText = 'position:absolute;pointer-events:none;z-index:9996;border:2px solid #ff9e64;border-radius:4px;box-shadow:0 0 0 4px rgba(255,158,100,0.2),0 0 32px rgba(255,158,100,0.5);transition:opacity 0.3s;opacity:0;';
+        el.style.left = (rect.left + window.scrollX) + 'px';
+        el.style.top = (rect.top + window.scrollY) + 'px';
+        el.style.width = rect.width + 'px';
+        el.style.height = rect.height + 'px';
+        document.body.appendChild(el);
+        requestAnimationFrame(function() { el.style.opacity = '1'; });
+        setTimeout(function() {
+            el.style.opacity = '0';
+            setTimeout(function() { el.remove(); }, 350);
+        }, ttl);
+    }
+
+    function togglePresenter() {
+        if (!isAdmin) return;
+        presenterOn = !presenterOn;
+        if (presenterOn) {
+            presenterIndicator = document.createElement('div');
+            presenterIndicator.style.cssText = 'position:fixed;bottom:12px;right:12px;background:#7aa2f7;color:#1a1b26;font:11px/1 monospace;padding:6px 10px;border-radius:3px;z-index:10001;letter-spacing:0.05em;';
+            presenterIndicator.textContent = 'PRESENTING · shift+P off · click to pin';
+            document.body.appendChild(presenterIndicator);
+        } else {
+            if (presenterIndicator) { presenterIndicator.remove(); presenterIndicator = null; }
+        }
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (!isAdmin) return;
+        if (e.shiftKey && (e.key === 'P' || e.key === 'p')) {
+            e.preventDefault();
+            togglePresenter();
+        }
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (!presenterOn || !ws || ws.readyState !== 1) return;
+        const now = Date.now();
+        if (now - lastPointSent < POINT_THROTTLE) return;
+        lastPointSent = now;
+        const el = document.elementFromPoint(e.clientX, e.clientY);
+        const sel = selectorFor(el);
+        if (sel) ws.send(JSON.stringify({ type: 'point', sel: sel }));
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!presenterOn || !ws || ws.readyState !== 1) return;
+        const el = document.elementFromPoint(e.clientX, e.clientY);
+        const sel = selectorFor(el);
+        if (!sel) return;
+        e.preventDefault();
+        e.stopPropagation();
+        ws.send(JSON.stringify({ type: 'pin', sel: sel, ttl: 8000 }));
+        showPin(sel, 8000);
+    }, true);
 
     connect();
 })();
