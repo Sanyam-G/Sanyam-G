@@ -584,8 +584,20 @@ function countryFlag(code) {
                     updateVisitorCount();
                 }
                 const c = cursors[msg.id];
-                c.el.style.left = (msg.x * window.innerWidth) + 'px';
-                c.el.style.top = (msg.y * document.documentElement.scrollHeight) + 'px';
+                let leftPx, topPx;
+                const target = msg.sel ? document.querySelector(msg.sel) : null;
+                if (target) {
+                    const r = target.getBoundingClientRect();
+                    const ox = typeof msg.ox === 'number' ? msg.ox : 0.5;
+                    const oy = typeof msg.oy === 'number' ? msg.oy : 0.5;
+                    leftPx = r.left + window.scrollX + ox * r.width;
+                    topPx = r.top + window.scrollY + oy * r.height;
+                } else {
+                    leftPx = msg.x * window.innerWidth;
+                    topPx = msg.y * document.documentElement.scrollHeight;
+                }
+                c.el.style.left = leftPx + 'px';
+                c.el.style.top = topPx + 'px';
                 c.el.style.opacity = '1';
                 c.lastSeen = Date.now();
             }
@@ -645,10 +657,21 @@ function countryFlag(code) {
         const now = Date.now();
         if (now - lastSend < THROTTLE_MS || !ws || ws.readyState !== 1) return;
         lastSend = now;
+        const el = document.elementFromPoint(e.clientX, e.clientY);
+        const sel = selectorFor(el);
+        let ox = 0.5, oy = 0.5;
+        if (el && sel) {
+            const r = el.getBoundingClientRect();
+            ox = r.width  > 0 ? (e.clientX - r.left) / r.width  : 0.5;
+            oy = r.height > 0 ? (e.clientY - r.top)  / r.height : 0.5;
+        }
         ws.send(JSON.stringify({
             type: 'move',
             x: e.pageX / window.innerWidth,
-            y: e.pageY / document.documentElement.scrollHeight
+            y: e.pageY / document.documentElement.scrollHeight,
+            sel: sel,
+            ox: ox,
+            oy: oy
         }));
     });
 
@@ -835,8 +858,20 @@ async function startReplay() {
                     ghostCursors[key] = el;
                 }
                 const el = ghostCursors[key];
-                el.style.left = (data.x * window.innerWidth) + 'px';
-                el.style.top = (data.y * document.documentElement.scrollHeight) + 'px';
+                let leftPx, topPx;
+                const target = data.sel ? document.querySelector(data.sel) : null;
+                if (target) {
+                    const r = target.getBoundingClientRect();
+                    const ox = typeof data.ox === 'number' ? data.ox : 0.5;
+                    const oy = typeof data.oy === 'number' ? data.oy : 0.5;
+                    leftPx = r.left + window.scrollX + ox * r.width;
+                    topPx = r.top + window.scrollY + oy * r.height;
+                } else {
+                    leftPx = data.x * window.innerWidth;
+                    topPx = data.y * document.documentElement.scrollHeight;
+                }
+                el.style.left = leftPx + 'px';
+                el.style.top = topPx + 'px';
                 el.style.opacity = '1';
             }
             if (data.type === 'leave') {
