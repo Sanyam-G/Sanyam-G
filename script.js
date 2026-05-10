@@ -619,7 +619,7 @@ function countryFlag(code) {
 
     function createCursor(id, country) {
         const el = document.createElement('div');
-        el.style.cssText = 'position:absolute;pointer-events:none;z-index:9999;transition:left 0.1s,top 0.1s;opacity:0;display:flex;align-items:center;gap:3px;';
+        el.style.cssText = 'position:absolute;pointer-events:none;z-index:9999;transition:left 0.18s ease-out,top 0.18s ease-out;opacity:0;display:flex;align-items:center;gap:3px;';
         const color = COLORS[Math.abs(hashCode(id)) % COLORS.length];
         const flag = countryFlag(country);
         el.innerHTML = '<svg width="16" height="20" viewBox="0 0 16 20"><path d="M0 0L16 12L8 12L12 20L8 18L4 12L0 16Z" fill="'+color+'" stroke="#fff" stroke-width="1"/></svg>'
@@ -850,7 +850,7 @@ async function startReplay() {
                 const key = 'ghost-' + data.id;
                 if (!ghostCursors[key]) {
                     const el = document.createElement('div');
-                    el.style.cssText = 'position:absolute;pointer-events:none;z-index:9998;transition:left 0.1s,top 0.1s;opacity:0;display:flex;align-items:center;gap:3px;';
+                    el.style.cssText = 'position:absolute;pointer-events:none;z-index:9998;transition:left 0.18s ease-out,top 0.18s ease-out;opacity:0;display:flex;align-items:center;gap:3px;';
                     const flag = countryFlag(data.country);
                     el.innerHTML = '<svg width="16" height="20" viewBox="0 0 16 20" style="opacity:0.35"><path d="M0 0L16 12L8 12L12 20L8 18L4 12L0 16Z" fill="#a9b1d6" stroke="#fff" stroke-width="1"/></svg>'
                         + (flag ? '<span style="font-size:12px;opacity:0.5">' + flag + '</span>' : '');
