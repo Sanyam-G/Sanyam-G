@@ -3,12 +3,9 @@
 CS junior at UW-Madison. Indian by passport, Emirati by upbringing, currently in Wisconsin.
 I run my own servers in three cities and build the things I wish existed.
 
-<p>
-  <img src="https://img.shields.io/github/followers/Sanyam-G?style=flat-square&logo=github&logoColor=ECE6DC&color=FF4F00&labelColor=1B1714&label=followers" alt="followers" />
-  <img src="https://img.shields.io/github/stars/Sanyam-G/Airpipe?style=flat-square&logo=github&logoColor=ECE6DC&color=FF4F00&labelColor=1B1714&label=AirPipe" alt="AirPipe stars" />
-  <img src="https://img.shields.io/github/stars/Sanyam-G/Drift?style=flat-square&logo=github&logoColor=ECE6DC&color=FF4F00&labelColor=1B1714&label=Drift" alt="Drift stars" />
-  <img src="https://img.shields.io/github/stars/Sanyam-G/Sentinel?style=flat-square&logo=github&logoColor=ECE6DC&color=FF4F00&labelColor=1B1714&label=Sentinel" alt="Sentinel stars" />
-</p>
+<a href="https://sanyamgarg.com">
+  <img src="https://stats.sanyamgarg.com/api?username=Sanyam-G&show_icons=true&include_all_commits=true&hide_border=true&bg_color=1B1714&title_color=FF4F00&text_color=ECE6DC&icon_color=FF4F00" alt="Sanyam's GitHub stats" />
+</a>
 
 ## Things I made
 
