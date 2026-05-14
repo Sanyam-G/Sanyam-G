@@ -79,7 +79,7 @@ document.addEventListener('keydown', function(e) {
 
 // Typing effect on intro
 (function() {
-    const text = "UW\u2013Madison junior studying Computer Science & Data Science. I build infrastructure, backend systems, and tools that solve problems I actually have.";
+    const text = "UW\u2013Madison junior studying Computer Science with a Data Science certificate. I build infrastructure, backend systems, and tools that solve problems I actually have.";
     const el = document.getElementById('intro-text');
     if (!el) return;
     let i = 0;
@@ -516,20 +516,34 @@ document.addEventListener('keydown', function(e) {
     else window.addEventListener('fb-ready', initFirebase);
 })();
 
-// Sentinel live stats
+// Live GitHub star counts — any element with data-gh-stars="owner/repo".
+// Cached 1h in localStorage to avoid hitting unauthenticated rate limits.
 (function() {
-    const el = document.getElementById('sentinel-stats');
-    if (!el) return;
-    function update() {
-        fetch('https://sentinel.sanyamgarg.com/api/stats')
-            .then(r => r.json())
-            .then(data => {
-                el.textContent = data.total.toLocaleString() + ' attacks · ' + data.unique_ips + ' IPs · ' + data.unique_countries + ' countries · last hour';
+    const els = document.querySelectorAll('[data-gh-stars]');
+    if (!els.length) return;
+    const TTL = 60 * 60 * 1000;
+    function fmt(n) {
+        return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n);
+    }
+    els.forEach(el => {
+        const slug = el.dataset.ghStars;
+        const key = 'gh-stars:' + slug;
+        try {
+            const cached = JSON.parse(localStorage.getItem(key) || 'null');
+            if (cached && Date.now() - cached.t < TTL) {
+                el.textContent = fmt(cached.n);
+                return;
+            }
+        } catch (e) {}
+        fetch('https://api.github.com/repos/' + slug)
+            .then(r => r.ok ? r.json() : Promise.reject(r.status))
+            .then(repo => {
+                const n = repo.stargazers_count;
+                el.textContent = fmt(n);
+                try { localStorage.setItem(key, JSON.stringify({ n, t: Date.now() })); } catch (e) {}
             })
             .catch(() => {});
-    }
-    update();
-    setInterval(update, 30000);
+    });
 })();
 
 // Dynamic section numbering (skips hidden sections)

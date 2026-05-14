@@ -223,6 +223,7 @@ a:hover { color: var(--accent); }
 
 .section-label {
   display: block;
+  position: relative;
   font-family: var(--mono);
   font-size: var(--text-xs);
   text-transform: uppercase;
@@ -235,6 +236,21 @@ a:hover { color: var(--accent); }
 
 .section-label[data-num]::before {
   content: attr(data-num) ' ';
+}
+
+.section-action {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-family: var(--mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-tertiary);
+  transition: color 0.15s ease;
+}
+.section-action:hover {
+  color: var(--accent);
 }
 
 /* =========================================
@@ -408,6 +424,14 @@ a:hover { color: var(--accent); }
    ========================================= */
 .edu-row {
   display: flex;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.edu-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
   flex-direction: column;
   gap: 2px;
 }
@@ -415,6 +439,31 @@ a:hover { color: var(--accent); }
 .edu-row .data-value {
   font-weight: 700;
   margin-right: 0;
+}
+
+.edu-logo-wrap {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.edu-logo {
+  height: 100%;
+  width: auto;
+  max-height: 64px;
+  object-fit: contain;
+}
+
+.edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.edu-date {
+  white-space: nowrap;
 }
 
 .edu-row .data-secondary {

@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sanyam Garg</title>
-  <meta name="description" content="Sanyam Garg - UW-Madison CS junior. I build backend systems, infrastructure, and developer tools. Go, Python, Docker, self-hosted servers." />
-  <meta name="keywords" content="Sanyam Garg, UW-Madison, Computer Science, Backend Systems, Infrastructure, Go, Golang, Python, Docker, Self-Hosted, AirPipe, Sentinel, WebSocket, Cloudflare, Tailscale, FastAPI, React, Server Infrastructure, CLI Tools, Open Source, Software Engineer, Intern" />
+  <meta name="description" content="Sanyam Garg - UW-Madison CS junior. I build backend systems, native macOS apps, and developer tools. Go, Swift, Python, self-hosted servers." />
+  <meta name="keywords" content="Sanyam Garg, UW-Madison, Computer Science, Backend Systems, Infrastructure, Go, Golang, Swift, macOS, Python, Docker, Self-Hosted, AirPipe, Switch, WebSocket, Cloudflare, Tailscale, FastAPI, React, Server Infrastructure, CLI Tools, Open Source, Software Engineer, Intern" />
   <meta name="google-site-verification" content="hjAc_Rh9TUSgsKK4-sjB36mPPkB74GsNaASZQ9zYTP4" />
   <meta name="author" content="Sanyam Garg" />
   <meta property="og:title" content="Sanyam Garg" />
@@ -24,7 +24,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getDatabase, ref, push, onValue, remove, set, child, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -76,7 +76,7 @@
       "@type": "CollegeOrUniversity",
       "name": "University of Wisconsin-Madison"
     },
-    "knowsAbout": ["Go", "Python", "Backend Systems", "Docker", "Server Infrastructure", "WebSocket", "Self-Hosting"]
+    "knowsAbout": ["Go", "Swift", "Python", "Backend Systems", "macOS", "Docker", "Server Infrastructure", "WebSocket", "Self-Hosting"]
   }
   </script>
 </head>
@@ -146,9 +146,16 @@
     <div class="section">
       <span class="section-label" data-section>Education</span>
       <div class="edu-row">
-        <span class="data-value">University of Wisconsin-Madison</span>
-        <span class="data-secondary">B.Sc. Computer Science & Data Science</span>
-        <span class="data-secondary">Aug 2023 - Dec 2026</span>
+        <div class="edu-logo-wrap">
+          <img src="assets/uw-crest.png" alt="UW-Madison" class="edu-logo" />
+        </div>
+        <div class="edu-body">
+          <div class="edu-header">
+            <span class="data-value">University of Wisconsin-Madison</span>
+            <span class="data-secondary edu-date">Aug 2023 - Dec 2026</span>
+          </div>
+          <span class="data-secondary">B.Sc. Computer Science, Certificate in Data Science</span>
+        </div>
       </div>
     </div>
 
@@ -157,11 +164,11 @@
       <div class="tools-grid">
         <div class="tool-row">
           <span class="tool-label">Lang</span>
-          <span class="tool-value"><span class="tool-item" title="Sentinel, scripts">Python</span>, <span class="tool-item" title="AirPipe, Drift">Go</span>, <span class="tool-item" title="OS coursework, xv6">C</span>, <span class="tool-item" title="Data structures">Java</span>, <span class="tool-item" title="Data analysis">SQL</span>, <span class="tool-item" title="Server automation">Bash</span></span>
+          <span class="tool-value"><span class="tool-item" title="AirPipe, Drift, Switch — for the macOS app launcher CLI">Go</span>, <span class="tool-item" title="Switch, Riyaaz, Pier">Swift</span>, <span class="tool-item" title="Scripts, automation, research">Python</span>, <span class="tool-item" title="OS coursework, xv6">C</span>, <span class="tool-item" title="Data structures">Java</span>, <span class="tool-item" title="Data analysis">SQL</span>, <span class="tool-item" title="Server automation">Bash</span></span>
         </div>
         <div class="tool-row">
           <span class="tool-label">Backend</span>
-          <span class="tool-value"><span class="tool-item" title="Sentinel">FastAPI</span>, <span class="tool-item" title="CS 320">Flask</span>, <span class="tool-item" title="Century Financial">Node.js</span>, <span class="tool-item" title="CS 571">React</span>, <span class="tool-item" title="Sentinel, AirPipe">REST</span>, <span class="tool-item" title="AirPipe, Drift, Century">WebSocket</span></span>
+          <span class="tool-value"><span class="tool-item" title="Century Financial RAG assistant">FastAPI</span>, <span class="tool-item" title="CS 320">Flask</span>, <span class="tool-item" title="Century Financial">Node.js</span>, <span class="tool-item" title="CS 571">React</span>, <span class="tool-item" title="AirPipe relay">REST</span>, <span class="tool-item" title="AirPipe, Drift, Century">WebSocket</span></span>
         </div>
         <div class="tool-row">
           <span class="tool-label">Infra</span>
@@ -178,7 +185,7 @@
             <img src="assets/idea-fund-logo.png" alt="Idea Fund of La Crosse" class="exp-logo" />
             <div class="exp-badge-text">
               <div class="exp-header">
-                <span class="exp-role">Systems Analyst Intern (Incoming)</span>
+                <span class="exp-role">Systems & Automation Analyst Intern (Incoming)</span>
                 <span class="exp-date">May - Aug 2026</span>
               </div>
               <span class="exp-org"><a href="https://ideafundvc.com" target="_blank" rel="noopener">Idea Fund of La Crosse</a> - La Crosse, WI</span>
@@ -193,7 +200,7 @@
             <div class="exp-badge-text">
               <div class="exp-header">
                 <span class="exp-role">Undergraduate Research Assistant</span>
-                <span class="exp-date">Jan 2026 - Present</span>
+                <span class="exp-date">Jan 2026 - Apr 2026</span>
               </div>
               <span class="exp-org"><a href="https://wings.cs.wisc.edu" target="_blank" rel="noopener">WiNGS Lab</a>, Prof. Suman Bannerjee - UW-Madison</span>
             </div>
@@ -224,21 +231,39 @@
   <div class="content-right">
 
     <div class="section">
-      <span class="section-label" data-section>Projects</span>
+      <span class="section-label" data-section>Projects<a class="section-action" href="https://dev.sanyamgarg.com" target="_blank" rel="noopener">More on dev.sanyamgarg.com &#8599;</a></span>
       <div class="project-list">
+
+        <div class="project-entry featured">
+          <div class="project-head">
+            <h3 class="project-name">Switch</h3>
+            <div class="project-tags">
+              <span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">ScreenCaptureKit</span><span class="tag">CGEventTap</span>
+            </div>
+            <a href="https://switch-dev.sanyamgarg.com" target="_blank" class="project-ext">Site &#8599;</a>
+            <a href="https://github.com/Sanyam-G/switch" target="_blank" class="project-ext">GitHub &#8599;</a>
+          </div>
+          <p class="project-desc">Native macOS window switcher. ⌘-Tab cycles windows, not apps. ⌥-` within current app. Type to filter. Sparkle in-app updates and Homebrew install. Replaces AltTab + DockDoor.</p>
+          <div class="project-stats">
+            <span class="stat"><span class="stat-val" data-gh-stars="Sanyam-G/switch">—</span> stars</span>
+            <a class="stat" href="https://www.reddit.com/r/macapps/comments/1tbc7me/comment/olnasss/?context=1" target="_blank" rel="noopener"><span class="stat-val">r/macapps</span> featured</a>
+            <span class="stat"><span class="stat-val">macOS 14+</span> notarized</span>
+          </div>
+        </div>
 
         <div class="project-entry featured">
           <div class="project-head">
             <h3 class="project-name">AirPipe</h3>
             <div class="project-tags">
-              <span class="tag">Go</span><span class="tag">WebSocket</span><span class="tag">NaCl</span><span class="tag">Docker</span>
+              <span class="tag">Go</span><span class="tag">WebRTC</span><span class="tag">WebSocket</span><span class="tag">NaCl</span>
             </div>
+            <a href="https://airpipe.sanyamgarg.com" target="_blank" class="project-ext">Live &#8599;</a>
             <a href="https://github.com/Sanyam-G/Airpipe" target="_blank" class="project-ext">GitHub &#8599;</a>
           </div>
-          <p class="project-desc">CLI file transfer. One command, one QR code. Zero-knowledge relay with NaCl encryption. Keys live in the URL fragment, server only touches ciphertext.</p>
+          <p class="project-desc">CLI file transfer. One command, one QR code. Peer-to-peer over WebRTC by default, zero-knowledge relay fallback with NaCl encryption when P2P can't punch through. Keys live in the URL fragment, server only touches ciphertext.</p>
           <div class="project-stats">
-            <span class="stat"><span class="stat-val">50+</span> stars</span>
-            <span class="stat"><span class="stat-val">r/selfhosted</span> featured</span>
+            <span class="stat"><span class="stat-val" data-gh-stars="Sanyam-G/Airpipe">—</span> stars</span>
+            <a class="stat" href="https://www.reddit.com/r/selfhosted/comments/1t9mdul/airpipe_v4_my_selfhosted_file_transfer_is_now/" target="_blank" rel="noopener"><span class="stat-val">r/selfhosted</span> featured</a>
             <span class="stat"><span class="stat-val">E2E</span> encrypted</span>
           </div>
         </div>
@@ -252,21 +277,6 @@
             <button id="replay-btn" onclick="startReplay()" class="project-ext">👻 Watch this week's visitors</button>
           </div>
           <p class="project-desc">The cursors you see on this page are real. Go WebSocket relay, GeoIP country flags, session recording with ghost replay.<br><span id="visitor-count" class="live-readout"></span></p>
-        </div>
-
-        <div class="project-entry">
-          <div class="project-head">
-            <h3 class="project-name">Sentinel</h3>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Docker</span>
-            </div>
-            <a href="https://github.com/Sanyam-G/Sentinel" target="_blank" class="project-ext">GitHub &#8599;</a>
-            <a href="https://sentinel.sanyamgarg.com" target="_blank" class="project-ext">Live &#8599;</a>
-          </div>
-          <p class="project-desc">Real-time SSH attack monitor. Exposed a server to the internet, built a dashboard to watch bots hammer it. FastAPI tails syslog, geolocates IPs, Leaflet.js animates attacks live.</p>
-          <div class="project-stats">
-            <span id="sentinel-stats" class="live-readout"></span>
-          </div>
         </div>
 
         <div class="project-entry alt">
@@ -325,7 +335,7 @@
   <span class="status-shortcuts"><kbd>r</kbd> resume · <kbd>g</kbd> github · <kbd>e</kbd> email</span>
 </footer>
 
-<script src="script.js?v=5"></script>
+<script src="script.js?v=6"></script>
 
 <script>
 (function() {
