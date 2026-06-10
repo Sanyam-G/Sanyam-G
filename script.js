@@ -932,6 +932,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (data && data.title) {
                 trackLinkEl.textContent = data.title;
+                trackLinkEl.href = data.url || '#';
                 artistNameEl.textContent = data.artist;
                 playsEl.textContent = 'Top song · last 7 days';
                 rotationContainer.style.display = 'flex';
