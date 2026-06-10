@@ -933,7 +933,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (data && data.title) {
                 trackLinkEl.textContent = data.title;
                 artistNameEl.textContent = data.artist;
-                playsEl.textContent = `${data.plays} plays · last 7 days`;
+                playsEl.textContent = 'Top song · last 7 days';
                 rotationContainer.style.display = 'flex';
                 if (currentlyContainer) currentlyContainer.style.display = 'none';
                 numberSections();
