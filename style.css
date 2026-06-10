@@ -406,17 +406,13 @@ a:hover { color: var(--accent); }
   margin-bottom: 6px;
 }
 
-.progress-bar-background {
-  width: 100%;
-  height: 2px;
-  background: var(--border);
-}
-
-.progress-bar-foreground {
-  height: 100%;
-  width: 0%;
-  background: var(--accent);
-  transition: width 0.5s linear;
+.np-plays {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
 }
 
 /* =========================================

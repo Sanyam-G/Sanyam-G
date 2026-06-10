@@ -915,75 +915,43 @@ function stopReplay() {
     }
 }
 
-// Last.fm Logic
+// On Rotation — top song from self-hosted Navidrome, last 7 days
 document.addEventListener("DOMContentLoaded", () => {
-    const POLLING_INTERVAL = 5000;
-    const PROGRESS_UPDATE_INTERVAL = 500;
+    const POLLING_INTERVAL = 300000;
 
-    const lastFmContainer = document.getElementById('lastfm-container');
+    const rotationContainer = document.getElementById('lastfm-container');
     const currentlyContainer = document.getElementById('currently-container');
-    const trackNameEl = document.getElementById('lastfm-track-name');
+    const trackLinkEl = document.getElementById('lastfm-track-name');
     const artistNameEl = document.getElementById('lastfm-artist-name');
-    const progressBarEl = document.getElementById('progress-bar-foreground');
+    const playsEl = document.getElementById('np-plays');
 
-    let progressInterval = null;
-
-    function updateProgressBar(startTime, duration) {
-        if (!duration || !startTime) {
-            progressBarEl.style.width = '0%';
-            return;
-        };
-
-        const elapsedTime = Date.now() - startTime;
-        let progress = (elapsedTime / duration) * 100;
-        progress = Math.min(progress, 100); 
-
-        progressBarEl.style.width = `${progress}%`;
-    }
-
-    async function fetchLastFmTrack() {
-        const proxyUrl = 'https://lastfm-api-proxy.sanyamg2006.workers.dev/'; 
-
+    async function fetchTopSong() {
         try {
-            const response = await fetch(proxyUrl);
+            const response = await fetch('https://music.544671552.xyz/top7d.json');
             const data = await response.json();
 
-            if (data.now_playing && data.name) { 
-                const trackLinkEl = document.getElementById('lastfm-track-name');
-                const artistNameEl = document.getElementById('lastfm-artist-name');
-
-                trackLinkEl.textContent = data.name;
-                trackLinkEl.href = data.url;
+            if (data && data.title) {
+                trackLinkEl.textContent = data.title;
                 artistNameEl.textContent = data.artist;
-
-                if (progressInterval) clearInterval(progressInterval);
-                
-                updateProgressBar(data.start_time_ms, data.duration_ms);
-                
-                progressInterval = setInterval(() => {
-                    updateProgressBar(data.start_time_ms, data.duration_ms);
-                }, PROGRESS_UPDATE_INTERVAL);
-
-                lastFmContainer.style.display = 'flex';
+                playsEl.textContent = `${data.plays} plays · last 7 days`;
+                rotationContainer.style.display = 'flex';
                 if (currentlyContainer) currentlyContainer.style.display = 'none';
                 numberSections();
             } else {
-                lastFmContainer.style.display = 'none';
+                rotationContainer.style.display = 'none';
                 if (currentlyContainer) currentlyContainer.style.display = '';
                 numberSections();
-                if (progressInterval) clearInterval(progressInterval);
             }
         } catch (error) {
-            console.error('Error fetching from proxy:', error);
-            lastFmContainer.style.display = 'none';
+            console.error('Error fetching music stats:', error);
+            rotationContainer.style.display = 'none';
             if (currentlyContainer) currentlyContainer.style.display = '';
             numberSections();
-            if (progressInterval) clearInterval(progressInterval);
         }
     }
 
-    fetchLastFmTrack();
-    setInterval(fetchLastFmTrack, POLLING_INTERVAL);
+    fetchTopSong();
+    setInterval(fetchTopSong, POLLING_INTERVAL);
 });
 
 // Stagger load animation
