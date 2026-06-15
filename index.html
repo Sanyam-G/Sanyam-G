@@ -24,7 +24,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=9" />
+  <link rel="stylesheet" href="style.css?v=10" />
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getDatabase, ref, push, onValue, remove, set, child, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -123,21 +123,6 @@
       <div class="track-info">
         <a href="#" id="lastfm-track-name" target="_blank" rel="noopener noreferrer"></a>
         <span id="lastfm-artist-name"></span>
-        <span id="np-plays" class="np-plays"></span>
-      </div>
-    </div>
-
-    <div class="section currently-section" id="currently-container">
-      <span class="section-label">Currently</span>
-      <div style="display: flex; flex-direction: column; gap: 6px;">
-        <div class="currently-item" id="currently-song">
-          <span class="currently-type">Song</span>
-          <span class="currently-value"><a href="https://open.spotify.com/track/7o1s0OJBJj2PvBTVNBMM3P" target="_blank">Girl</a> <span class="currently-secondary">Jamie xx</span></span>
-        </div>
-        <div class="currently-item">
-          <span class="currently-type">Read</span>
-          <span class="currently-value"><a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank">LLM Knowledge Bases</a> <span class="currently-secondary">Karpathy</span></span>
-        </div>
       </div>
     </div>
 
@@ -333,7 +318,7 @@
   <span class="status-shortcuts"><kbd>r</kbd> resume · <kbd>g</kbd> github · <kbd>e</kbd> email</span>
 </footer>
 
-<script src="script.js?v=9"></script>
+<script src="script.js?v=10"></script>
 
 <script>
 (function() {

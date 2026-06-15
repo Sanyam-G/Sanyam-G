@@ -920,10 +920,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const POLLING_INTERVAL = 300000;
 
     const rotationContainer = document.getElementById('lastfm-container');
-    const currentlyContainer = document.getElementById('currently-container');
     const trackLinkEl = document.getElementById('lastfm-track-name');
     const artistNameEl = document.getElementById('lastfm-artist-name');
-    const playsEl = document.getElementById('np-plays');
 
     async function fetchTopSong() {
         try {
@@ -934,19 +932,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 trackLinkEl.textContent = data.title;
                 trackLinkEl.href = data.url || '#';
                 artistNameEl.textContent = data.artist;
-                playsEl.textContent = 'Top song · last 7 days';
                 rotationContainer.style.display = 'flex';
-                if (currentlyContainer) currentlyContainer.style.display = 'none';
                 numberSections();
             } else {
                 rotationContainer.style.display = 'none';
-                if (currentlyContainer) currentlyContainer.style.display = '';
                 numberSections();
             }
         } catch (error) {
             console.error('Error fetching music stats:', error);
             rotationContainer.style.display = 'none';
-            if (currentlyContainer) currentlyContainer.style.display = '';
             numberSections();
         }
     }

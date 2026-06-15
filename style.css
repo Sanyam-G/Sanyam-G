@@ -281,66 +281,6 @@ a:hover { color: var(--accent); }
 }
 
 /* =========================================
-   CURRENTLY (favorite song / now reading)
-   ========================================= */
-.currently-section {
-  border: 1px solid var(--border);
-  padding: 10px 12px;
-  position: relative;
-}
-
-.currently-section .section-label {
-  position: absolute;
-  top: -8px;
-  left: 8px;
-  background: var(--bg);
-  padding: 0 6px;
-  border-bottom: none;
-  margin-bottom: 0;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-}
-
-.currently-item {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.currently-type {
-  font-family: var(--mono);
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--fg-secondary);
-  flex-shrink: 0;
-}
-
-.currently-value {
-  font-family: var(--sans);
-  font-size: var(--text-sm);
-  color: var(--fg);
-  font-weight: 500;
-}
-
-.currently-value a {
-  color: var(--fg);
-  border-bottom: 1px dotted var(--border);
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.currently-value a:hover {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-}
-
-.currently-secondary {
-  font-family: var(--mono);
-  font-size: var(--text-xs);
-  color: var(--fg-secondary);
-}
-
-/* =========================================
    NOW PLAYING
    ========================================= */
 .now-playing {
@@ -403,16 +343,6 @@ a:hover { color: var(--accent); }
   overflow: hidden;
   text-overflow: ellipsis;
   line-height: 1.3;
-  margin-bottom: 6px;
-}
-
-.np-plays {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  display: block;
 }
 
 /* =========================================
