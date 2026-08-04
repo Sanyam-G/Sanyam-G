@@ -516,7 +516,7 @@ document.addEventListener('keydown', function(e) {
     else window.addEventListener('fb-ready', initFirebase);
 })();
 
-// Live GitHub star counts — any element with data-gh-stars="owner/repo".
+// Live GitHub star counts: any element with data-gh-stars="owner/repo".
 // Cached 1h in localStorage to avoid hitting unauthenticated rate limits.
 (function() {
     const els = document.querySelectorAll('[data-gh-stars]');
@@ -915,7 +915,7 @@ function stopReplay() {
     }
 }
 
-// On Rotation — top song from self-hosted Navidrome, last 7 days
+// On Rotation: top song from self-hosted Navidrome, last 7 days
 document.addEventListener("DOMContentLoaded", () => {
     const POLLING_INTERVAL = 300000;
 

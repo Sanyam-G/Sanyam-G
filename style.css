@@ -1,5 +1,5 @@
 /* =========================================
-   PORTFOLIO — nothing/TE aesthetic
+   PORTFOLIO, nothing/TE aesthetic
    ========================================= */
 
 :root {
@@ -1187,6 +1187,17 @@ body.sg-admin-active .sg-admin-badge { display: inline-block; }
 
   .identity-name {
     font-size: var(--text-lg);
+  }
+
+  .identity-links a,
+  .identity-links button {
+    padding: 6px 0;
+  }
+
+  /* 16px stops iOS zoom-on-focus */
+  .gb-input,
+  .sg-admin-modal-inner input {
+    font-size: 16px;
   }
 }
 
