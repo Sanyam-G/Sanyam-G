@@ -1,19 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="450" height="200" viewBox="0 0 450 200" fill="none" role="img" aria-label="Sanyam's GitHub stats">
-<rect width="450" height="200" rx="4.5" fill="#1B1714"/>
-<text x="25" y="40" font-family="Segoe UI, Ubuntu, sans-serif" font-size="18" font-weight="600" fill="#FF4F00">Sanyam's GitHub Stats</text>
-<circle cx="380" cy="110.0" r="40" stroke="#FF4F00" stroke-opacity="0.25" stroke-width="6"/>
-<circle cx="380" cy="110.0" r="40" stroke="#FF4F00" stroke-width="6" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="91.7" transform="rotate(-90 380 110.0)"/>
-<text x="380" y="119.0" text-anchor="middle" font-family="Segoe UI, Ubuntu, sans-serif" font-size="26" font-weight="700" fill="#ECE6DC">A-</text>
-<circle cx="31" cy="65" r="3" fill="#FF4F00"/>
-<text x="45" y="70" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#ECE6DC">Total Stars</text>
-<text x="290" y="70" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" font-weight="600" fill="#ECE6DC">816</text>
-<circle cx="31" cy="95" r="3" fill="#FF4F00"/>
-<text x="45" y="100" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#ECE6DC">Total Commits</text>
-<text x="290" y="100" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" font-weight="600" fill="#ECE6DC">2,489</text>
-<circle cx="31" cy="125" r="3" fill="#FF4F00"/>
-<text x="45" y="130" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#ECE6DC">Total PRs</text>
-<text x="290" y="130" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" font-weight="600" fill="#ECE6DC">31</text>
-<circle cx="31" cy="155" r="3" fill="#FF4F00"/>
-<text x="45" y="160" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#ECE6DC">Total Issues</text>
-<text x="290" y="160" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" font-weight="600" fill="#ECE6DC">5</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="170" viewBox="0 0 1000 170" fill="none" role="img" aria-label="Sanyam's GitHub stats">
+<rect x="0.5" y="0.5" width="999" height="169" rx="10" fill="#FFFFFF" stroke="#ECE7E0"/>
+<text x="149.0" y="66" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#7A736A">Total stars</text>
+<text x="149.0" y="112" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="600" fill="#1B1714">816</text>
+<line x1="266.0" y1="45" x2="266.0" y2="125" stroke="#ECE7E0"/>
+<text x="383.0" y="66" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#7A736A">Total commits</text>
+<text x="383.0" y="112" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="600" fill="#1B1714">2,490</text>
+<line x1="500.0" y1="45" x2="500.0" y2="125" stroke="#ECE7E0"/>
+<text x="617.0" y="66" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#7A736A">Total PRs</text>
+<text x="617.0" y="112" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="600" fill="#1B1714">31</text>
+<line x1="734.0" y1="45" x2="734.0" y2="125" stroke="#ECE7E0"/>
+<text x="851.0" y="66" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" fill="#7A736A">Total issues</text>
+<text x="851.0" y="112" text-anchor="middle" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="38" font-weight="600" fill="#1B1714">5</text>
 </svg>
