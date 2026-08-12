@@ -4,7 +4,7 @@ CS junior at UW-Madison. Indian by passport, Emirati by upbringing, currently in
 I run my own servers in three cities and build the things I wish existed.
 
 <a href="https://sanyamgarg.com">
-  <img src="https://github-readme-stats.vercel.app/api?username=Sanyam-G&show_icons=true&include_all_commits=true&count_private=true&hide_border=true&bg_color=1B1714&title_color=FF4F00&text_color=ECE6DC&icon_color=FF4F00" alt="Sanyam's GitHub stats" />
+  <img src="assets/stats.svg" alt="Sanyam's GitHub stats" />
 </a>
 
 ## Things I made
@@ -17,5 +17,3 @@ I run my own servers in three cities and build the things I wish existed.
 ## Find me
 
 [sanyamgarg.com](https://sanyamgarg.com) · [linkedin](https://linkedin.com/in/sanyam-g) · sanyam@sanyamgarg.com
-
-<sub><i>Lights are on at strange hours.</i></sub>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="200" viewBox="0 0 450 200" fill="none" role="img" aria-label="Sanyam's GitHub stats">
+<rect width="450" height="200" rx="4.5" fill="#1B1714"/>
+<text x="25" y="40" font-family="Segoe UI, Ubuntu, sans-serif" font-size="18" font-weight="600" fill="#FF4F00">Sanyam's GitHub Stats</text>
+<circle cx="31" cy="65" r="3" fill="#FF4F00"/>
+<text x="45" y="70" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#ECE6DC">Total Stars</text>
+<text x="360" y="70" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" font-weight="600" fill="#ECE6DC">816</text>
+<circle cx="31" cy="95" r="3" fill="#FF4F00"/>
+<text x="45" y="100" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#ECE6DC">Total Commits</text>
+<text x="360" y="100" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" font-weight="600" fill="#ECE6DC">3,271</text>
+<circle cx="31" cy="125" r="3" fill="#FF4F00"/>
+<text x="45" y="130" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#ECE6DC">Total PRs</text>
+<text x="360" y="130" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" font-weight="600" fill="#ECE6DC">133</text>
+<circle cx="31" cy="155" r="3" fill="#FF4F00"/>
+<text x="45" y="160" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" fill="#ECE6DC">Total Issues</text>
+<text x="360" y="160" font-family="Segoe UI, Ubuntu, sans-serif" font-size="14" font-weight="600" fill="#ECE6DC">6</text>
+</svg>
