@@ -1,7 +1,6 @@
 # Hi, I'm Sanyam.
 
-CS junior at UW-Madison. Indian by passport, Emirati by upbringing, currently in Wisconsin.
-I run my own servers in three cities and build the things I wish existed.
+CS senior at UW-Madison.
 
 <a href="https://sanyamgarg.com">
   <img src="assets/stats.svg" alt="Sanyam's GitHub stats" />
