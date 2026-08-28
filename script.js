@@ -96,14 +96,15 @@ document.addEventListener('keydown', function(e) {
     type();
 })();
 
-// Guestbook (pixel stamps via Firebase, shared with blog.sanyamgarg.com)
+// Guestbook (pixel stamps via self-hosted API on orsat)
 (function() {
     const grid = document.getElementById('gb-grid');
     const palette = document.getElementById('gb-palette');
     if (!grid || !palette) return;
 
-    const ADMIN_HASH = 'e7825154f47cc7fd221c47e4ed733bf03b5c687390ac6e3a6a5eefd8ba76ce8b';
-    const MY_PENDING_KEY = 'gb-my-pending';
+    const API = window.GB_API;
+    const MY_PENDING_KEY = 'gb-my-pending';   // client-only shadow view of own pending stamps
+    const ADMIN_TOKEN_KEY = 'sg-admin-token';
     const ADMIN_FLAG_KEY = 'sg-admin';
 
     let paintColor = '#1A1A1A';
@@ -111,6 +112,17 @@ document.addEventListener('keydown', function(e) {
     let approvedData = null;
     let pendingData = null;
     let isAdmin = false;
+
+    const getToken = () => { try { return localStorage.getItem(ADMIN_TOKEN_KEY) || ''; } catch(e) { return ''; } };
+    function api(path, opts) {
+        opts = opts || {};
+        const headers = opts.headers || {};
+        if (opts.body) headers['Content-Type'] = 'application/json';
+        if (opts.auth) headers['Authorization'] = 'Bearer ' + getToken();
+        return fetch(API + path, { method: opts.method || 'GET', headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined });
+    }
+    // approved list (array, oldest->newest) into an id-keyed object preserving order
+    const toMap = (arr) => { const m = {}; (arr || []).forEach(e => { m[e.id] = e; }); return m; };
 
     // Build 10x10 grid
     for (let i = 0; i < 100; i++) {
@@ -153,12 +165,6 @@ document.addEventListener('keydown', function(e) {
         Array.from(grid.children).forEach(p => p.style.backgroundColor = '');
     };
 
-    async function sha256Hex(str) {
-        const buf = new TextEncoder().encode(str);
-        const digest = await crypto.subtle.digest('SHA-256', buf);
-        return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
-    }
-
     function readMyPending() {
         try { return JSON.parse(localStorage.getItem(MY_PENDING_KEY) || '[]'); } catch(e) { return []; }
     }
@@ -170,16 +176,19 @@ document.addEventListener('keydown', function(e) {
         const name = document.getElementById('gb-name').value.trim();
         if (!name) { document.getElementById('gb-name').focus(); return; }
         if (pixels.every(c => c === '#F5F3EF')) return;
-        if (!window._fbPendingRef || !window._fbPush) return;
+        if (!API) return;
 
         const btn = document.querySelector('.gb-submit');
         btn.textContent = '...';
         btn.disabled = true;
 
-        const payload = pixels.map(c => c.toLowerCase()).join('|') + '::' + name.toLowerCase();
+        const snapshot = pixels.map(c => c.toLowerCase());
         try {
-            const h = await sha256Hex(payload);
-            if (h === ADMIN_HASH) {
+            const res = await api('/entries', { method: 'POST', body: { name: name, pixels: snapshot } });
+            const data = await res.json().catch(() => ({}));
+            if (data && data.admin_gate) {
+                // server recognized the reveal pattern; open the login. Nothing about the
+                // pattern lives in this file, so it can't be read or brute-forced from here.
                 btn.innerHTML = 'Stamp &#8599;';
                 btn.disabled = false;
                 clearStamp();
@@ -187,24 +196,18 @@ document.addEventListener('keydown', function(e) {
                 promptAdminLogin();
                 return;
             }
-        } catch(e) {}
-
-        window._fbPush(window._fbPendingRef, { name: name, pixels: pixels, ts: Date.now() }).then((result) => {
-            const id = result.key;
-            if (id) {
+            if (res.ok && data.id) {
+                // pending is server-hidden; keep a local shadow copy so the submitter sees their own stamp
                 const mine = readMyPending();
-                mine.push(id);
+                mine.push({ id: data.id, name: name, pixels: snapshot, ts: Date.now() });
                 writeMyPending(mine);
             }
-            document.getElementById('gb-name').value = '';
-            clearStamp();
-            btn.innerHTML = 'Stamp &#8599;';
-            btn.disabled = false;
-            rerender();
-        }).catch(() => {
-            btn.innerHTML = 'Stamp &#8599;';
-            btn.disabled = false;
-        });
+        } catch(e) {}
+        document.getElementById('gb-name').value = '';
+        clearStamp();
+        btn.innerHTML = 'Stamp &#8599;';
+        btn.disabled = false;
+        rerender();
     };
 
     function makeStampEl(entry, id, bucket) {
@@ -258,14 +261,20 @@ document.addEventListener('keydown', function(e) {
         gallery.innerHTML = '';
 
         const mine = readMyPending();
-        const showPending = isAdmin ? Object.keys(pendingData || {}) : mine.filter(id => pendingData && pendingData[id]);
-
-        showPending.slice().reverse().forEach(id => {
-            const entry = (pendingData || {})[id];
-            if (!entry) return;
-            const el = makeStampEl(entry, id, 'pending');
-            if (el) gallery.appendChild(el);
-        });
+        if (isAdmin) {
+            // admin sees every pending stamp from the server
+            Object.entries(pendingData || {}).reverse().forEach(([id, entry]) => {
+                const el = makeStampEl(entry, id, 'pending');
+                if (el) gallery.appendChild(el);
+            });
+        } else {
+            // everyone else only sees their own pending (local shadow), until approved
+            mine.slice().reverse().forEach(p => {
+                if (approvedData && approvedData[p.id]) return;
+                const el = makeStampEl(p, p.id, 'pending');
+                if (el) gallery.appendChild(el);
+            });
+        }
 
         if (approvedData) {
             Object.entries(approvedData).reverse().forEach(([id, entry]) => {
@@ -278,10 +287,11 @@ document.addEventListener('keydown', function(e) {
             gallery.innerHTML = '<div class="gb-empty">No stamps yet. Be the first.</div>';
         }
 
-        // Clean stale localStorage pending (no longer in DB)
-        if (pendingData !== null && approvedData !== null) {
-            const stale = mine.filter(id => !(pendingData && pendingData[id]));
-            if (stale.length) writeMyPending(mine.filter(id => pendingData && pendingData[id]));
+        // prune local shadow pending once approved (or after 30 days, e.g. rejected)
+        if (approvedData !== null) {
+            const now = Date.now();
+            const kept = mine.filter(p => !approvedData[p.id] && (!p.ts || now - p.ts < 30 * 864e5));
+            if (kept.length !== mine.length) writeMyPending(kept);
         }
     }
 
@@ -323,21 +333,33 @@ document.addEventListener('keydown', function(e) {
         if (err) err.textContent = '';
     }
 
-    function doAdminLogin() {
-        const email = (document.getElementById('sg-admin-email') || {}).value;
+    async function doAdminLogin() {
+        const email = (document.getElementById('sg-admin-email') || {}).value.trim();
         const pwd = (document.getElementById('sg-admin-password') || {}).value;
         const err = document.querySelector('.sg-admin-modal-err');
         if (!email || !pwd) { if (err) err.textContent = 'email and password required'; return; }
-        if (!window._fbAuth || !window._fbSignIn) return;
+        if (!API) return;
         if (err) err.textContent = 'signing in...';
         const loginBtn = document.getElementById('sg-admin-login');
         if (loginBtn) loginBtn.disabled = true;
-        window._fbSignIn(window._fbAuth, email.trim(), pwd)
-            .then(() => { hideLoginModal(); })
-            .catch(e => {
-                if (err) err.textContent = 'failed: ' + (e.code || e.message || 'unknown');
-            })
-            .finally(() => { if (loginBtn) loginBtn.disabled = false; });
+        try {
+            const res = await api('/admin/login', { method: 'POST', body: { email: email, password: pwd } });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok && data.token) {
+                try { localStorage.setItem(ADMIN_TOKEN_KEY, data.token); } catch(e) {}
+                hideLoginModal();
+                setAdminState(true);
+                loadData();
+            } else if (res.status === 429) {
+                if (err) err.textContent = 'too many attempts, wait a bit';
+            } else {
+                if (err) err.textContent = 'incorrect';
+            }
+        } catch(e) {
+            if (err) err.textContent = 'network error';
+        } finally {
+            if (loginBtn) loginBtn.disabled = false;
+        }
     }
 
     function promptAdminLogin() {
@@ -437,13 +459,24 @@ document.addEventListener('keydown', function(e) {
         return wrap;
     }
 
-    function adminApprove(id, entry) {
+    async function adminAction(path, id) {
+        const res = await api(path, { method: 'POST', auth: true, body: { id: id } });
+        if (res.status === 401) {
+            try { localStorage.removeItem(ADMIN_TOKEN_KEY); } catch(e) {}
+            setAdminState(false);
+            showConfirm({ header: 'session expired', message: 'Sign in again to moderate.', okLabel: 'ok', cancelLabel: '' });
+            return false;
+        }
+        if (!res.ok) {
+            const d = await res.json().catch(() => ({}));
+            showConfirm({ header: 'action failed', message: d.error || 'unknown error', okLabel: 'ok', cancelLabel: '' });
+            return false;
+        }
+        return true;
+    }
+    function adminApprove(id) {
         if (!isAdmin) return;
-        const approvedNode = window._fbRefFn(window._fbDb, 'guestbook/' + id);
-        const pendingNode = window._fbRefFn(window._fbDb, 'guestbook_pending/' + id);
-        window._fbSet(approvedNode, entry)
-            .then(() => window._fbRemove(pendingNode))
-            .catch(err => showConfirm({ header: 'approve failed', message: err.message || 'unknown error', okLabel: 'ok', cancelLabel: '' }));
+        adminAction('/admin/approve', id).then(ok => { if (ok) loadData(); });
     }
     function adminReject(id) {
         if (!isAdmin) return;
@@ -454,10 +487,7 @@ document.addEventListener('keydown', function(e) {
             preview: makePreview(entry),
             okLabel: 'reject',
             danger: true,
-            onConfirm: () => {
-                const pendingNode = window._fbRefFn(window._fbDb, 'guestbook_pending/' + id);
-                window._fbRemove(pendingNode).catch(err => showConfirm({ header: 'reject failed', message: err.message || 'unknown error', okLabel: 'ok', cancelLabel: '' }));
-            }
+            onConfirm: () => adminAction('/admin/reject', id).then(ok => { if (ok) loadData(); })
         });
     }
     function adminDelete(id) {
@@ -469,16 +499,14 @@ document.addEventListener('keydown', function(e) {
             preview: makePreview(entry),
             okLabel: 'delete',
             danger: true,
-            onConfirm: () => {
-                const approvedNode = window._fbRefFn(window._fbDb, 'guestbook/' + id);
-                window._fbRemove(approvedNode).catch(err => showConfirm({ header: 'delete failed', message: err.message || 'unknown error', okLabel: 'ok', cancelLabel: '' }));
-            }
+            onConfirm: () => adminAction('/admin/delete', id).then(ok => { if (ok) loadData(); })
         });
     }
 
     window.exitAdminMode = function() {
-        localStorage.removeItem(ADMIN_FLAG_KEY);
-        if (window._fbAuth && window._fbSignOut) window._fbSignOut(window._fbAuth);
+        try { localStorage.removeItem(ADMIN_TOKEN_KEY); } catch(e) {}
+        pendingData = null;
+        setAdminState(false);
     };
 
     function ensureAdminBadge() {
@@ -503,17 +531,44 @@ document.addEventListener('keydown', function(e) {
         rerender();
     }
 
-    function initFirebase() {
-        if (!window._fbApprovedRef) return;
-        window._fbOnValue(window._fbApprovedRef, (snap) => { approvedData = snap.val(); rerender(); });
-        window._fbOnValue(window._fbPendingRef, (snap) => { pendingData = snap.val(); rerender(); });
-        if (window._fbAuth && window._fbOnAuth) {
-            window._fbOnAuth(window._fbAuth, (user) => setAdminState(!!user));
+    async function loadData() {
+        try {
+            const res = await api('/entries');
+            if (res.ok) approvedData = toMap(await res.json());
+        } catch(e) { if (approvedData === null) approvedData = {}; }
+        if (isAdmin) {
+            try {
+                const pr = await api('/admin/pending', { auth: true });
+                if (pr.status === 401) {
+                    try { localStorage.removeItem(ADMIN_TOKEN_KEY); } catch(e) {}
+                    setAdminState(false);
+                    return;
+                }
+                if (pr.ok) pendingData = toMap(await pr.json());
+            } catch(e) {}
         }
+        rerender();
     }
 
-    if (window._fbApprovedRef) initFirebase();
-    else window.addEventListener('fb-ready', initFirebase);
+    async function init() {
+        if (!API) return;
+        if (getToken()) {
+            try {
+                const pr = await api('/admin/pending', { auth: true });
+                if (pr.ok) {
+                    isAdmin = true;
+                    document.body.classList.add('sg-admin-active');
+                    ensureAdminBadge();
+                    pendingData = toMap(await pr.json());
+                } else {
+                    try { localStorage.removeItem(ADMIN_TOKEN_KEY); } catch(e) {}
+                }
+            } catch(e) {}
+        }
+        await loadData();
+        setInterval(loadData, 30000);
+    }
+    init();
 })();
 
 // Live GitHub star counts: any element with data-gh-stars="owner/repo".
