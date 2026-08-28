@@ -578,7 +578,26 @@ document.addEventListener('keydown', function(e) {
             } catch(e) {}
         }
         await loadData();
-        setInterval(loadData, 7000);   // near-live; REST poll in place of Firebase's socket
+        connectLive();
+    }
+
+    // Live updates over Server-Sent Events: the server pushes a signal on every
+    // change and we refetch — instant, like Firebase's socket. Falls back to polling.
+    function connectLive() {
+        if (!API || !window.EventSource) { setInterval(loadData, 7000); return; }
+        let es = null, backoff = 1000;
+        const open = () => {
+            es = new EventSource(API + '/events');
+            es.onopen = () => { backoff = 1000; };
+            es.onmessage = () => loadData();
+            es.onerror = () => {
+                if (es) es.close();
+                setTimeout(open, backoff);
+                backoff = Math.min(backoff * 2, 15000);
+            };
+        };
+        open();
+        setInterval(loadData, 60000);   // safety net if the stream silently stalls
     }
     init();
 })();
