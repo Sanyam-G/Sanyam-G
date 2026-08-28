@@ -547,6 +547,18 @@ document.addEventListener('keydown', function(e) {
                 if (pr.ok) pendingData = toMap(await pr.json());
             } catch(e) {}
         }
+        // reconcile own pending shadow: drop stamps the admin has since approved or rejected
+        const mine = readMyPending();
+        if (mine.length) {
+            try {
+                const sr = await api('/status?ids=' + encodeURIComponent(mine.map(p => p.id).join(',')));
+                if (sr.ok) {
+                    const st = await sr.json();
+                    const kept = mine.filter(p => st[p.id] === 'pending');
+                    if (kept.length !== mine.length) writeMyPending(kept);
+                }
+            } catch(e) {}
+        }
         rerender();
     }
 
@@ -566,7 +578,7 @@ document.addEventListener('keydown', function(e) {
             } catch(e) {}
         }
         await loadData();
-        setInterval(loadData, 30000);
+        setInterval(loadData, 7000);   // near-live; REST poll in place of Firebase's socket
     }
     init();
 })();
