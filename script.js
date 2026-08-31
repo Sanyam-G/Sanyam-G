@@ -119,7 +119,13 @@ document.addEventListener('keydown', function(e) {
         const headers = opts.headers || {};
         if (opts.body) headers['Content-Type'] = 'application/json';
         if (opts.auth) headers['Authorization'] = 'Bearer ' + getToken();
-        return fetch(API + path, { method: opts.method || 'GET', headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined });
+        return fetch(API + path, { method: opts.method || 'GET', headers: headers, body: opts.body ? JSON.stringify(opts.body) : undefined })
+            .then(res => {
+                // sliding session: store any refreshed token the server hands back
+                const rt = res.headers.get('X-Refresh-Token');
+                if (rt) { try { localStorage.setItem(ADMIN_TOKEN_KEY, rt); } catch(e) {} }
+                return res;
+            });
     }
     // approved list (array, oldest->newest) into an id-keyed object preserving order
     const toMap = (arr) => { const m = {}; (arr || []).forEach(e => { m[e.id] = e; }); return m; };
