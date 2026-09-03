@@ -3,10 +3,10 @@
 <path d="M18.0 10.0 L139.3 10.6 L259.6 9.3 L379.6 10.9 L500.8 10.3 L621.5 10.7 L740.5 9.5 L862.2 10.5 L982.0 10.0 Q990 10 990 18 L990.0 18.0 L989.4 57.2 L989.9 94.0 L990.8 133.8 L990.0 172.0 Q990 180 982 180 L982.0 180.0 L861.0 179.8 L740.9 179.3 L620.2 179.3 L500.0 179.4 L378.9 179.2 L259.8 179.5 L137.5 180.5 L18.0 180.0 Q10 180 10 172 L10.0 172.0 L9.7 132.8 L9.8 94.8 L10.3 56.0 L10.0 18.0 Q10 10 18 10 Z" stroke="#ECE6DC" stroke-width="3" fill="none" stroke-linejoin="round"/>
 <rect x="85.5" y="52" width="17" height="15" rx="5" fill="#FF4F00" transform="rotate(-1.1 93.5 60)"/>
 <text x="109.5" y="66" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="19" fill="#ECE6DC">Total stars</text>
-<text x="147.5" y="132" text-anchor="middle" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="44" font-weight="700" fill="#ECE6DC">873</text>
+<text x="147.5" y="132" text-anchor="middle" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="44" font-weight="700" fill="#ECE6DC">879</text>
 <rect x="320.5" y="52" width="17" height="15" rx="5" fill="#FF4F00" transform="rotate(1.0 328.5 60)"/>
 <text x="344.5" y="66" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="19" fill="#ECE6DC">Total commits</text>
-<text x="382.5" y="132" text-anchor="middle" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="44" font-weight="700" fill="#ECE6DC">2,680</text>
+<text x="382.5" y="132" text-anchor="middle" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="44" font-weight="700" fill="#ECE6DC">2,697</text>
 <rect x="555.5" y="52" width="17" height="15" rx="5" fill="#FF4F00" transform="rotate(0.1 563.5 60)"/>
 <text x="579.5" y="66" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="19" fill="#ECE6DC">Total PRs</text>
 <text x="617.5" y="132" text-anchor="middle" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="44" font-weight="700" fill="#ECE6DC">33</text>
