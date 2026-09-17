@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="230" viewBox="0 0 1000 230" fill="none" role="img" aria-label="Sanyam Garg. CS senior at UW-Madison, graduating December 2026. I run my own servers and build Mac apps and Go backends.">
+<rect width="1000" height="230" rx="14" fill="#1B1714"/>
+<path d="M18.0 10.0 L139.3 10.6 L259.6 9.3 L379.6 10.9 L500.8 10.3 L621.5 10.7 L740.5 9.5 L862.2 10.5 L982.0 10.0 Q990 10 990 18 L990.0 18.0 L989.4 67.2 L989.9 114.0 L990.8 163.8 L990.0 212.0 Q990 220 982 220 L982.0 220.0 L861.0 219.8 L740.9 219.3 L620.2 219.3 L500.0 219.4 L378.9 219.2 L259.8 219.5 L137.5 220.5 L18.0 220.0 Q10 220 10 212 L10.0 212.0 L9.7 162.8 L9.8 114.8 L10.3 66.0 L10.0 18.0 Q10 10 18 10 Z" stroke="#ECE6DC" stroke-width="3" fill="none" stroke-linejoin="round"/>
+<rect x="46" y="62" width="24" height="21" rx="7" fill="#FF4F00" transform="rotate(0.8 58 72)"/>
+<text x="84" y="88" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="46" fill="#ECE6DC" font-weight="700">Sanyam Garg</text>
+<path d="M690.0 40.0 L690.9 64.4 L690.6 90.4 L689.8 115.3 L689.4 139.2 L690.0 164.8 L690.0 190.0" stroke="#ECE6DC" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+<text x="48" y="138" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="20" fill="#ECE6DC" >CS senior at UW-Madison, graduating December 2026.</text>
+<text x="48" y="168" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="20" fill="#ECE6DC" >I run my own servers and build Mac apps and Go backends.</text>
+<rect x="726" y="61" width="17" height="15" rx="5" fill="#FF4F00" transform="rotate(1.2 734 69)"/>
+<text x="838" y="78" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="30" fill="#ECE6DC" font-weight="700" text-anchor="end">912</text>
+<text x="850" y="78" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="20" fill="#ECE6DC" >stars</text>
+<rect x="726" y="107" width="17" height="15" rx="5" fill="#FF4F00" transform="rotate(1.3 734 115)"/>
+<text x="838" y="124" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="30" fill="#ECE6DC" font-weight="700" text-anchor="end">2,840</text>
+<text x="850" y="124" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="20" fill="#ECE6DC" >commits</text>
+<rect x="726" y="153" width="17" height="15" rx="5" fill="#FF4F00" transform="rotate(2.1 734 161)"/>
+<text x="838" y="170" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="30" fill="#ECE6DC" font-weight="700" text-anchor="end">33</text>
+<text x="850" y="170" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="20" fill="#ECE6DC" >PRs</text>
+</svg>
