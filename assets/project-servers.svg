@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="490" height="200" viewBox="0 0 490 200" fill="none" role="img" aria-label="Servers. Live status of the cloud I run across Frankfurt, Buffalo, Dubai, New Delhi and Madison. Drift and the AirPipe relay are hosted on it. Python, Tailscale.">
+<svg xmlns="http://www.w3.org/2000/svg" width="490" height="200" viewBox="0 0 490 200" fill="none" role="img" aria-label="Servers. Live status of the cloud I run across Frankfurt, Buffalo, Dubai, New Delhi and Madison. All my products and websites are hosted on it. Python, Tailscale.">
 <rect width="490" height="200" rx="14" fill="#FFFFFF"/>
 <path d="M14.0 6.0 L72.1 6.9 L128.8 5.9 L186.7 5.4 L245.8 5.7 L302.3 6.8 L360.9 5.4 L419.1 5.2 L476.0 6.0 Q484 6 484 14 L484.0 14.0 L484.5 56.2 L483.4 100.9 L483.3 143.5 L484.0 186.0 Q484 194 476 194 L476.0 194.0 L418.2 193.6 L360.0 194.5 L302.0 194.4 L244.4 193.3 L187.1 193.1 L129.6 194.5 L70.8 194.8 L14.0 194.0 Q6 194 6 186 L6.0 186.0 L5.1 143.1 L5.6 101.0 L5.3 56.4 L6.0 14.0 Q6 6 14 6 Z" stroke="#1A1A1A" stroke-width="3" fill="none" stroke-linejoin="round"/>
 <rect x="28" y="33" width="17" height="15" rx="5" fill="#FF4F00" transform="rotate(1.4 36 40)"/>
 <text x="56" y="50" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="27" fill="#1A1A1A" font-weight="700">Servers</text>
 <text x="28" y="174" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="16" fill="#6B6B6B" >Python, Tailscale</text>
 <text x="28" y="90" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="18" fill="#1A1A1A" >Live status of the cloud I run across Frankfurt,</text>
-<text x="28" y="116" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="18" fill="#1A1A1A" >Buffalo, Dubai, New Delhi and Madison. Drift and</text>
-<text x="28" y="142" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="18" fill="#1A1A1A" >the AirPipe relay are hosted on it.</text>
+<text x="28" y="116" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="18" fill="#1A1A1A" >Buffalo, Dubai, New Delhi and Madison. All my</text>
+<text x="28" y="142" font-family="'xkcd Script', 'Humor Sans', 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive" font-size="18" fill="#1A1A1A" >products and websites are hosted on it.</text>
 </svg>

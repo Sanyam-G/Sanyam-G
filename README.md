@@ -12,5 +12,5 @@
 </p>
 <p>
   <a href="https://sanyamgarg.com"><img src="assets/project-drift.svg" width="49%" alt="Drift: multiplayer cursors on my homepage. Visitors see each other move. Go, WebSockets." /></a>
-  <a href="https://servers.sanyamgarg.com"><img src="assets/project-servers.svg" width="49%" alt="Servers: live status of the cloud I run across Frankfurt, Buffalo, Dubai, New Delhi and Madison. Drift and the AirPipe relay are hosted on it. Python, Tailscale." /></a>
+  <a href="https://servers.sanyamgarg.com"><img src="assets/project-servers.svg" width="49%" alt="Servers: live status of the cloud I run across Frankfurt, Buffalo, Dubai, New Delhi and Madison. All my products and websites are hosted on it. Python, Tailscale." /></a>
 </p>
